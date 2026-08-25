@@ -19,7 +19,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
             Home
           </button>
           <span className="material-symbols-outlined text-[14px] mx-1">chevron_right</span>
-          <span className="text-[#1a1c1c] font-semibold">System Architecture (NTRO / SIH 2026 #26152)</span>
+          <span className="text-[#1a1c1c] font-semibold">System Architecture (SIH 2026 #26152)</span>
         </div>
 
         {/* Header */}
@@ -33,13 +33,13 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                 End-to-End Analytics Pipeline Architecture
               </h1>
               <p className="text-xs text-[#43474f] mt-1">
-                High-throughput distributed ingestion, sovereign transformer inference, and real-time link topology
+                High-throughput distributed ingestion, transformer NLP inference, and real-time link topology
               </p>
             </div>
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#d5e3ff] text-[#001b3c] text-xs font-bold rounded">
                 <span className="w-2 h-2 rounded-full bg-[#003366] animate-pulse"></span>
-                <span>Production Pipeline Active</span>
+                <span>Prototype Pipeline Active</span>
               </span>
             </div>
           </div>
@@ -211,7 +211,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
               <div className="space-y-4">
                 <h3 className="font-serif-headline text-xl font-bold text-[#0C0566] flex items-center gap-2">
                   <span className="material-symbols-outlined text-[#003366]">database</span>
-                  <span>Tier 3: Sovereign PostgreSQL + pgvector Storage</span>
+                  <span>Tier 3: Secure PostgreSQL + pgvector Storage</span>
                 </h3>
                 <p className="text-sm text-[#43474f] leading-relaxed">
                   Relational data persistence with strict DPDP Act 2023 differential privacy safeguards, time-partitioned tables, and vector indexes for semantic search.

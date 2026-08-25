@@ -29,8 +29,8 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                 if (onOpenImageModal) {
                   onOpenImageModal(
                     SEAL_SRC,
-                    'Official SANKET Emblem & Seal',
-                    'Sovereign AI-Driven Multi-Modal Social Media Analytics Framework (SIH 2026 #26152 / NTRO).'
+                    'SANKET Project Emblem',
+                    'AI-Driven Multi-Modal Social Media Analytics Framework (SIH 2026 #26152 / NTRO).'
                   );
                 }
               }}
@@ -39,7 +39,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
             >
               <img
                 src={SEAL_SRC}
-                alt="Official SANKET Logo Seal"
+                alt="SANKET Logo Seal"
                 className="h-28 md:h-32 w-auto mb-2 object-contain transition-all duration-300 group-hover:opacity-90"
               />
               <span className="text-[10px] text-[#003366] font-semibold opacity-0 group-hover:opacity-100 transition-opacity block font-mono">
@@ -51,11 +51,11 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
               Problem Statement #26152
             </h1>
             <h2 className="text-xs sm:text-sm md:text-base font-bold text-[#43474f] uppercase tracking-widest">
-              Smart India Hackathon 2026 &bull; Ministry / Agency: NTRO
+              Smart India Hackathon 2026 &bull; Problem Statement Sponsor: NTRO
             </h2>
             <div className="mt-3 inline-flex items-center gap-2 bg-[#d5e3ff]/60 text-[#001b3c] px-3 py-1 text-xs font-semibold rounded-sm">
               <span className="material-symbols-outlined text-[14px]">shield</span>
-              <span>Sovereign AI-Driven Multi-Modal Social Media Analytics Framework</span>
+              <span>AI-Driven Multi-Modal Social Media Analytics Prototype</span>
             </div>
           </div>
 
@@ -67,7 +67,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                 1. Overview
               </h3>
               <p className="text-justify leading-relaxed text-[#43474f]">
-                The exponential growth of digital interactions necessitates advanced analytical frameworks to interpret public sentiment, identify emerging threats, and model demographic shifts in real-time. The Social Analytics &amp; Network Knowledge Extraction Technology (SANKET) initiative seeks to develop a robust, scalable, and sovereign platform capable of aggregating and synthesizing vast quantities of multi-modal data. The system must operate with high fidelity, ensuring data provenance while adhering to strict privacy mandates.
+                The exponential growth of digital interactions necessitates advanced analytical frameworks to interpret public sentiment, identify emerging trends, and model demographic shifts in real-time. The Social Analytics &amp; Network Knowledge Extraction Technology (SANKET) prototype initiative seeks to develop a robust, scalable platform capable of aggregating and synthesizing open multi-modal data. The system operates with high fidelity, ensuring data provenance while adhering to strict privacy mandates.
               </p>
             </section>
 
@@ -81,10 +81,10 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                   <strong className="text-[#090909]">Automated Extraction &amp; Synthesis:</strong> To architect an automated pipeline capable of ingesting diverse unstructured data formats and synthesizing them into standardized, actionable intelligence.
                 </li>
                 <li>
-                  <strong className="text-[#090909]">Predictive Threat Modeling:</strong> To leverage historical trend analysis to forecast potential public order disruptions or organized misinformation campaigns.
+                  <strong className="text-[#090909]">Predictive Trend &amp; Anomaly Modeling:</strong> To leverage historical trend analysis to forecast emerging narrative velocities or coordinated botnet campaigns.
                 </li>
                 <li>
-                  <strong className="text-[#090909]">Sovereign Data Infrastructure:</strong> To ensure all computational and storage methodologies strictly comply with national data residency frameworks (DPDP Act 2023).
+                  <strong className="text-[#090909]">Data Protection &amp; Privacy Infrastructure:</strong> To ensure all computational and storage methodologies strictly comply with national data protection frameworks (DPDP Act 2023).
                 </li>
               </ol>
             </section>

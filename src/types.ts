@@ -126,8 +126,8 @@ export interface AnalystUser {
   id: string;
   name: string;
   badgeId: string;
-  role: 'Senior Cyber Analyst' | 'Directorate Supervisor' | 'System Admin';
-  clearanceLevel: 'SECRET' | 'TOP SECRET' | 'RESTRICTED';
-  agency: 'National Technical Research Organisation (NTRO)';
-  department: 'Open Source Intelligence (OSINT) Cyber Cell';
+  role: 'Demo Analyst' | 'Demo Supervisor' | 'System Admin' | string;
+  clearanceLevel: 'DEMO ACCESS' | 'ANALYST' | 'SUPERVISOR' | string;
+  agency: string;
+  department: string;
 }

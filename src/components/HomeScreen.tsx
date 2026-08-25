@@ -14,7 +14,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onOpenSandbox
 }) => {
   const PREVIEW_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDadJtV_zVpm8MRWZAIs1UOLFdjQCDAQfXRzhHtDzN8gpHiRkmatv1i7_HXPFM_sH0cZewR4n5bBDqLbC6gNHlMFhdO8XRGQ20Ivexl-YDGaUv5SKVH5i7IO0SKr7kzL90Ri090fsWKedfz9lObDeqTpt4Aap6z0V-Dx9EK9Tqyqiyitg7Z-aITUi0DWU7MIM42pz4QMO-KBXC_REroPSsrIVGDvwjA9vv44q0wIAfXYgqU3ZmISH7z_Q";
-  const NTRO_SEAL = "https://lh3.googleusercontent.com/aida-public/AB6AXuCinHWq_c24Urs-5wtiDmpW6QM0AqSsPSiF6-k8A9-bnngpJ5Ij-kfZ01TX0ftthiytehw_i6ZHy685KqBX57g8IKklqDhWg9LmBtarO_PDZghBrHRcCAYV9tZZO95qUHlWH2MI9tD_5mK2MJefWUnKEDgDgLUQwibkHTmlUL69baEsiFupyuVnm2Pf2mL2F9F7BurUsFO8_8Lz4d89BLP-c12YLWy1TEnCk1TnbmLFgz_iuS9Yx4_CmA";
   const SIH_BADGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuCFNVU64LZftn07wriZj1h6IS98I6itrIRBvfw0nD3qhRVhXx_MCFawJHwE_y18SVuR5q1zRf5n_GB3GW7dyxIMxsh2P4mjcq6enCUWy5dcyS165YXzFS4GFRZtY8yCGE7LdIctmWJYNlN6q9ioH7k3dKBMZg9J0gRsVQTSGPJGMYTAbFfMP0_tqS96mYnr-n86JqRV8gWsj04ifm8cxTqjDeVo9hb-iabNsvK2IbzI6MXCgrFjSi52-w";
 
   const handleImageClick = (src: string, alt: string, caption: string) => {
@@ -54,7 +53,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               Decode. Analyze. Anticipate.
             </h2>
             <p className="text-sm sm:text-base text-[#43474f] text-justify leading-relaxed">
-              SANKET (Social Analytics &amp; Network Knowledge Extraction Technology) is a sovereign AI-driven intelligence framework engineered for deep semantic analysis of multi-modal social media content. It leverages advanced transformer NLP, vernacular Hinglish sarcasm inversion, anonymized demographic cohort modeling, and force-directed network topology analysis. Built for high-stakes intelligence oversight under the National Technical Research Organisation (NTRO), SANKET delivers real-time situational awareness and threat anticipation.
+              SANKET (Social Analytics &amp; Network Knowledge Extraction Technology) is an AI-driven social media analytics framework engineered for deep semantic analysis of multi-modal social media content. It leverages advanced transformer NLP, vernacular Hinglish sarcasm detection, anonymized demographic cohort modeling, and force-directed network topology analysis. Proposed as a solution for NTRO's Smart India Hackathon 2026 Problem Statement #26152, SANKET delivers real-time situational awareness, trend forecasting, and influence network mapping.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -129,7 +128,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 Core Capabilities
               </h3>
               <p className="text-xs text-[#737780] mt-1">
-                Integrated Five-Component Framework as mandated by NTRO &amp; SIH 2026
+                Integrated Five-Component Framework as specified in Problem Statement #26152
               </p>
             </div>
             <button
@@ -242,26 +241,25 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* Affiliation & Notices Band */}
       <section className="max-w-[1280px] mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-6 py-8 px-3 sm:px-6 lg:px-8">
-        {/* Affiliation Card with interactive images */}
+        {/* Hackathon Problem Statement Presentation Card */}
         <div className="lg:col-span-2 bg-[#eeeeee] border border-[#CCCCCC] p-6 rounded flex flex-col justify-center shadow-xs">
           <div className="flex flex-col sm:flex-row items-center gap-6 justify-around">
-            <div
-              onClick={() => handleImageClick(NTRO_SEAL, 'National Technical Research Organisation (NTRO)', 'Apex technical intelligence agency under National Security Advisor in Prime Minister Office.')}
-              className="flex flex-col items-center text-center cursor-pointer p-2 rounded hover:bg-white/60 transition-all duration-300 transform hover:scale-105"
-              title="Click to zoom NTRO Insignia"
-            >
-              <img
-                src={NTRO_SEAL}
-                alt="National Technical Research Organisation (NTRO)"
-                className="h-20 w-auto object-contain mb-1 transition-transform duration-300 hover:scale-105"
-              />
-              <span className="text-[11px] font-bold text-[#001e40] uppercase">National Technical Research Organisation</span>
+            <div className="flex flex-col items-center text-center p-2">
+              <span className="text-[10px] font-bold text-[#fe6500] uppercase tracking-widest">
+                Problem Statement Organization
+              </span>
+              <h4 className="font-serif-headline text-base font-bold text-[#0C0566] mt-0.5">
+                National Technical Research Organisation (NTRO)
+              </h4>
+              <p className="text-xs text-[#43474f] max-w-xs mt-1">
+                Authoring agency for Smart India Hackathon 2026 Problem Statement #26152
+              </p>
             </div>
 
             <div className="h-[1px] w-full sm:w-[1px] sm:h-24 bg-[#CCCCCC]"></div>
 
             <div
-              onClick={() => handleImageClick(SIH_BADGE, 'Smart India Hackathon 2026 Problem Statement #26152', 'Ministry of Education & AICTE national innovation initiative for sovereign AI cyber defense.')}
+              onClick={() => handleImageClick(SIH_BADGE, 'Smart India Hackathon 2026 Problem Statement #26152', 'Ministry of Education & AICTE national innovation initiative.')}
               className="text-center flex flex-col items-center cursor-pointer p-2 rounded hover:bg-white/60 transition-all duration-300 transform hover:scale-105"
               title="Click to zoom SIH 2026 Badge"
             >

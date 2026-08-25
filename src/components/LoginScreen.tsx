@@ -8,7 +8,7 @@ interface LoginScreenProps {
 }
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavigate }) => {
-  const [govId, setGovId] = useState('GOI/NTRO/2026/0942');
+  const [govId, setGovId] = useState('DEMO-ANALYST-001');
   const [password, setPassword] = useState('••••••••••••');
   const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +25,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
     }, 600);
   };
 
-  const handleQuickLogin = (role: 'Senior Cyber Analyst' | 'Directorate Supervisor') => {
+  const handleQuickLogin = (role: 'Demo Analyst' | 'Demo Supervisor') => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -44,22 +44,20 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
       <div className="bg-white border border-[#CCCCCC] w-full max-w-lg p-6 md:p-10 shadow-sm">
         <div className="mb-6 text-center">
           <h1 className="font-serif-headline text-2xl md:text-3xl font-bold text-[#003366] tracking-tight">
-            Authorized Personnel Login
+            Analyst Console Login
           </h1>
           <p className="text-xs md:text-sm text-[#43474f] mt-2">
-            Sign in to access the SANKET intelligence portal.
+            Sign in to access the SANKET prototype analytics portal.
           </p>
         </div>
 
-        {/* Restricted Access Notice */}
-        <div className="mb-6 p-4 bg-[#eeeeee] border-l-4 border-[#E31E2E] flex items-start gap-3">
-          <span className="material-symbols-outlined text-[#E31E2E] text-xl flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
-            warning
+        {/* Demo Disclaimer Notice */}
+        <div className="mb-6 p-4 bg-[#eeeeee] border-l-4 border-[#003366] flex items-start gap-3">
+          <span className="material-symbols-outlined text-[#003366] text-xl flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
+            info
           </span>
           <p className="text-xs text-[#1a1c1c] leading-relaxed">
-            This is a restricted government system. Unauthorized access is prohibited under the{' '}
-            <strong className="text-[#090909]">Information Technology Act, 2000</strong> and{' '}
-            <strong className="text-[#090909]">Official Secrets Act, 1923</strong>.
+            This is a demonstration login for a <strong className="text-[#090909]">Smart India Hackathon 2026 prototype</strong>. No real personal credentials or confidential government records are required.
           </p>
         </div>
 
@@ -73,7 +71,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
             <label className="block text-xs font-bold text-[#1a1c1c] uppercase tracking-wider" htmlFor="username">
-              Gov. ID / Username
+              Demo ID / Username
             </label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#737780] pointer-events-none">
@@ -85,7 +83,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
                 type="text"
                 value={govId}
                 onChange={(e) => setGovId(e.target.value)}
-                placeholder="Enter your official ID"
+                placeholder="Enter your demo ID"
                 required
                 className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#737780] text-[#1a1c1c] text-sm focus:border-2 focus:border-[#003366] focus:outline-none transition-colors"
               />
@@ -121,10 +119,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
               className="w-full py-3.5 bg-[#003366] hover:bg-[#0C0566] text-white font-bold text-xs uppercase tracking-wider transition-colors flex justify-center items-center gap-2 border border-[#001e40] shadow-sm disabled:opacity-75"
             >
               {isLoading ? (
-                <span>Authenticating Credentials...</span>
+                <span>Accessing Demo Console...</span>
               ) : (
                 <>
-                  <span>Secure Login</span>
+                  <span>Launch Demo Console</span>
                   <span className="material-symbols-outlined text-sm">login</span>
                 </>
               )}
@@ -135,31 +133,31 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
         {/* Quick Demo Access Roles */}
         <div className="mt-6 p-3 bg-[#f9f9f9] border border-[#CCCCCC] rounded-sm">
           <p className="text-[11px] font-bold text-[#003366] uppercase mb-2">
-            Demonstration Access Credentials:
+            One-Click Demonstration Personas:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <button
               type="button"
-              onClick={() => handleQuickLogin('Senior Cyber Analyst')}
+              onClick={() => handleQuickLogin('Demo Analyst')}
               className="text-left text-xs bg-white hover:bg-[#d5e3ff]/50 border border-[#c3c6d1] p-2 transition-colors flex flex-col"
             >
               <span className="font-bold text-[#001e40]">Commander S. K. Verma</span>
-              <span className="text-[10px] text-[#43474f]">Senior Cyber Analyst (NTRO)</span>
+              <span className="text-[10px] text-[#43474f]">Demo Analyst (OSINT Cell)</span>
             </button>
             <button
               type="button"
-              onClick={() => handleQuickLogin('Directorate Supervisor')}
+              onClick={() => handleQuickLogin('Demo Supervisor')}
               className="text-left text-xs bg-white hover:bg-[#d5e3ff]/50 border border-[#c3c6d1] p-2 transition-colors flex flex-col"
             >
               <span className="font-bold text-[#001e40]">Dr. R. K. Nambiar</span>
-              <span className="text-[10px] text-[#43474f]">Directorate Supervisor (OSINT)</span>
+              <span className="text-[10px] text-[#43474f]">Demo Supervisor (Research Lead)</span>
             </button>
           </div>
         </div>
 
         <div className="mt-6 pt-4 border-t border-[#e8e8e8] text-center flex flex-col sm:flex-row justify-between items-center text-xs gap-2">
           <a href="#help" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }} className="text-[#003366] hover:underline font-medium">
-            Forgot your password or locked out?
+            Need help or hackathon queries?
           </a>
           <button
             onClick={() => onNavigate('home')}

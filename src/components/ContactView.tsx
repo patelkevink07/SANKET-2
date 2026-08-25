@@ -20,33 +20,35 @@ export const ContactView: React.FC<ContactViewProps> = ({ onNavigate }) => {
         <div className="bg-white border border-[#CCCCCC] p-6 md:p-8 shadow-sm space-y-6">
           <div className="border-b border-[#e2e2e2] pb-4">
             <span className="text-[10px] font-bold text-[#fe6500] uppercase tracking-widest">
-              Institutional Contacts
+              Hackathon Project Directory
             </span>
             <h1 className="font-serif-headline text-2xl md:text-3xl font-bold text-[#0C0566]">
-              NTRO & SIH 2026 Nodal Cell
+              SANKET Team &amp; SIH 2026 Information
             </h1>
             <p className="text-xs text-[#43474f] mt-1">
-              Help desk for authorized personnel, participating hackathon teams, and regulatory queries
+              Contact and submission details for Smart India Hackathon 2026 (Problem Statement #26152)
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#43474f]">
             <div className="p-4 bg-[#f9f9f9] border border-[#CCCCCC] rounded space-y-2">
               <h3 className="font-serif-headline text-base font-bold text-[#003366]">
-                National Technical Research Organisation
+                Team SANKET (Student Developers)
               </h3>
-              <p>Block-III, Old JNU Campus, New Delhi - 110067, India</p>
-              <p><strong>OSINT Cyber Cell:</strong> cyber-osint@ntro.gov.in</p>
-              <p><strong>Technical Helpdesk:</strong> +91 (11) 2674-XXXX</p>
+              <p>Smart India Hackathon 2026 Prototype Submission</p>
+              <p><strong>Problem Statement:</strong> #26152 (Sponsored by NTRO)</p>
+              <p><strong>Team Repository:</strong> patelkevink07/SANKET-2</p>
+              <p><strong>Project Support:</strong> team.sanket.sih2026@gmail.com</p>
             </div>
 
             <div className="p-4 bg-[#f9f9f9] border border-[#CCCCCC] rounded space-y-2">
               <h3 className="font-serif-headline text-base font-bold text-[#003366]">
-                Smart India Hackathon 2026 Cell
+                Smart India Hackathon 2026 Nodal Cell
               </h3>
               <p>AICTE Head Office, Nelson Mandela Marg, Vasant Kunj, New Delhi - 110070</p>
               <p><strong>Problem Statement ID:</strong> #26152</p>
-              <p><strong>Nodal Officer:</strong> sih2026-ps26152@aicte-india.org</p>
+              <p><strong>Organized by:</strong> MoE's Innovation Cell &amp; AICTE</p>
+              <p><strong>Official Portal:</strong> sih.gov.in</p>
             </div>
           </div>
         </div>

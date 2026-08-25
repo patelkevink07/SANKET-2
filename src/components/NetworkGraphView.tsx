@@ -390,7 +390,7 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
                 </button>
                 {selectedNode.botProbability > 0.5 && (
                   <button
-                    onClick={() => alert(`Node ${selectedNode.username} isolated and flagged in NTRO Sovereign HoneyPot Registry.`)}
+                    onClick={() => alert(`Node ${selectedNode.username} isolated and flagged in coordinated botnet registry.`)}
                     className="w-full py-2 bg-[#ba1a1a] hover:bg-[#93000a] text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-1.5"
                   >
                     <span className="material-symbols-outlined text-[14px]">block</span>

@@ -15,27 +15,27 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ user, onNavigate }) =>
     setIsGenerating(true);
     setTimeout(() => {
       setIsGenerating(false);
-      setGeneratedReport(`SITUATION REPORT (SITREP) - SANKET INTELLIGENCE CELL
-REF: GOI/NTRO/SITREP/2026-0824/09
-SECURITY CLEARANCE: TOP SECRET // NOFORN
+      setGeneratedReport(`SITUATION REPORT (SITREP) - SANKET ANALYTICS CELL
+REF: SIH2026/SANKET/SITREP/2026-0824/09
+CLASSIFICATION: DEMO ASSESSMENT // PROTOTYPE
 DATE: ${new Date().toLocaleDateString('en-GB')} | TIME: ${new Date().toLocaleTimeString()}
 
 1. EXECUTIVE SUMMARY:
 Over the past 24 hours, social data ingestion across 5 platforms registered 310,650 items. Aggregate public sentiment remains decisively positive (+0.74 polarity index), anchored by viral momentum surrounding #SemiconductorMission and infrastructure developments.
 
 2. NARRATIVE ANOMALIES & THREAT VECTOR MONITORING:
-- Inauthentic Activity: 2 coordinated botnet rings identified exhibiting abnormal synchronized hashtag amplification on market triggers. Ring IDs (BOT-ALPHA-1, BOT-ALPHA-2) have been flagged and isolated in sovereign Honeypot registers.
+- Inauthentic Activity: 2 coordinated botnet rings identified exhibiting abnormal synchronized hashtag amplification on market triggers. Ring IDs (BOT-ALPHA-1, BOT-ALPHA-2) have been flagged and isolated for network cluster analysis.
 - Satire/Sarcasm: Vernacular Hinglish sarcasm detector successfully distinguished municipal critique (#SmartCityRealities) with 94% precision, avoiding false positive alert generation.
 
 3. STRATEGIC INFLUENCE TOPOLOGY:
-- Centrality analysis indicates high dissemination authority from authenticated nodes (@tech_bharat_now, @NTRO_CyberAlerts).
+- Centrality analysis indicates high dissemination authority from authenticated nodes (@tech_bharat_now, @CyberSecurity_Alerts).
 - Geographic engagement remains densest in Maharashtra (21.5%), Delhi NCR (19.2%), and Karnataka (18.0%).
 
 4. COMPLIANCE CERTIFICATE:
 All intelligence synthesis operations comply with Digital Personal Data Protection (DPDP) Act 2023 and ISO 27701 privacy baselines.
 
-REPORT COMPILED BY: ${user ? user.name : 'Commander S. K. Verma'} (${user ? user.role : 'Senior Cyber Analyst'})
-AUTHORIZED FOR DISPATCH TO NTRO CYBER DIRECTORATE.`);
+REPORT COMPILED BY: ${user ? user.name : 'Commander S. K. Verma'} (${user ? user.role : 'Demo Analyst'})
+GENERATED FOR: SMART INDIA HACKATHON 2026 PROTOTYPE EVALUATION.`);
     }, 500);
   };
 
@@ -103,9 +103,9 @@ AUTHORIZED FOR DISPATCH TO NTRO CYBER DIRECTORATE.`);
             <div>
               <label className="block font-bold text-[#1a1c1c] mb-1 uppercase">Classification Level</label>
               <select className="w-full p-2 bg-[#f9f9f9] border border-[#CCCCCC] rounded">
-                <option>TOP SECRET // NOFORN</option>
-                <option>SECRET // OFFICIAL USE ONLY</option>
-                <option>RESTRICTED</option>
+                <option>DEMO ASSESSMENT // PROTOTYPE</option>
+                <option>INTERNAL ANALYTICS BRIEF</option>
+                <option>RESTRICTED TEST HARNESS</option>
               </select>
             </div>
           </div>
@@ -120,7 +120,7 @@ AUTHORIZED FOR DISPATCH TO NTRO CYBER DIRECTORATE.`);
               <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                 <div className="flex items-center gap-2 text-xs text-[#737780]">
                   <span className="material-symbols-outlined text-[#138808] text-base">verified</span>
-                  <span>Cryptographically Signed by NTRO Sovereign Vault</span>
+                  <span>Integrity Verified by SANKET Prototype Engine</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
@@ -131,11 +131,11 @@ AUTHORIZED FOR DISPATCH TO NTRO CYBER DIRECTORATE.`);
                     <span>Print / Save as PDF</span>
                   </button>
                   <button
-                    onClick={() => alert('SITREP dispatched to secure Directorate Telegram Relay.')}
+                    onClick={() => alert('SITREP exported successfully.')}
                     className="py-2 px-4 bg-[#003366] hover:bg-[#001e40] text-white font-bold text-xs uppercase rounded transition-colors flex items-center gap-1.5"
                   >
-                    <span className="material-symbols-outlined text-sm">send</span>
-                    <span>Dispatch to Directorate</span>
+                    <span className="material-symbols-outlined text-sm">download</span>
+                    <span>Export Summary Report</span>
                   </button>
                 </div>
               </div>

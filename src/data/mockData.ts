@@ -9,13 +9,13 @@ import {
 } from '../types';
 
 export const CURRENT_ANALYST: AnalystUser = {
-  id: 'NTRO-ANA-8492',
+  id: 'DEMO-ANA-8492',
   name: 'Commander S. K. Verma',
-  badgeId: 'GOI/NTRO/2026/0942',
-  role: 'Senior Cyber Analyst',
-  clearanceLevel: 'TOP SECRET',
-  agency: 'National Technical Research Organisation (NTRO)',
-  department: 'Open Source Intelligence (OSINT) Cyber Cell'
+  badgeId: 'DEMO-ANALYST-001',
+  role: 'Demo Analyst',
+  clearanceLevel: 'DEMO ACCESS',
+  agency: 'SIH 2026 Prototype Sandbox',
+  department: 'Open Source Intelligence (OSINT) Analytics Cell'
 };
 
 export const MOCK_POSTS: SocialPost[] = [
@@ -198,7 +198,7 @@ export const MOCK_POSTS: SocialPost[] = [
       username: 'u/IndoCyberShield',
       displayName: 'IndoCyberShield',
       avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80',
-      bio: 'PhD candidate researching sovereign cloud protocols and cyber defense frameworks in r/developersIndia.',
+      bio: 'PhD candidate researching cloud protocols and cyber defense frameworks in r/developersIndia.',
       followerCount: 4200,
       followingCount: 150,
       isProtected: false,
@@ -209,7 +209,7 @@ export const MOCK_POSTS: SocialPost[] = [
       inferredLanguage: 'English / Telugu',
       centralityScore: 0.65
     },
-    content: 'Discussion on DPDP Act compliance architecture for LLM providers operating in India. How are local teams setting up local embeddings vs overseas inference pipelines? Analysis of sovereign data boundary requirements.',
+    content: 'Discussion on DPDP Act compliance architecture for LLM providers operating in India. How are local teams setting up local embeddings vs overseas inference pipelines? Analysis of data boundary requirements.',
     language: 'en',
     postedAt: '2026-08-24T17:15:00Z',
     ingestedAt: '2026-08-24T17:15:10Z',
@@ -227,7 +227,7 @@ export const MOCK_POSTS: SocialPost[] = [
       confidence: 0.95,
       modelVersion: 'sanket-indic-roberta-v3.2'
     },
-    topics: ['#DataSovereignty', '#CyberSecurity2026', '#TechPolicy']
+    topics: ['#DataPrivacy', '#CyberSecurity2026', '#TechPolicy']
   },
   {
     id: 'post-106',
@@ -240,7 +240,7 @@ export const MOCK_POSTS: SocialPost[] = [
       username: 'AnandVanguard',
       displayName: 'Anand Kumar',
       avatarUrl: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&auto=format&fit=crop&q=80',
-      bio: 'Public comment on Tech Sovereign documentary.',
+      bio: 'Public comment on Tech Innovation documentary.',
       followerCount: 340,
       followingCount: 50,
       isProtected: false,
@@ -352,8 +352,8 @@ export const MOCK_TRENDS: TrendTopic[] = [
       sarcastic: 4
     },
     samplePosts: [
-      'NTRO and CERT-In issue sovereign guidelines for critical cloud infra.',
-      'Sovereign encryption protocols updated across financial gateways.'
+      'Cyber security guidelines and advisories issued for cloud infra.',
+      'Standard encryption protocols updated across digital gateways.'
     ]
   },
   {
@@ -441,8 +441,8 @@ export const MOCK_NETWORK_NODES: NetworkNode[] = [
   },
   {
     id: 'node-2',
-    label: 'NTRO Cyber Cell (Official)',
-    username: '@NTRO_CyberAlerts',
+    label: 'Cyber Defense Alerts Node',
+    username: '@CyberSecurity_Alerts',
     platform: 'x',
     role: 'Official',
     followers: 512000,
@@ -554,7 +554,7 @@ export const MOCK_NETWORK_NODES: NetworkNode[] = [
   {
     id: 'node-10',
     label: 'SIH Innovation Cell',
-    username: '@SIH_Gov_Official',
+    username: '@SIH_InnovationCell',
     platform: 'x',
     role: 'Official',
     followers: 210000,

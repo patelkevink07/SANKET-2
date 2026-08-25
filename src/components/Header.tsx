@@ -12,7 +12,6 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout, onNavigate, onOp
   const [fontSizeOffset, setFontSizeOffset] = useState<number>(0);
   const [highContrast, setHighContrast] = useState<boolean>(false);
 
-  const ASHOKA_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuAbeo3KCg537jnVXhpvhDw7mRU_Z3vgtH5gJZemghB4Ih3WmGCPAKEkAt2X_NeYoxRNisX33XO7pSD-EcQOYiH3hU3NLmvWwHx84b_kURmzvSkfK4q7tw3FIJqPQOjbQpcze35RPI4dDGgVZCRHzp8WjUvXZcTwnsz9zMk9EgvqB1DlWm_1ItiEX4gLM7Pwva0nMwL2GcefFmA3JoL4TW99OuIMTnUxy9aZO_JmoMXqZpzkAg5wdyxIJQ";
   const SANKET_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBUOganULH4yr2KV_rB63OGkh2A8zBTOkiTcNLo0ZAm40PHRe5ueS0_s3mC7ZJO_6eqFdP7ZQW_hoCqHaHC1PYpa2-EVwO0ZMyCCmq4-11vZNVtH4rFh4KT0J__T97Vth6WTiMkdiU166hOxO06hTv_jAj6oWkKdjzz6qcwpyuxhXzaAoyJzDe6i_hnE8TPYAvnGydFgwuu8cutGX4vcdxAFjprIMvGlFGDt9rAQjugDHvKanfBlIjdQ_5EyGQ4t7SjJXI";
 
   const adjustFontSize = (delta: number) => {
@@ -47,9 +46,9 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout, onNavigate, onOp
       {/* Utility Bar */}
       <div className="bg-[#e2e2e2] text-[#43474f] py-1 px-3 sm:px-6 lg:px-8 text-xs font-semibold flex flex-wrap justify-between items-center gap-2 border-b border-[#CCCCCC]">
         <div className="flex items-center gap-2">
-          <span className="font-bold tracking-wide text-[#090909]">Government of India</span>
+          <span className="font-bold tracking-wide text-[#090909]">Smart India Hackathon 2026</span>
           <span className="hidden sm:inline text-[#737780]">|</span>
-          <span className="hidden sm:inline text-xs text-[#003366] font-medium">National Security &amp; Cyber Research Portal</span>
+          <span className="hidden sm:inline text-xs text-[#003366] font-medium">Problem Statement #26152 (NTRO) &bull; Prototype</span>
         </div>
         <div className="flex items-center gap-2.5 text-xs">
           <a
@@ -118,25 +117,10 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout, onNavigate, onOp
         </div>
       </div>
 
-      {/* Main Official Header */}
+      {/* Main Header */}
       <div className="py-3 px-3 sm:px-6 lg:px-8 border-b border-[#CCCCCC] bg-white">
         <div className="max-w-[1280px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3 sm:gap-4 cursor-pointer" onClick={() => onNavigate('home')}>
-            {/* Ashoka Emblem with interactive hover effect */}
-            <div
-              onClick={(e) => handleImageClick(e, ASHOKA_IMG, 'State Emblem of India', 'National Emblem of the Republic of India (Lion Capital of Ashoka)')}
-              className="relative overflow-hidden rounded p-1 hover:bg-[#d5e3ff]/40 transition-all duration-300 transform hover:scale-105"
-              title="Click to zoom National Emblem"
-            >
-              <img
-                src={ASHOKA_IMG}
-                alt="State Emblem of India"
-                className="h-12 sm:h-16 w-auto object-contain transition-transform duration-300 hover:scale-105"
-              />
-            </div>
-            
-            <div className="h-10 sm:h-12 w-[1px] bg-[#CCCCCC]"></div>
-            
             {/* SANKET Logo with interactive hover effect */}
             <div
               onClick={(e) => handleImageClick(e, SANKET_IMG, 'SANKET Directorate Crest', 'SANKET Social Analytics & Network Knowledge Extraction Technology Emblem')}
@@ -149,21 +133,30 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout, onNavigate, onOp
                 className="h-12 sm:h-16 w-auto object-contain transition-transform duration-300 hover:scale-105"
               />
             </div>
+            
+            <div className="flex flex-col">
+              <span className="font-serif-headline text-xl sm:text-2xl font-bold text-[#0C0566] tracking-tight">
+                SANKET
+              </span>
+              <span className="text-xs text-[#43474f] font-semibold hidden md:inline">
+                Social Analytics &amp; Network Knowledge Extraction Technology
+              </span>
+            </div>
           </div>
 
           <div className="text-center sm:text-right">
-            <span className="block font-serif-headline text-base sm:text-lg lg:text-xl font-bold text-[#0C0566] tracking-tight">
-              National Technical Research Organisation
+            <span className="block font-serif-headline text-sm sm:text-base font-bold text-[#0C0566] tracking-tight">
+              Smart India Hackathon 2026
             </span>
             <span className="block text-xs font-bold text-[#737780] tracking-wide uppercase">
-              Social Analytics &amp; Network Knowledge Extraction Technology
+              Proposed Solution for NTRO Problem Statement #26152
             </span>
             <div className="flex items-center justify-center sm:justify-end gap-2 mt-0.5">
               <span className="text-[11px] text-[#fe6500] font-bold">
-                SIH 2026 Problem Statement #26152
+                SIH 2026 &bull; PS #26152
               </span>
-              <span className="text-[10px] text-[#138808] font-semibold bg-[#e8f5e9] px-1.5 py-0.2 rounded">
-                Gov. Sovereign Portal
+              <span className="text-[10px] text-[#003366] font-semibold bg-[#d5e3ff]/70 px-1.5 py-0.5 rounded border border-[#c3c6d1]">
+                Prototype — Smart India Hackathon 2026
               </span>
             </div>
           </div>

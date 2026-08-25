@@ -34,24 +34,24 @@ export const ResourcesView: React.FC<ResourcesViewProps> = ({ onNavigate }) => {
             <div className="p-4 bg-[#f9f9f9] border border-[#CCCCCC] rounded">
               <h3 className="font-serif-headline text-base font-bold text-[#003366] mb-2 flex items-center gap-2">
                 <span className="material-symbols-outlined text-base">gavel</span>
-                <span>DPDP Act 2023 & ISO 27701 Sovereign Compliance</span>
+                <span>DPDP Act 2023 &amp; ISO 27701 Privacy Compliance</span>
               </h3>
               <p className="text-xs text-[#43474f] leading-relaxed">
-                The SANKET framework processes exclusively public social data streams. It enforces algorithmic redaction of personal identifiers (PII) at the ingestion boundary, applying Differential Privacy (ε=0.5) to all demographic aggregations.
+                The SANKET framework processes exclusively public social data streams. It enforces algorithmic redaction of personal identifiers (PII) at the ingestion boundary, applying Differential Privacy (&epsilon;=0.5) to all demographic aggregations.
               </p>
             </div>
 
             <div className="p-4 bg-[#f9f9f9] border border-[#CCCCCC] rounded">
               <h3 className="font-serif-headline text-base font-bold text-[#003366] mb-2 flex items-center gap-2">
                 <span className="material-symbols-outlined text-base">code</span>
-                <span>REST API & WebSocket Integration Docs</span>
+                <span>REST API &amp; WebSocket Integration Docs</span>
               </h3>
               <p className="text-xs text-[#43474f] leading-relaxed mb-3">
-                Authorized government applications can subscribe to real-time trend alert feeds via secure WebSockets and query historical sentiment indices via authenticated JWT tokens.
+                Client applications can subscribe to real-time trend alert feeds via WebSockets and query historical sentiment indices via authenticated demo tokens.
               </p>
               <div className="p-3 bg-[#1e1e1e] text-[#d4d4d4] rounded font-mono text-xs overflow-x-auto">
-                curl -X GET "https://sanket.ntro.gov.in/api/v1/sentiment/temporal-distribution?range=24h" \<br />
-                &nbsp;&nbsp;-H "Authorization: Bearer NTRO_SEC_JWT_TOKEN"
+                curl -X GET "https://api.sanket.internal/api/v1/sentiment/temporal-distribution?range=24h" \<br />
+                &nbsp;&nbsp;-H "Authorization: Bearer DEMO_JWT_TOKEN"
               </div>
             </div>
           </div>

@@ -57,7 +57,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
     let timer: any;
     if (isLiveStreaming) {
       timer = setInterval(() => {
-        const sampleKeywords = ['#SemiconductorMission', '#CyberSecurity2026', '#DigitalIndia', '#TechSovereignty'];
+        const sampleKeywords = ['#SemiconductorMission', '#CyberSecurity2026', '#DigitalIndia', '#TechInnovation'];
         const randomKw = sampleKeywords[Math.floor(Math.random() * sampleKeywords.length)];
         const randomPlatforms: PlatformType[] = ['x', 'telegram', 'reddit', 'youtube'];
         const randomPlat = randomPlatforms[Math.floor(Math.random() * randomPlatforms.length)];
@@ -71,7 +71,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             platform: randomPlat,
             platformUserId: `usr_${Math.floor(Math.random() * 9000)}`,
             username: `cyber_watch_${Math.floor(Math.random() * 900)}`,
-            displayName: `Sovereign Observer ${Math.floor(Math.random() * 90)}`,
+            displayName: `Public Observer ${Math.floor(Math.random() * 90)}`,
             avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80',
             bio: 'Monitoring public social streams.',
             followerCount: Math.floor(Math.random() * 15000),
