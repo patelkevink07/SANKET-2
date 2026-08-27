@@ -38,7 +38,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ onNavigate }) => {
               <p>Smart India Hackathon 2026 Prototype Submission</p>
               <p><strong>Problem Statement:</strong> #26152 (Sponsored by NTRO)</p>
               <p><strong>Team Repository:</strong> patelkevink07/SANKET-2</p>
-              <p><strong>Project Support:</strong> team.sanket.sih2026@gmail.com</p>
+              <p><strong>Project Support:</strong> patelkevink07@gmail.com</p>
             </div>
 
             <div className="p-4 bg-subtle border border-main rounded space-y-2">

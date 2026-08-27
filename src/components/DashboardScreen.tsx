@@ -136,7 +136,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
         {/* Breadcrumb & Live Status Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs border-b border-subtle pb-3">
           <div className="flex items-center gap-1.5 text-muted">
-            <button onClick={() => onNavigate('home')} className="hover:underline text-navy font-medium cursor-pointer">
+            <button onClick={() => onNavigate('home')} className="hover:underline text-navy font-semibold cursor-pointer">
               Home
             </button>
             <span className="material-symbols-outlined text-[14px]">chevron_right</span>
@@ -157,7 +157,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             </button>
             <span className="text-muted hidden md:inline">|</span>
             <span className="text-[11px] text-secondary font-mono hidden md:inline">
-              Active Model: <strong className="text-navy">sanket-indic-roberta-v3.2</strong>
+              Active Model: <strong className="text-navy font-bold">sanket-indic-roberta-v3.2</strong>
             </span>
           </div>
         </div>
@@ -311,7 +311,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                   <span className="text-xs text-muted font-semibold uppercase">Total Monitored Posts</span>
                   <span className="material-symbols-outlined text-brand text-xl">database</span>
                 </div>
-                <div className="text-2xl font-bold text-navy font-mono mt-1">310,650</div>
+                <div className="text-2xl font-bold text-primary font-mono mt-1">310,650</div>
                 <div className="text-[11px] text-green flex items-center gap-1 mt-1 font-semibold">
                   <span className="material-symbols-outlined text-[14px]">trending_up</span>
                   <span>+18.4% velocity / 24h</span>

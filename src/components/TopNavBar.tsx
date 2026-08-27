@@ -31,8 +31,8 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
   };
 
   return (
-    <nav className="bg-navy text-white font-semibold text-sm w-full flex flex-col tricolor-border sticky top-0 z-40 shadow-md">
-      <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between px-3 sm:px-6 lg:px-8 py-1.5 lg:py-0">
+    <nav className="bg-[#001e40] dark:bg-[#0b1329] text-white font-semibold text-sm w-full flex flex-col tricolor-border sticky top-0 z-40 shadow-md border-b border-transparent dark:border-slate-800">
+      <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between px-3 sm:px-6 lg:px-8 py-1.5 lg:py-0 text-white">
         {/* Mobile / Tablet Header Bar */}
         <div className="flex items-center justify-between w-full lg:w-auto">
           {/* Mobile brand text */}
@@ -43,7 +43,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
             <span className="font-serif-headline font-bold text-white text-base tracking-wider">
               SANKET
             </span>
-            <span className="text-[10px] text-navy-light uppercase font-mono px-1.5 py-0.5 bg-white/10 rounded">
+            <span className="text-[10px] text-slate-200 uppercase font-mono px-1.5 py-0.5 bg-white/10 rounded">
               SIH 2026 #26152
             </span>
           </div>
@@ -70,7 +70,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
               id="btn-mobile-menu-toggle"
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded text-navy-light hover:text-white hover:bg-white/10 focus:outline-none transition-colors cursor-pointer"
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded text-slate-200 hover:text-white hover:bg-white/10 focus:outline-none transition-colors cursor-pointer"
               aria-label="Toggle Navigation Menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -92,8 +92,8 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
                   onClick={() => handleNavClick(item.id)}
                   className={`block py-3 px-3.5 text-xs xl:text-sm tracking-wider uppercase transition-all whitespace-nowrap min-h-[44px] flex items-center cursor-pointer ${
                     isActive
-                      ? 'bg-brand text-white font-bold border-b-4 border-saffron'
-                      : 'text-navy-light hover:bg-[#3a5f94]/60 hover:text-white font-medium'
+                      ? 'bg-[#003366] dark:bg-[#1e293b] text-white font-bold border-b-4 border-saffron'
+                      : 'text-slate-200 hover:bg-[#3a5f94]/60 dark:hover:bg-slate-800/80 hover:text-white font-medium'
                   }`}
                 >
                   {item.label}
@@ -126,7 +126,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
             <div className="flex items-center gap-3">
               <div className="hidden xl:flex flex-col text-right">
                 <span className="text-xs font-bold text-white leading-tight">{user.name}</span>
-                <span className="text-[10px] text-navy-light">{user.badgeId}</span>
+                <span className="text-[10px] text-slate-300">{user.badgeId}</span>
               </div>
               <button
                 id="btn-nav-logout"
@@ -144,7 +144,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
               className={`min-h-[38px] py-1.5 px-5 font-bold text-xs uppercase tracking-wider transition-colors border shadow-xs flex items-center gap-1.5 cursor-pointer ${
                 activePage === 'login'
                   ? 'bg-saffron text-white border-saffron'
-                  : 'bg-white text-navy hover:bg-[#f3f3f3] border-white'
+                  : 'bg-white text-[#001e40] hover:bg-[#f3f3f3] border-white'
               }`}
             >
               <span className="material-symbols-outlined text-[14px]">lock</span>

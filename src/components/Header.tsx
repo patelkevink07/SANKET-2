@@ -19,7 +19,6 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleTheme
 }) => {
   const [fontSizeOffset, setFontSizeOffset] = useState<number>(0);
-  const [highContrast, setHighContrast] = useState<boolean>(false);
 
   const SANKET_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBUOganULH4yr2KV_rB63OGkh2A8zBTOkiTcNLo0ZAm40PHRe5ueS0_s3mC7ZJO_6eqFdP7ZQW_hoCqHaHC1PYpa2-EVwO0ZMyCCmq4-11vZNVtH4rFh4KT0J__T97Vth6WTiMkdiU166hOxO06hTv_jAj6oWkKdjzz6qcwpyuxhXzaAoyJzDe6i_hnE8TPYAvnGydFgwuu8cutGX4vcdxAFjprIMvGlFGDt9rAQjugDHvKanfBlIjdQ_5EyGQ4t7SjJXI";
 
@@ -32,15 +31,6 @@ export const Header: React.FC<HeaderProps> = ({
   const resetFontSize = () => {
     setFontSizeOffset(0);
     document.documentElement.style.fontSize = '100%';
-  };
-
-  const toggleContrast = () => {
-    setHighContrast(!highContrast);
-    if (!highContrast) {
-      document.documentElement.classList.add('contrast-more');
-    } else {
-      document.documentElement.classList.remove('contrast-more');
-    }
   };
 
   const handleImageClick = (e: React.MouseEvent, src: string, alt: string, caption: string) => {
@@ -97,20 +87,6 @@ export const Header: React.FC<HeaderProps> = ({
               A+
             </button>
           </div>
-
-          {/* High Contrast Toggle (Relabeled to Contrast) */}
-          <button
-            onClick={toggleContrast}
-            className={`px-1.5 py-0.5 text-[11px] font-bold rounded border transition-colors flex items-center gap-1 ${
-              highContrast
-                ? 'bg-navy-dark text-white border-navy-dark'
-                : 'bg-surface text-primary border-card hover:bg-subtle'
-            }`}
-            title="Toggle High Contrast"
-          >
-            <span className="material-symbols-outlined text-[13px]">contrast</span>
-            <span className="hidden sm:inline">Contrast</span>
-          </button>
 
           {/* Real Light / Dark Theme Toggle Button */}
           {onToggleTheme && (

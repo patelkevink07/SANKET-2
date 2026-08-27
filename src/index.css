@@ -11,11 +11,11 @@
   --color-code: var(--bg-code);
   
   /* Brand Navy Tokens */
-  --color-navy: var(--navy-dark);
+  --color-navy: var(--brand-navy);
   --color-navy-dark: var(--navy-dark);
   --color-navy-main: var(--navy-main);
   --color-navy-light: var(--navy-light);
-  --color-brand: var(--navy-main);
+  --color-brand: var(--brand-accent);
 
   /* Typography Colors */
   --color-primary: var(--text-primary);
@@ -27,6 +27,7 @@
   /* Borders */
   --color-main: var(--border-main);
   --color-card: var(--border-card);
+  --color-subtle-border: var(--border-subtle);
 
   /* Saffron Accents */
   --color-saffron: var(--accent-saffron);
@@ -69,6 +70,8 @@
   --bg-code: #1e293b;
   
   /* Navy Brand */
+  --brand-navy: #001e40;
+  --brand-accent: #003366;
   --navy-dark: #001e40;
   --navy-main: #003366;
   --navy-light: #d5e3ff;
@@ -130,6 +133,8 @@
   --bg-code: #070d18;
 
   /* Navy Brand */
+  --brand-navy: #93c5fd;
+  --brand-accent: #60a5fa;
   --navy-dark: #0a152b;
   --navy-main: #1d4ed8;
   --navy-light: #2563eb;
