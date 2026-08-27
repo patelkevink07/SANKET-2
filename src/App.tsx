@@ -18,6 +18,37 @@ export default function App() {
   const [aboutTab, setAboutTab] = useState<string>('home');
   const [user, setUser] = useState<AnalystUser | null>(CURRENT_ANALYST);
 
+  // Theme state: default to 'light' unless user previously chose 'dark'
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('sanket-theme');
+      return saved === 'dark' ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
+  });
+
+  // Apply theme to document element and persist
+  useEffect(() => {
+    try {
+      localStorage.setItem('sanket-theme', theme);
+    } catch (e) {
+      console.warn('Unable to persist theme to localStorage', e);
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   // Modal states for interactivity
   const [zoomModal, setZoomModal] = useState<{
     isOpen: boolean;
@@ -83,13 +114,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f9f9f9] text-[#1a1c1c] selection:bg-[#ffdbcd] selection:text-[#001e40]">
+    <div className="min-h-screen flex flex-col bg-canvas text-text-primary selection:bg-accent-saffron-light selection:text-text-dark-navy">
       {/* Official Government & SANKET Header */}
       <Header
         user={user}
         onLogout={handleLogout}
         onNavigate={handleNavigate}
         onOpenImageModal={handleOpenImageModal}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* Top Navigation Bar with Tricolor Bottom Border */}
@@ -159,4 +192,3 @@ export default function App() {
     </div>
   );
 }
-

@@ -53,23 +53,23 @@ export const AboutHubScreen: React.FC<AboutHubScreenProps> = ({
   };
 
   return (
-    <div className="flex-grow flex flex-col w-full bg-[#f9f9f9]" id="main-content">
+    <div className="flex-grow flex flex-col w-full bg-canvas" id="main-content">
       {/* Consolidated Sub-Navigation Header Bar */}
-      <div className="bg-white border-b border-[#CCCCCC] shadow-2xs sticky top-[48px] lg:top-[44px] z-30">
+      <div className="bg-surface border-b border-border-main shadow-2xs sticky top-[48px] lg:top-[44px] z-30">
         <div className="max-w-[1280px] mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-2 border-b border-[#f0f2f5] hidden md:flex">
-            <div className="flex items-center gap-2 text-xs text-[#737780]">
-              <span className="material-symbols-outlined text-[16px] text-[#003366]">menu_book</span>
-              <span className="font-bold text-[#001e40] uppercase tracking-wide">
+          <div className="flex items-center justify-between py-2 border-b border-border-subtle hidden md:flex">
+            <div className="flex items-center gap-2 text-xs text-text-muted">
+              <span className="material-symbols-outlined text-[16px] text-text-navy">menu_book</span>
+              <span className="font-bold text-text-dark-navy uppercase tracking-wide">
                 SANKET Information &amp; Reference Hub
               </span>
-              <span className="text-[#c3c6d1]">|</span>
-              <span className="text-[11px] text-[#555]">
+              <span className="text-border-strong">|</span>
+              <span className="text-[11px] text-text-muted">
                 SIH 2026 Problem Statement #26152 Dossier &amp; Architecture Documentation
               </span>
             </div>
-            <div className="text-[11px] text-[#737780] font-mono">
-              Section: <span className="font-bold text-[#003366] capitalize">{activeTab}</span>
+            <div className="text-[11px] text-text-muted font-mono">
+              Section: <span className="font-bold text-text-navy capitalize">{activeTab}</span>
             </div>
           </div>
 
@@ -85,15 +85,15 @@ export const AboutHubScreen: React.FC<AboutHubScreenProps> = ({
                   key={tab.id}
                   id={`about-subtab-${tab.id}`}
                   onClick={() => handleTabChange(tab.id)}
-                  className={`py-2.5 px-3.5 sm:px-4 text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap flex items-center gap-2 border-b-2 rounded-t-xs min-h-[40px] ${
+                  className={`py-2.5 px-3.5 sm:px-4 text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap flex items-center gap-2 border-b-2 rounded-t-xs min-h-[40px] cursor-pointer ${
                     isActive
-                      ? 'border-[#003366] text-[#003366] bg-[#f0f4fa] shadow-2xs'
-                      : 'border-transparent text-[#43474f] hover:text-[#001e40] hover:bg-[#f3f4f6]'
+                      ? 'border-brand-navy-mid text-text-navy bg-surface-hover shadow-2xs'
+                      : 'border-transparent text-text-secondary hover:text-text-dark-navy hover:bg-surface-muted'
                   }`}
                 >
                   <span
                     className={`material-symbols-outlined text-[16px] ${
-                      isActive ? 'text-[#fe6500]' : 'text-[#737780]'
+                      isActive ? 'text-accent-saffron' : 'text-text-muted'
                     }`}
                   >
                     {tab.icon}
@@ -106,7 +106,7 @@ export const AboutHubScreen: React.FC<AboutHubScreenProps> = ({
         </div>
       </div>
 
-      {/* Render active consolidated sub-section content unchanged */}
+      {/* Render active consolidated sub-section content */}
       <div className="flex-grow flex flex-col w-full">
         {activeTab === 'home' && (
           <HomeScreen
