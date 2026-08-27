@@ -20,14 +20,9 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'HOME', icon: 'home' },
-    { id: 'about', label: 'ABOUT', icon: 'info' },
-    { id: 'dashboards', label: 'DASHBOARDS', icon: 'dashboard' },
+    { id: 'dashboards', label: 'DASHBOARD', icon: 'dashboard' },
     { id: 'reports', label: 'REPORTS', icon: 'assessment' },
-    { id: 'knowledge', label: 'KNOWLEDGE HUB', icon: 'school' },
-    { id: 'architecture', label: 'ARCHITECTURE', icon: 'account_tree' },
-    { id: 'resources', label: 'RESOURCES', icon: 'folder_open' },
-    { id: 'contact', label: 'CONTACT', icon: 'support_agent' }
+    { id: 'about', label: 'ABOUT', icon: 'info' }
   ];
 
   const handleNavClick = (pageId: string) => {
@@ -43,7 +38,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
           {/* Mobile brand text */}
           <div
             className="flex items-center gap-2 lg:hidden cursor-pointer py-1"
-            onClick={() => handleNavClick('home')}
+            onClick={() => handleNavClick('dashboards')}
           >
             <span className="font-serif-headline font-bold text-white text-base tracking-wider">
               SANKET

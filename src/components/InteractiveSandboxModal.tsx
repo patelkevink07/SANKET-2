@@ -33,44 +33,65 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
 
   if (!isOpen) return null;
 
-  const handleSimulate = () => {
+  const handleSimulate = async () => {
     setAnalyzing(true);
-    setTimeout(() => {
-      setAnalyzing(false);
-      // Heuristic parsing for interactive preview
-      const lower = inputText.toLowerCase();
-      const isSarcastic = lower.includes('wah') || lower.includes('kya badhiya') || lower.includes('great') || lower.includes('world-class') || lower.includes('👏👏');
-      const isPositive = lower.includes('good') || lower.includes('best') || lower.includes('success') || lower.includes('proud') || lower.includes('safe');
-
-      if (isSarcastic) {
+    try {
+      const resp = await fetch('/api/analyze-sentiment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: inputText })
+      });
+      if (resp.ok) {
+        const data = await resp.json();
         setResult({
-          sentiment: 'Negative (Inverted by Sarcasm)',
-          polarity: -0.68,
-          sarcasmScore: 0.92,
-          emotion: 'Irony & Sarcasm',
-          language: 'Hinglish (Indic-Romanized)',
-          threatVector: 'Public Sentiment Vulnerability'
+          sentiment: data.sentiment || 'Analyzed',
+          polarity: typeof data.polarity === 'number' ? data.polarity : 0,
+          sarcasmScore: typeof data.sarcasmScore === 'number' ? data.sarcasmScore : 0.1,
+          emotion: data.emotion || 'Detected Emotion',
+          language: data.language || 'Indic Multilingual',
+          threatVector: data.threatVector || 'Standard Baseline'
         });
-      } else if (isPositive) {
-        setResult({
-          sentiment: 'Strongly Positive',
-          polarity: 0.85,
-          sarcasmScore: 0.08,
-          emotion: 'Supportive & Patriotic',
-          language: 'English / Indic',
-          threatVector: 'Organic Positive Sentiment'
-        });
-      } else {
-        setResult({
-          sentiment: 'Neutral / Informational',
-          polarity: 0.05,
-          sarcasmScore: 0.15,
-          emotion: 'Neutral Observational',
-          language: 'Multilingual Ingestion Stream',
-          threatVector: 'Standard Baseline Signal'
-        });
+        setAnalyzing(false);
+        return;
       }
-    }, 600);
+    } catch {
+      // Fallback to local heuristic parsing
+    }
+
+    // Heuristic parsing for interactive preview
+    const lower = inputText.toLowerCase();
+    const isSarcastic = lower.includes('wah') || lower.includes('kya badhiya') || lower.includes('great') || lower.includes('world-class') || lower.includes('👏👏');
+    const isPositive = lower.includes('good') || lower.includes('best') || lower.includes('success') || lower.includes('proud') || lower.includes('safe');
+
+    if (isSarcastic) {
+      setResult({
+        sentiment: 'Negative (Inverted by Sarcasm)',
+        polarity: -0.68,
+        sarcasmScore: 0.92,
+        emotion: 'Irony & Sarcasm',
+        language: 'Hinglish (Indic-Romanized)',
+        threatVector: 'Public Sentiment Vulnerability'
+      });
+    } else if (isPositive) {
+      setResult({
+        sentiment: 'Strongly Positive',
+        polarity: 0.85,
+        sarcasmScore: 0.08,
+        emotion: 'Supportive & Patriotic',
+        language: 'English / Indic',
+        threatVector: 'Organic Positive Sentiment'
+      });
+    } else {
+      setResult({
+        sentiment: 'Neutral / Informational',
+        polarity: 0.05,
+        sarcasmScore: 0.15,
+        emotion: 'Neutral Observational',
+        language: 'Multilingual Ingestion Stream',
+        threatVector: 'Standard Baseline Signal'
+      });
+    }
+    setAnalyzing(false);
   };
 
   return (
