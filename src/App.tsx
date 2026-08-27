@@ -2,15 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { TopNavBar } from './components/TopNavBar';
 import { Footer } from './components/Footer';
-import { HomeScreen } from './components/HomeScreen';
 import { LoginScreen } from './components/LoginScreen';
-import { AboutScreen } from './components/AboutScreen';
 import { DashboardScreen } from './components/DashboardScreen';
-import { ArchitectureView } from './components/ArchitectureView';
 import { ReportsView } from './components/ReportsView';
-import { KnowledgeHubView } from './components/KnowledgeHubView';
-import { ResourcesView } from './components/ResourcesView';
-import { ContactView } from './components/ContactView';
+import { AboutHubScreen } from './components/AboutHubScreen';
 import { ImageZoomModal } from './components/ImageZoomModal';
 import { InteractiveSandboxModal } from './components/InteractiveSandboxModal';
 import { AnalystUser } from './types';
@@ -18,9 +13,41 @@ import { CURRENT_ANALYST } from './data/mockData';
 import { updatePageSEO } from './utils/seo';
 
 export default function App() {
-  const [activePage, setActivePage] = useState<string>('home');
+  const [activePage, setActivePage] = useState<string>('dashboards');
   const [dashboardTab, setDashboardTab] = useState<string>('overview');
+  const [aboutTab, setAboutTab] = useState<string>('home');
   const [user, setUser] = useState<AnalystUser | null>(CURRENT_ANALYST);
+
+  // Theme state: default to 'light' unless user previously chose 'dark'
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('sanket-theme');
+      return saved === 'dark' ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
+  });
+
+  // Apply theme to document element and persist
+  useEffect(() => {
+    try {
+      localStorage.setItem('sanket-theme', theme);
+    } catch (e) {
+      console.warn('Unable to persist theme to localStorage', e);
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   // Modal states for interactivity
   const [zoomModal, setZoomModal] = useState<{
@@ -39,13 +66,29 @@ export default function App() {
 
   // Dynamic SEO meta tags and page titles on route changes
   useEffect(() => {
-    updatePageSEO(activePage);
-  }, [activePage]);
+    if (activePage === 'about') {
+      updatePageSEO(aboutTab || 'about');
+    } else {
+      updatePageSEO(activePage);
+    }
+  }, [activePage, aboutTab]);
 
   const handleNavigate = (page: string, tab?: string) => {
-    setActivePage(page);
-    if (tab) {
-      setDashboardTab(tab);
+    const aboutSubTabs = ['home', 'about', 'architecture', 'knowledge', 'resources', 'contact'];
+    
+    if (aboutSubTabs.includes(page)) {
+      setActivePage('about');
+      setAboutTab(tab || page);
+    } else if (page === 'about') {
+      setActivePage('about');
+      if (tab) {
+        setAboutTab(tab);
+      }
+    } else {
+      setActivePage(page);
+      if (tab && page === 'dashboards') {
+        setDashboardTab(tab);
+      }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -57,7 +100,8 @@ export default function App() {
 
   const handleLogout = () => {
     setUser(null);
-    setActivePage('home');
+    setActivePage('about');
+    setAboutTab('home');
   };
 
   const handleOpenImageModal = (src: string, alt: string, caption: string) => {
@@ -70,13 +114,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f9f9f9] text-[#1a1c1c] selection:bg-[#ffdbcd] selection:text-[#001e40]">
+    <div className="min-h-screen flex flex-col bg-canvas text-text-primary selection:bg-accent-saffron-light selection:text-text-dark-navy">
       {/* Official Government & SANKET Header */}
       <Header
         user={user}
         onLogout={handleLogout}
         onNavigate={handleNavigate}
         onOpenImageModal={handleOpenImageModal}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* Top Navigation Bar with Tricolor Bottom Border */}
@@ -90,38 +136,9 @@ export default function App() {
 
       {/* Main Content Router */}
       <main className="flex-grow flex flex-col w-full" id="main-content">
-        {activePage === 'home' && (
-          <HomeScreen
-            onNavigate={handleNavigate}
-            onOpenImageModal={handleOpenImageModal}
-            onOpenSandbox={() => setIsSandboxOpen(true)}
-          />
-        )}
-
-        {activePage === 'login' && (
-          <LoginScreen
-            onLoginSuccess={handleLoginSuccess}
-            onNavigate={handleNavigate}
-          />
-        )}
-
-        {activePage === 'about' && (
-          <AboutScreen
-            onNavigate={handleNavigate}
-            onOpenImageModal={handleOpenImageModal}
-          />
-        )}
-
         {activePage === 'dashboards' && (
           <DashboardScreen
             initialTab={dashboardTab}
-            onNavigate={handleNavigate}
-            onOpenImageModal={handleOpenImageModal}
-          />
-        )}
-
-        {activePage === 'architecture' && (
-          <ArchitectureView
             onNavigate={handleNavigate}
             onOpenImageModal={handleOpenImageModal}
           />
@@ -134,20 +151,18 @@ export default function App() {
           />
         )}
 
-        {activePage === 'knowledge' && (
-          <KnowledgeHubView
+        {activePage === 'about' && (
+          <AboutHubScreen
+            initialTab={aboutTab}
             onNavigate={handleNavigate}
+            onOpenImageModal={handleOpenImageModal}
+            onOpenSandbox={() => setIsSandboxOpen(true)}
           />
         )}
 
-        {activePage === 'resources' && (
-          <ResourcesView
-            onNavigate={handleNavigate}
-          />
-        )}
-
-        {activePage === 'contact' && (
-          <ContactView
+        {activePage === 'login' && (
+          <LoginScreen
+            onLoginSuccess={handleLoginSuccess}
             onNavigate={handleNavigate}
           />
         )}
@@ -177,4 +192,3 @@ export default function App() {
     </div>
   );
 }
-
