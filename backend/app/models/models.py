@@ -91,3 +91,34 @@ class IngestionJob(Base):
     started_at = Column(DateTime(timezone=True), default=_now)
     completed_at = Column(DateTime(timezone=True))
     error = Column(Text)
+
+class SentimentScore(Base):
+    __tablename__ = "sentiment_scores"
+    __table_args__ = (
+        UniqueConstraint("post_id", name="uq_sentiment_post_id"),
+    )
+
+    id = Column(String(36), primary_key=True, default=_uuid)
+    post_id = Column(String(36), ForeignKey("posts.id"), nullable=False)
+    polarity_label = Column(String(16), nullable=False)   # positive | neutral | negative
+    polarity_score = Column(Float, nullable=False)
+    emotion_label = Column(String(16), nullable=False)    # joy | anger | fear | sadness | surprise | disgust | neutral
+    emotion_score = Column(Float, nullable=False)
+    model_version = Column(String(128), nullable=False)
+    computed_at = Column(DateTime(timezone=True), default=_now)
+
+    post = relationship("Post", backref="sentiment_score", uselist=False)
+
+class InteractionEdge(Base):
+    __tablename__ = "edges"
+    __table_args__ = (
+        UniqueConstraint("source_author_id", "target_author_id", "interaction_type",
+                          name="uq_edge_source_target_type"),
+    )
+
+    id = Column(String(36), primary_key=True, default=_uuid)
+    source_author_id = Column(String(36), ForeignKey("authors.id"), nullable=False)
+    target_author_id = Column(String(36), ForeignKey("authors.id"), nullable=False)
+    interaction_type = Column(String(32), nullable=False, default="reply")
+    weight = Column(Integer, nullable=False, default=1)
+    observed_at = Column(DateTime(timezone=True), default=_now)

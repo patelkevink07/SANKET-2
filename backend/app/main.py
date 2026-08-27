@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.core.database import Base, engine
-from app.api.v1 import posts, ingestion
+from app.api.v1 import posts, ingestion, sentiment, demographics, network
 
 
 @asynccontextmanager
@@ -41,3 +41,6 @@ def health():
 
 app.include_router(posts.router, prefix=settings.api_v1_prefix)
 app.include_router(ingestion.router, prefix=settings.api_v1_prefix)
+app.include_router(sentiment.router, prefix=settings.api_v1_prefix)
+app.include_router(demographics.router, prefix=settings.api_v1_prefix)
+app.include_router(network.router, prefix=settings.api_v1_prefix)
