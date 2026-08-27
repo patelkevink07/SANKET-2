@@ -35,14 +35,14 @@ export const InteractiveHoverButton: React.FC<InteractiveHoverButtonProps> = ({
   const getStyleClasses = () => {
     switch (variant) {
       case 'saffron':
-        return 'bg-[#fe6500] hover:bg-[#003366] text-white border-[#fe6500] hover:border-[#003366] shadow-sm hover:shadow-md';
+        return 'bg-saffron hover:bg-brand text-white border-saffron hover:border-brand shadow-sm hover:shadow-md';
       case 'emerald':
-        return 'bg-[#138808] hover:bg-[#001e40] text-white border-[#138808] hover:border-[#001e40] shadow-sm hover:shadow-md';
+        return 'bg-green hover:bg-navy text-white border-green hover:border-navy shadow-sm hover:shadow-md';
       case 'amber':
-        return 'bg-[#d97706] hover:bg-[#0C0566] text-white border-[#d97706] hover:border-[#0C0566] shadow-sm hover:shadow-md';
+        return 'bg-[#d97706] hover:bg-headline text-white border-[#d97706] hover:border-headline shadow-sm hover:shadow-md';
       case 'primary':
       default:
-        return 'bg-[#003366] hover:bg-[#fe6500] text-white border-[#001e40] hover:border-[#a33e00] shadow-sm hover:shadow-lg';
+        return 'bg-brand hover:bg-saffron text-white border-navy hover:border-saffron-hover shadow-sm hover:shadow-lg';
     }
   };
 
@@ -53,8 +53,8 @@ export const InteractiveHoverButton: React.FC<InteractiveHoverButtonProps> = ({
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative group overflow-hidden px-4 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-2 border ${getStyleClasses()} ${
-        clickEffect ? 'ring-4 ring-[#fe6500]/40' : ''
+      className={`relative group overflow-hidden px-4 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-2 border cursor-pointer ${getStyleClasses()} ${
+        clickEffect ? 'ring-4 ring-saffron/40' : ''
       } ${className}`}
       title={label}
     >

@@ -39,30 +39,30 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
   };
 
   return (
-    <div className="flex-grow flex flex-col justify-center items-center p-4 md:p-8 bg-[#f3f3f3]">
+    <div className="flex-grow flex flex-col justify-center items-center p-4 md:p-8 bg-page transition-colors duration-200">
       {/* Login Form Container */}
-      <div className="bg-white border border-[#CCCCCC] w-full max-w-lg p-6 md:p-10 shadow-sm">
+      <div className="bg-surface border border-main w-full max-w-lg p-6 md:p-10 shadow-sm">
         <div className="mb-6 text-center">
-          <h1 className="font-serif-headline text-2xl md:text-3xl font-bold text-[#003366] tracking-tight">
+          <h1 className="font-serif-headline text-2xl md:text-3xl font-bold text-brand tracking-tight">
             Analyst Console Login
           </h1>
-          <p className="text-xs md:text-sm text-[#43474f] mt-2">
+          <p className="text-xs md:text-sm text-secondary mt-2">
             Sign in to access the SANKET prototype analytics portal.
           </p>
         </div>
 
         {/* Demo Disclaimer Notice */}
-        <div className="mb-6 p-4 bg-[#eeeeee] border-l-4 border-[#003366] flex items-start gap-3">
-          <span className="material-symbols-outlined text-[#003366] text-xl flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
+        <div className="mb-6 p-4 bg-subtle border-l-4 border-brand flex items-start gap-3">
+          <span className="material-symbols-outlined text-brand text-xl flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
             info
           </span>
-          <p className="text-xs text-[#1a1c1c] leading-relaxed">
-            This is a demonstration login for a <strong className="text-[#090909]">Smart India Hackathon 2026 prototype</strong>. No real personal credentials or confidential government records are required.
+          <p className="text-xs text-primary leading-relaxed">
+            This is a demonstration login for a <strong className="text-primary font-bold">Smart India Hackathon 2026 prototype</strong>. No real personal credentials or confidential government records are required.
           </p>
         </div>
 
         {errorMsg && (
-          <div className="mb-4 p-3 bg-[#ffdad6] border border-[#ba1a1a] text-[#93000a] text-xs font-semibold">
+          <div className="mb-4 p-3 bg-red-bg border border-red text-red text-xs font-semibold">
             {errorMsg}
           </div>
         )}
@@ -70,11 +70,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-[#1a1c1c] uppercase tracking-wider" htmlFor="username">
+            <label className="block text-xs font-bold text-primary uppercase tracking-wider" htmlFor="username">
               Demo ID / Username
             </label>
             <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#737780] pointer-events-none">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-muted pointer-events-none">
                 <span className="material-symbols-outlined text-base">badge</span>
               </span>
               <input
@@ -85,17 +85,17 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
                 onChange={(e) => setGovId(e.target.value)}
                 placeholder="Enter your demo ID"
                 required
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#737780] text-[#1a1c1c] text-sm focus:border-2 focus:border-[#003366] focus:outline-none transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-surface border border-muted text-primary text-sm focus:border-2 focus:border-brand focus:outline-none transition-colors"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-[#1a1c1c] uppercase tracking-wider" htmlFor="password">
+            <label className="block text-xs font-bold text-primary uppercase tracking-wider" htmlFor="password">
               Password
             </label>
             <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#737780] pointer-events-none">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-muted pointer-events-none">
                 <span className="material-symbols-outlined text-base">lock</span>
               </span>
               <input
@@ -106,7 +106,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#737780] text-[#1a1c1c] text-sm focus:border-2 focus:border-[#003366] focus:outline-none transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-surface border border-muted text-primary text-sm focus:border-2 focus:border-brand focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -116,7 +116,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
               id="btn-login-submit"
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 bg-[#003366] hover:bg-[#0C0566] text-white font-bold text-xs uppercase tracking-wider transition-colors flex justify-center items-center gap-2 border border-[#001e40] shadow-sm disabled:opacity-75"
+              className="w-full py-3.5 bg-brand hover:bg-headline text-white font-bold text-xs uppercase tracking-wider transition-colors flex justify-center items-center gap-2 border border-brand shadow-sm disabled:opacity-75 cursor-pointer"
             >
               {isLoading ? (
                 <span>Accessing Demo Console...</span>
@@ -131,37 +131,37 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onNavi
         </form>
 
         {/* Quick Demo Access Roles */}
-        <div className="mt-6 p-3 bg-[#f9f9f9] border border-[#CCCCCC] rounded-sm">
-          <p className="text-[11px] font-bold text-[#003366] uppercase mb-2">
+        <div className="mt-6 p-3 bg-subtle border border-main rounded-sm">
+          <p className="text-[11px] font-bold text-brand uppercase mb-2">
             One-Click Demonstration Personas:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <button
               type="button"
               onClick={() => handleQuickLogin('Demo Analyst')}
-              className="text-left text-xs bg-white hover:bg-[#d5e3ff]/50 border border-[#c3c6d1] p-2 transition-colors flex flex-col"
+              className="text-left text-xs bg-surface hover:bg-navy-light/50 border border-card p-2 transition-colors flex flex-col cursor-pointer"
             >
-              <span className="font-bold text-[#001e40]">Commander S. K. Verma</span>
-              <span className="text-[10px] text-[#43474f]">Demo Analyst (OSINT Cell)</span>
+              <span className="font-bold text-navy">Commander S. K. Verma</span>
+              <span className="text-[10px] text-secondary">Demo Analyst (OSINT Cell)</span>
             </button>
             <button
               type="button"
               onClick={() => handleQuickLogin('Demo Supervisor')}
-              className="text-left text-xs bg-white hover:bg-[#d5e3ff]/50 border border-[#c3c6d1] p-2 transition-colors flex flex-col"
+              className="text-left text-xs bg-surface hover:bg-navy-light/50 border border-card p-2 transition-colors flex flex-col cursor-pointer"
             >
-              <span className="font-bold text-[#001e40]">Dr. R. K. Nambiar</span>
-              <span className="text-[10px] text-[#43474f]">Demo Supervisor (Research Lead)</span>
+              <span className="font-bold text-navy">Dr. R. K. Nambiar</span>
+              <span className="text-[10px] text-secondary">Demo Supervisor (Research Lead)</span>
             </button>
           </div>
         </div>
 
-        <div className="mt-6 pt-4 border-t border-[#e8e8e8] text-center flex flex-col sm:flex-row justify-between items-center text-xs gap-2">
-          <a href="#help" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }} className="text-[#003366] hover:underline font-medium">
+        <div className="mt-6 pt-4 border-t border-subtle text-center flex flex-col sm:flex-row justify-between items-center text-xs gap-2">
+          <a href="#help" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }} className="text-brand hover:underline font-medium">
             Need help or hackathon queries?
           </a>
           <button
             onClick={() => onNavigate('home')}
-            className="text-[#737780] hover:text-[#001e40] font-semibold"
+            className="text-muted hover:text-navy font-semibold cursor-pointer"
           >
             &larr; Return to Public Portal
           </button>

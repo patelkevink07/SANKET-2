@@ -62,8 +62,9 @@ export const PAGE_SEO_DATA: Record<string, PageSEO> = {
   }
 };
 
-export function updatePageSEO(pageId: string) {
-  const seo = PAGE_SEO_DATA[pageId] || PAGE_SEO_DATA.home;
+export function updatePageSEO(pageId: string, subTab?: string) {
+  const effectiveKey = (pageId === 'about' && subTab && PAGE_SEO_DATA[subTab]) ? subTab : pageId;
+  const seo = PAGE_SEO_DATA[effectiveKey] || PAGE_SEO_DATA.about || PAGE_SEO_DATA.home;
 
   // Title
   document.title = seo.title;

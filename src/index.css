@@ -1,8 +1,190 @@
 @import "tailwindcss";
 
+@theme {
+  /* Surfaces & Backgrounds */
+  --color-page: var(--bg-page);
+  --color-surface: var(--bg-surface);
+  --color-elevated: var(--bg-elevated);
+  --color-subtle: var(--bg-subtle);
+  --color-utility: var(--bg-utility);
+  --color-banner: var(--bg-banner);
+  --color-code: var(--bg-code);
+  
+  /* Brand Navy Tokens */
+  --color-navy: var(--navy-dark);
+  --color-navy-dark: var(--navy-dark);
+  --color-navy-main: var(--navy-main);
+  --color-navy-light: var(--navy-light);
+  --color-brand: var(--navy-main);
+
+  /* Typography Colors */
+  --color-primary: var(--text-primary);
+  --color-headline: var(--text-headline);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
+  --color-inverse: var(--text-inverse);
+  
+  /* Borders */
+  --color-main: var(--border-main);
+  --color-card: var(--border-card);
+
+  /* Saffron Accents */
+  --color-saffron: var(--accent-saffron);
+  --color-saffron-hover: var(--accent-saffron-hover);
+  --color-saffron-bg: var(--accent-saffron-bg);
+  --color-saffron-text: var(--accent-saffron-text);
+  --color-saffron-dark: var(--accent-saffron-text);
+
+  /* Green Accents */
+  --color-green: var(--accent-green);
+  --color-green-bg: var(--accent-green-bg);
+  --color-green-border: var(--accent-green-border);
+  --color-green-text: var(--accent-green-text);
+
+  /* Red & Danger Alerts */
+  --color-red: var(--status-danger);
+  --color-red-main: var(--status-danger-main);
+  --color-red-hover: var(--status-danger-hover);
+  --color-red-bg: var(--status-danger-bg);
+  --color-red-text: var(--status-danger-text);
+  --color-danger: var(--status-danger);
+  --color-danger-main: var(--status-danger-main);
+  --color-danger-hover: var(--status-danger-hover);
+  --color-danger-bg: var(--status-danger-bg);
+  --color-danger-text: var(--status-danger-text);
+
+  /* Blue Badges */
+  --color-blue-badge-bg: var(--accent-blue-badge-bg);
+  --color-blue-badge-text: var(--accent-blue-badge-text);
+}
+
+:root {
+  /* Backgrounds */
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f1f5f9;
+  --bg-subtle: #f1f5f9;
+  --bg-utility: #e2e8f0;
+  --bg-banner: #eef2f6;
+  --bg-code: #1e293b;
+  
+  /* Navy Brand */
+  --navy-dark: #001e40;
+  --navy-main: #003366;
+  --navy-light: #d5e3ff;
+
+  /* Text Typography */
+  --text-primary: #0f172a;
+  --text-headline: #001e40;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+  --text-code: #f1f5f9;
+
+  /* Borders */
+  --border-main: #cbd5e1;
+  --border-subtle: #e2e8f0;
+  --border-card: #94a3b8;
+  --border-navy: #003366;
+
+  /* Saffron Accents */
+  --accent-saffron: #ea580c;
+  --accent-saffron-hover: #c2410c;
+  --accent-saffron-bg: #ffedd5;
+  --accent-saffron-text: #9a3412;
+
+  /* Green Accents */
+  --accent-green: #15803d;
+  --accent-green-bg: #dcfce7;
+  --accent-green-border: #86efac;
+  --accent-green-text: #14532d;
+
+  /* Red & Danger Alerts */
+  --status-danger: #dc2626;
+  --status-danger-main: #dc2626;
+  --status-danger-hover: #b91c1c;
+  --status-danger-bg: #fee2e2;
+  --status-danger-text: #991b1b;
+
+  /* Blue Badges */
+  --accent-blue-badge-bg: #dbeafe;
+  --accent-blue-badge-text: #1e40af;
+
+  --chart-grid: #e2e8f0;
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: #cbd5e1;
+
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+}
+
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-page: #0b1120;
+  --bg-surface: #0f172a;
+  --bg-elevated: #1e293b;
+  --bg-subtle: #1e293b;
+  --bg-utility: #090d16;
+  --bg-banner: #111c35;
+  --bg-code: #070d18;
+
+  /* Navy Brand */
+  --navy-dark: #0a152b;
+  --navy-main: #1d4ed8;
+  --navy-light: #2563eb;
+
+  /* Text Typography */
+  --text-primary: #f8fafc;
+  --text-headline: #93c5fd;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #ffffff;
+  --text-code: #f1f5f9;
+
+  /* Borders */
+  --border-main: #334155;
+  --border-subtle: #1e293b;
+  --border-card: #475569;
+  --border-navy: #3b82f6;
+
+  /* Saffron Accents */
+  --accent-saffron: #f97316;
+  --accent-saffron-hover: #ea580c;
+  --accent-saffron-bg: #431407;
+  --accent-saffron-text: #fdba74;
+
+  /* Green Accents */
+  --accent-green: #22c55e;
+  --accent-green-bg: #052e16;
+  --accent-green-border: #166534;
+  --accent-green-text: #86efac;
+
+  /* Red & Danger Alerts */
+  --status-danger: #ef4444;
+  --status-danger-main: #ef4444;
+  --status-danger-hover: #dc2626;
+  --status-danger-bg: #450a0a;
+  --status-danger-text: #fca5a5;
+
+  /* Blue Badges */
+  --accent-blue-badge-bg: #1e3a8a;
+  --accent-blue-badge-text: #bfdbfe;
+
+  --chart-grid: #1e293b;
+  --chart-tooltip-bg: #0f172a;
+  --chart-tooltip-border: #334155;
+
+  --scrollbar-track: #0b1120;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+}
+
 @layer base {
   body {
     font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
   }
 
   h1, h2, h3, h4, .font-serif-headline {
@@ -30,12 +212,12 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: #c3c6d1;
+  background: var(--scrollbar-thumb);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #737780;
+  background: var(--scrollbar-thumb-hover);
 }

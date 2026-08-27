@@ -2,15 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { TopNavBar } from './components/TopNavBar';
 import { Footer } from './components/Footer';
-import { HomeScreen } from './components/HomeScreen';
 import { LoginScreen } from './components/LoginScreen';
-import { AboutScreen } from './components/AboutScreen';
 import { DashboardScreen } from './components/DashboardScreen';
-import { ArchitectureView } from './components/ArchitectureView';
 import { ReportsView } from './components/ReportsView';
-import { KnowledgeHubView } from './components/KnowledgeHubView';
-import { ResourcesView } from './components/ResourcesView';
-import { ContactView } from './components/ContactView';
+import { AboutHubScreen } from './components/AboutHubScreen';
 import { ImageZoomModal } from './components/ImageZoomModal';
 import { InteractiveSandboxModal } from './components/InteractiveSandboxModal';
 import { AnalystUser } from './types';
@@ -18,9 +13,28 @@ import { CURRENT_ANALYST } from './data/mockData';
 import { updatePageSEO } from './utils/seo';
 
 export default function App() {
-  const [activePage, setActivePage] = useState<string>('home');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('sanket-theme');
+    return saved === 'dark' ? 'dark' : 'light';
+  });
+  const [activePage, setActivePage] = useState<string>('dashboards');
   const [dashboardTab, setDashboardTab] = useState<string>('overview');
+  const [aboutSubTab, setAboutSubTab] = useState<string>('home');
   const [user, setUser] = useState<AnalystUser | null>(CURRENT_ANALYST);
+
+  // Sync theme with localStorage and root HTML attribute
+  useEffect(() => {
+    localStorage.setItem('sanket-theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   // Modal states for interactivity
   const [zoomModal, setZoomModal] = useState<{
@@ -39,13 +53,23 @@ export default function App() {
 
   // Dynamic SEO meta tags and page titles on route changes
   useEffect(() => {
-    updatePageSEO(activePage);
-  }, [activePage]);
+    updatePageSEO(activePage, activePage === 'about' ? aboutSubTab : undefined);
+  }, [activePage, aboutSubTab]);
 
   const handleNavigate = (page: string, tab?: string) => {
-    setActivePage(page);
-    if (tab) {
-      setDashboardTab(tab);
+    if (['home', 'about', 'architecture', 'knowledge', 'resources', 'contact'].includes(page)) {
+      setActivePage('about');
+      setAboutSubTab(tab || (page === 'about' ? 'about' : page));
+    } else if (page === 'dashboards') {
+      setActivePage('dashboards');
+      if (tab) {
+        setDashboardTab(tab);
+      }
+    } else {
+      setActivePage(page);
+      if (tab) {
+        setDashboardTab(tab);
+      }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -57,7 +81,8 @@ export default function App() {
 
   const handleLogout = () => {
     setUser(null);
-    setActivePage('home');
+    setActivePage('about');
+    setAboutSubTab('home');
   };
 
   const handleOpenImageModal = (src: string, alt: string, caption: string) => {
@@ -70,13 +95,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f9f9f9] text-[#1a1c1c] selection:bg-[#ffdbcd] selection:text-[#001e40]">
+    <div className="min-h-screen flex flex-col bg-page text-primary selection:bg-saffron-bg selection:text-navy transition-colors duration-200">
       {/* Official Government & SANKET Header */}
       <Header
         user={user}
         onLogout={handleLogout}
         onNavigate={handleNavigate}
         onOpenImageModal={handleOpenImageModal}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* Top Navigation Bar with Tricolor Bottom Border */}
@@ -90,38 +117,9 @@ export default function App() {
 
       {/* Main Content Router */}
       <main className="flex-grow flex flex-col w-full" id="main-content">
-        {activePage === 'home' && (
-          <HomeScreen
-            onNavigate={handleNavigate}
-            onOpenImageModal={handleOpenImageModal}
-            onOpenSandbox={() => setIsSandboxOpen(true)}
-          />
-        )}
-
-        {activePage === 'login' && (
-          <LoginScreen
-            onLoginSuccess={handleLoginSuccess}
-            onNavigate={handleNavigate}
-          />
-        )}
-
-        {activePage === 'about' && (
-          <AboutScreen
-            onNavigate={handleNavigate}
-            onOpenImageModal={handleOpenImageModal}
-          />
-        )}
-
         {activePage === 'dashboards' && (
           <DashboardScreen
             initialTab={dashboardTab}
-            onNavigate={handleNavigate}
-            onOpenImageModal={handleOpenImageModal}
-          />
-        )}
-
-        {activePage === 'architecture' && (
-          <ArchitectureView
             onNavigate={handleNavigate}
             onOpenImageModal={handleOpenImageModal}
           />
@@ -134,20 +132,18 @@ export default function App() {
           />
         )}
 
-        {activePage === 'knowledge' && (
-          <KnowledgeHubView
+        {activePage === 'about' && (
+          <AboutHubScreen
+            initialSubTab={aboutSubTab}
             onNavigate={handleNavigate}
+            onOpenImageModal={handleOpenImageModal}
+            onOpenSandbox={() => setIsSandboxOpen(true)}
           />
         )}
 
-        {activePage === 'resources' && (
-          <ResourcesView
-            onNavigate={handleNavigate}
-          />
-        )}
-
-        {activePage === 'contact' && (
-          <ContactView
+        {activePage === 'login' && (
+          <LoginScreen
+            onLoginSuccess={handleLoginSuccess}
             onNavigate={handleNavigate}
           />
         )}
