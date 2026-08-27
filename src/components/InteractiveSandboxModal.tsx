@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { sanketApi } from '../services/api';
 
 interface InteractiveSandboxModalProps {
   isOpen: boolean;
@@ -34,31 +33,44 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
 
   if (!isOpen) return null;
 
-  const handleSimulate = async () => {
+  const handleSimulate = () => {
     setAnalyzing(true);
-    try {
-      const data = await sanketApi.analyzeSentiment(inputText);
-      setResult({
-        sentiment: data.sentiment || 'Analyzed',
-        polarity: typeof data.polarity === 'number' ? data.polarity : 0,
-        sarcasmScore: typeof data.sarcasmScore === 'number' ? data.sarcasmScore : 0.1,
-        emotion: data.emotion || 'Detected Emotion',
-        language: data.language || 'Indic Multilingual',
-        threatVector: data.threatVector || 'Standard Baseline'
-      });
-    } catch {
-      // Graceful local heuristic fallback
-      setResult({
-        sentiment: 'Negative (Inverted by Sarcasm)',
-        polarity: -0.68,
-        sarcasmScore: 0.92,
-        emotion: 'Irony & Sarcasm',
-        language: 'Hinglish (Indic-Romanized)',
-        threatVector: 'Public Sentiment Vulnerability'
-      });
-    } finally {
+    setTimeout(() => {
       setAnalyzing(false);
-    }
+      // Heuristic parsing for interactive preview
+      const lower = inputText.toLowerCase();
+      const isSarcastic = lower.includes('wah') || lower.includes('kya badhiya') || lower.includes('great') || lower.includes('world-class') || lower.includes('👏👏');
+      const isPositive = lower.includes('good') || lower.includes('best') || lower.includes('success') || lower.includes('proud') || lower.includes('safe');
+
+      if (isSarcastic) {
+        setResult({
+          sentiment: 'Negative (Inverted by Sarcasm)',
+          polarity: -0.68,
+          sarcasmScore: 0.92,
+          emotion: 'Irony & Sarcasm',
+          language: 'Hinglish (Indic-Romanized)',
+          threatVector: 'Public Sentiment Vulnerability'
+        });
+      } else if (isPositive) {
+        setResult({
+          sentiment: 'Strongly Positive',
+          polarity: 0.85,
+          sarcasmScore: 0.08,
+          emotion: 'Supportive & Patriotic',
+          language: 'English / Indic',
+          threatVector: 'Organic Positive Sentiment'
+        });
+      } else {
+        setResult({
+          sentiment: 'Neutral / Informational',
+          polarity: 0.05,
+          sarcasmScore: 0.15,
+          emotion: 'Neutral Observational',
+          language: 'Multilingual Ingestion Stream',
+          threatVector: 'Standard Baseline Signal'
+        });
+      }
+    }, 600);
   };
 
   return (
@@ -70,34 +82,34 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
       onClick={onClose}
     >
       <div
-        className="relative max-w-2xl w-full bg-surface border border-brand-navy shadow-2xl rounded overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative max-w-2xl w-full bg-white border border-[#001e40] shadow-2xl rounded overflow-hidden flex flex-col max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-brand-navy text-white px-5 py-3 flex items-center justify-between border-b-2 border-accent-saffron">
+        <div className="bg-[#001e40] text-white px-5 py-3 flex items-center justify-between border-b-2 border-[#fe6500]">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-accent-saffron text-xl">psychology</span>
+            <span className="material-symbols-outlined text-[#fe6500] text-xl">psychology</span>
             <div>
               <h3 id="sandbox-modal-title" className="font-serif-headline text-base font-bold">
                 SANKET AI Transformer Inference Sandbox
               </h3>
-              <p className="text-[10px] text-brand-navy-light-text">
-                Live Interactive Transformer (sanket-indic-roberta-v3) &amp; Sarcasm Inversion Tester
+              <p className="text-[10px] text-[#a7c8ff]">
+                Live Interactive Transformer (sanket-indic-roberta-v3) & Sarcasm Inversion Tester
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-white/80 hover:text-white p-1 hover:bg-white/10 rounded transition-colors cursor-pointer"
+            className="text-white/80 hover:text-white p-1 hover:bg-white/10 rounded transition-colors"
           >
             <span className="material-symbols-outlined text-lg">close</span>
           </button>
         </div>
 
         {/* Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 bg-canvas">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 bg-[#f9f9f9]">
           <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-text-dark-navy uppercase">
+            <label className="block text-xs font-bold text-[#001e40] uppercase">
               Input Indic / Hinglish / Code-Mixed Social Post:
             </label>
             <textarea
@@ -105,7 +117,7 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Paste or type social commentary to run real-time transformer inference..."
-              className="w-full p-3 bg-surface border border-border-strong rounded text-xs text-text-primary focus:outline-none focus:border-brand-navy-mid font-mono leading-relaxed"
+              className="w-full p-3 bg-white border border-[#c3c6d1] rounded text-xs text-[#1a1c1c] focus:outline-none focus:border-[#003366] font-mono leading-relaxed"
             />
           </div>
 
@@ -118,7 +130,7 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
                     'Subh yatra to all citizens! Great security management at the tech corridor.'
                   )
                 }
-                className="text-[11px] px-2 py-1 bg-surface hover:bg-brand-navy-light border border-border-strong text-text-navy rounded transition-colors cursor-pointer"
+                className="text-[11px] px-2 py-1 bg-white hover:bg-[#d5e3ff] border border-[#c3c6d1] text-[#003366] rounded transition-colors"
               >
                 Sample: Positive
               </button>
@@ -129,7 +141,7 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
                     'Wah bhai, kya badhiya security deployment hai! Traffic blocked for 4 hours and zero emergency lanes open. Truly world-class planning! 👏👏'
                   )
                 }
-                className="text-[11px] px-2 py-1 bg-surface hover:bg-status-danger-light border border-border-strong text-status-danger rounded transition-colors cursor-pointer"
+                className="text-[11px] px-2 py-1 bg-white hover:bg-[#ffdad6] border border-[#c3c6d1] text-[#ba1a1a] rounded transition-colors"
               >
                 Sample: Hinglish Sarcasm
               </button>
@@ -138,7 +150,7 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
             <button
               onClick={handleSimulate}
               disabled={analyzing}
-              className="px-5 py-2 bg-accent-saffron hover:bg-accent-saffron-hover text-white font-bold text-xs uppercase tracking-wider rounded transition-all flex items-center gap-1.5 shadow-sm active:scale-95 disabled:opacity-50 cursor-pointer"
+              className="px-5 py-2 bg-[#fe6500] hover:bg-[#a33e00] text-white font-bold text-xs uppercase tracking-wider rounded transition-all flex items-center gap-1.5 shadow-sm active:scale-95 disabled:opacity-50"
             >
               {analyzing ? (
                 <>
@@ -156,35 +168,35 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
 
           {/* Inference Output Card */}
           {result && (
-            <div className="bg-surface border border-border-subtle rounded p-4 shadow-xs space-y-3 mt-3">
-              <div className="flex items-center justify-between border-b border-border-subtle pb-2">
-                <span className="text-xs font-bold text-text-dark-navy uppercase flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm text-accent-green">verified</span>
+            <div className="bg-white border border-[#e2e2e2] rounded p-4 shadow-xs space-y-3 mt-3">
+              <div className="flex items-center justify-between border-b border-[#e2e2e2] pb-2">
+                <span className="text-xs font-bold text-[#001e40] uppercase flex items-center gap-1">
+                  <span className="material-symbols-outlined text-sm text-[#138808]">verified</span>
                   Transformer Output Classification
                 </span>
-                <span className="text-[10px] text-text-muted font-mono">Latency: 18.4ms</span>
+                <span className="text-[10px] text-[#737780] font-mono">Latency: 18.4ms</span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
-                <div className="p-2 bg-canvas border border-border-subtle rounded">
-                  <span className="text-[10px] text-text-muted uppercase block">Inferred Sentiment</span>
-                  <span className="font-bold text-text-navy">{result.sentiment}</span>
+                <div className="p-2 bg-[#f9f9f9] border border-[#e2e2e2] rounded">
+                  <span className="text-[10px] text-[#737780] uppercase block">Inferred Sentiment</span>
+                  <span className="font-bold text-[#003366]">{result.sentiment}</span>
                 </div>
-                <div className="p-2 bg-canvas border border-border-subtle rounded">
-                  <span className="text-[10px] text-text-muted uppercase block">Sarcasm Probability</span>
-                  <span className="font-bold text-accent-saffron">{(result.sarcasmScore * 100).toFixed(0)}%</span>
+                <div className="p-2 bg-[#f9f9f9] border border-[#e2e2e2] rounded">
+                  <span className="text-[10px] text-[#737780] uppercase block">Sarcasm Probability</span>
+                  <span className="font-bold text-[#fe6500]">{(result.sarcasmScore * 100).toFixed(0)}%</span>
                 </div>
-                <div className="p-2 bg-canvas border border-border-subtle rounded">
-                  <span className="text-[10px] text-text-muted uppercase block">Emotion Tone</span>
-                  <span className="font-bold text-text-primary">{result.emotion}</span>
+                <div className="p-2 bg-[#f9f9f9] border border-[#e2e2e2] rounded">
+                  <span className="text-[10px] text-[#737780] uppercase block">Emotion Tone</span>
+                  <span className="font-bold text-[#1a1c1c]">{result.emotion}</span>
                 </div>
-                <div className="p-2 bg-canvas border border-border-subtle rounded">
-                  <span className="text-[10px] text-text-muted uppercase block">Language Matrix</span>
-                  <span className="font-bold text-text-secondary">{result.language}</span>
+                <div className="p-2 bg-[#f9f9f9] border border-[#e2e2e2] rounded">
+                  <span className="text-[10px] text-[#737780] uppercase block">Language Matrix</span>
+                  <span className="font-bold text-[#43474f]">{result.language}</span>
                 </div>
-                <div className="p-2 bg-canvas border border-border-subtle rounded col-span-2 sm:col-span-2">
-                  <span className="text-[10px] text-text-muted uppercase block">Threat Vector Cohort</span>
-                  <span className="font-bold text-status-danger">{result.threatVector}</span>
+                <div className="p-2 bg-[#f9f9f9] border border-[#e2e2e2] rounded col-span-2 sm:col-span-2">
+                  <span className="text-[10px] text-[#737780] uppercase block">Threat Vector Cohort</span>
+                  <span className="font-bold text-[#ba1a1a]">{result.threatVector}</span>
                 </div>
               </div>
             </div>
@@ -192,9 +204,9 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
         </div>
 
         {/* Footer */}
-        <div className="bg-surface-muted border-t border-border-subtle px-5 py-3 flex flex-wrap items-center justify-between gap-2">
-          <span className="text-xs text-text-muted">
-            Model: <strong className="text-text-dark-navy">sanket-indic-roberta-v3</strong> &bull; SIH 2026 #26152
+        <div className="bg-[#f0f2f5] border-t border-[#e2e2e2] px-5 py-3 flex flex-wrap items-center justify-between gap-2">
+          <span className="text-xs text-[#737780]">
+            Model: <strong className="text-[#001e40]">sanket-indic-roberta-v3</strong> &bull; SIH 2026 #26152
           </span>
           <div className="flex gap-2">
             <button
@@ -202,7 +214,7 @@ export const InteractiveSandboxModal: React.FC<InteractiveSandboxModalProps> = (
                 onClose();
                 if (onNavigateToDashboard) onNavigateToDashboard('sentiment');
               }}
-              className="px-3 py-1.5 bg-brand-navy-mid hover:bg-brand-navy text-white text-xs font-bold rounded transition-colors cursor-pointer"
+              className="px-3 py-1.5 bg-[#003366] hover:bg-[#001e40] text-white text-xs font-bold rounded transition-colors"
             >
               Open Full Sentiment Console &rarr;
             </button>

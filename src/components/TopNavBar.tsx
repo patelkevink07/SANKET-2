@@ -20,9 +20,14 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'dashboards', label: 'DASHBOARD', icon: 'dashboard' },
+    { id: 'home', label: 'HOME', icon: 'home' },
+    { id: 'about', label: 'ABOUT', icon: 'info' },
+    { id: 'dashboards', label: 'DASHBOARDS', icon: 'dashboard' },
     { id: 'reports', label: 'REPORTS', icon: 'assessment' },
-    { id: 'about', label: 'ABOUT', icon: 'info' }
+    { id: 'knowledge', label: 'KNOWLEDGE HUB', icon: 'school' },
+    { id: 'architecture', label: 'ARCHITECTURE', icon: 'account_tree' },
+    { id: 'resources', label: 'RESOURCES', icon: 'folder_open' },
+    { id: 'contact', label: 'CONTACT', icon: 'support_agent' }
   ];
 
   const handleNavClick = (pageId: string) => {
@@ -31,19 +36,19 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
   };
 
   return (
-    <nav className="bg-brand-navy text-white font-semibold text-sm w-full flex flex-col tricolor-border sticky top-0 z-40 shadow-md">
+    <nav className="bg-[#001e40] text-white font-semibold text-sm w-full flex flex-col tricolor-border sticky top-0 z-40 shadow-md">
       <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between px-3 sm:px-6 lg:px-8 py-1.5 lg:py-0">
         {/* Mobile / Tablet Header Bar */}
         <div className="flex items-center justify-between w-full lg:w-auto">
           {/* Mobile brand text */}
           <div
             className="flex items-center gap-2 lg:hidden cursor-pointer py-1"
-            onClick={() => handleNavClick('dashboards')}
+            onClick={() => handleNavClick('home')}
           >
             <span className="font-serif-headline font-bold text-white text-base tracking-wider">
               SANKET
             </span>
-            <span className="text-[10px] text-brand-navy-light-text uppercase font-mono px-1.5 py-0.5 bg-white/10 rounded">
+            <span className="text-[10px] text-[#a7c8ff] uppercase font-mono px-1.5 py-0.5 bg-white/10 rounded">
               SIH 2026 #26152
             </span>
           </div>
@@ -70,7 +75,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
               id="btn-mobile-menu-toggle"
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded text-brand-navy-light-text hover:text-white hover:bg-white/10 focus:outline-none transition-colors"
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded text-[#a7c8ff] hover:text-white hover:bg-white/10 focus:outline-none transition-colors"
               aria-label="Toggle Navigation Menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -92,8 +97,8 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
                   onClick={() => handleNavClick(item.id)}
                   className={`block py-3 px-3.5 text-xs xl:text-sm tracking-wider uppercase transition-all whitespace-nowrap min-h-[44px] flex items-center ${
                     isActive
-                      ? 'bg-brand-navy-mid text-white font-bold border-b-4 border-accent-saffron'
-                      : 'text-brand-navy-light-text hover:bg-brand-navy-hover/60 hover:text-white font-medium'
+                      ? 'bg-[#003366] text-white font-bold border-b-4 border-[#fe6500]'
+                      : 'text-[#a7c8ff] hover:bg-[#3a5f94]/60 hover:text-white font-medium'
                   }`}
                 >
                   {item.label}
@@ -126,12 +131,12 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
             <div className="flex items-center gap-3">
               <div className="hidden xl:flex flex-col text-right">
                 <span className="text-xs font-bold text-white leading-tight">{user.name}</span>
-                <span className="text-[10px] text-brand-navy-light-text">{user.badgeId}</span>
+                <span className="text-[10px] text-[#a7c8ff]">{user.badgeId}</span>
               </div>
               <button
                 id="btn-nav-logout"
                 onClick={onLogout}
-                className="min-h-[38px] py-1.5 px-3.5 bg-status-danger hover:bg-status-danger/80 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 border border-white/20 shadow-xs cursor-pointer"
+                className="min-h-[38px] py-1.5 px-3.5 bg-[#ba1a1a] hover:bg-[#93000a] text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 border border-white/20 shadow-xs"
               >
                 <span className="material-symbols-outlined text-[14px]">logout</span>
                 LOGOUT
@@ -141,10 +146,10 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
             <button
               id="btn-nav-login"
               onClick={() => handleNavClick('login')}
-              className={`min-h-[38px] py-1.5 px-5 font-bold text-xs uppercase tracking-wider transition-colors border shadow-xs flex items-center gap-1.5 cursor-pointer ${
+              className={`min-h-[38px] py-1.5 px-5 font-bold text-xs uppercase tracking-wider transition-colors border shadow-xs flex items-center gap-1.5 ${
                 activePage === 'login'
-                  ? 'bg-accent-saffron text-white border-accent-saffron'
-                  : 'bg-surface text-text-dark-navy hover:bg-surface-muted border-border-main'
+                  ? 'bg-[#fe6500] text-white border-[#fe6500]'
+                  : 'bg-white text-[#001e40] hover:bg-[#f3f3f3] border-white'
               }`}
             >
               <span className="material-symbols-outlined text-[14px]">lock</span>
@@ -156,15 +161,15 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
 
       {/* Mobile Drawer / Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-brand-navy-dark border-t border-white/10 px-4 py-4 space-y-3 transition-all duration-200 animate-in slide-in-from-top-2">
+        <div className="lg:hidden bg-[#00142c] border-t border-white/10 px-4 py-4 space-y-3 transition-all duration-200 animate-in slide-in-from-top-2">
           {/* User Profile info if logged in */}
           {user && (
-            <div className="p-3 bg-brand-navy border border-white/10 rounded flex items-center justify-between">
+            <div className="p-3 bg-[#001e40] border border-white/10 rounded flex items-center justify-between">
               <div>
                 <div className="text-xs font-bold text-white">{user.name}</div>
-                <div className="text-[10px] text-brand-navy-light-text">{user.role} &bull; {user.badgeId}</div>
+                <div className="text-[10px] text-[#a7c8ff]">{user.role} &bull; {user.badgeId}</div>
               </div>
-              <span className="text-[10px] uppercase font-bold bg-accent-saffron text-white px-2 py-0.5 rounded">
+              <span className="text-[10px] uppercase font-bold bg-[#fe6500] text-white px-2 py-0.5 rounded">
                 {user.clearanceLevel}
               </span>
             </div>
@@ -180,15 +185,15 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
                   onClick={() => handleNavClick(item.id)}
                   className={`min-h-[44px] w-full px-3 py-2.5 rounded text-left text-xs font-semibold uppercase tracking-wider flex items-center justify-between transition-colors ${
                     isActive
-                      ? 'bg-brand-navy-mid text-white border-l-4 border-accent-saffron font-bold shadow-xs'
-                      : 'text-brand-navy-light-text hover:bg-white/10 hover:text-white'
+                      ? 'bg-[#003366] text-white border-l-4 border-[#fe6500] font-bold shadow-xs'
+                      : 'text-[#a7c8ff] hover:bg-white/10 hover:text-white'
                   }`}
                 >
                   <span className="flex items-center gap-2.5">
                     <span className="material-symbols-outlined text-base opacity-80">{item.icon}</span>
                     <span>{item.label}</span>
                   </span>
-                  {isActive && <span className="material-symbols-outlined text-sm text-accent-saffron">check</span>}
+                  {isActive && <span className="material-symbols-outlined text-sm text-[#fe6500]">check</span>}
                 </button>
               );
             })}
@@ -202,7 +207,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
                   onLogout();
                   setMobileMenuOpen(false);
                 }}
-                className="min-h-[44px] w-full py-2.5 bg-status-danger hover:bg-status-danger/80 text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="min-h-[44px] w-full py-2.5 bg-[#ba1a1a] hover:bg-[#93000a] text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2"
               >
                 <span className="material-symbols-outlined text-base">logout</span>
                 <span>Sign Out of SANKET Portal</span>
@@ -210,7 +215,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
             ) : (
               <button
                 onClick={() => handleNavClick('login')}
-                className="min-h-[44px] w-full py-2.5 bg-accent-saffron hover:bg-accent-saffron-hover text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+                className="min-h-[44px] w-full py-2.5 bg-[#fe6500] hover:bg-[#a33e00] text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-2 shadow-xs"
               >
                 <span className="material-symbols-outlined text-base">login</span>
                 <span>Authorized Personnel Sign In</span>
@@ -222,3 +227,4 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
     </nav>
   );
 };
+

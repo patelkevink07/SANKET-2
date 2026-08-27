@@ -60,11 +60,10 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
     let animFrame: number;
 
     const render = () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw subtle grid
-      ctx.strokeStyle = isDark ? '#273248' : '#e5e7eb';
+      ctx.strokeStyle = '#e5e7eb';
       ctx.lineWidth = 1;
       const step = 40;
       for (let x = 0; x < canvas.width; x += step) {
@@ -103,13 +102,13 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
         ctx.lineTo(tgt.x, tgt.y!);
 
         if (edge.type === 'retweet') {
-          ctx.strokeStyle = isDark ? '#5b8fd6' : '#003366';
+          ctx.strokeStyle = '#003366';
           ctx.setLineDash([]);
         } else if (edge.type === 'reply') {
           ctx.strokeStyle = '#fe6500';
           ctx.setLineDash([4, 4]);
         } else {
-          ctx.strokeStyle = isDark ? '#606e8c' : '#737780';
+          ctx.strokeStyle = '#737780';
           ctx.setLineDash([2, 2]);
         }
 
@@ -132,7 +131,7 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
         if (isSelected || isHovered) {
           ctx.beginPath();
           ctx.arc(node.x, node.y, r + 6, 0, 2 * Math.PI);
-          ctx.fillStyle = isSelected ? 'rgba(254, 101, 0, 0.3)' : (isDark ? 'rgba(91, 143, 214, 0.25)' : 'rgba(0, 51, 102, 0.2)');
+          ctx.fillStyle = isSelected ? 'rgba(254, 101, 0, 0.3)' : 'rgba(0, 51, 102, 0.2)';
           ctx.fill();
         }
 
@@ -143,26 +142,26 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
         if (node.role === 'Bot') {
           ctx.fillStyle = '#E31E2E';
         } else if (node.role === 'Official') {
-          ctx.fillStyle = isDark ? '#4b75a8' : '#001e40';
+          ctx.fillStyle = '#001e40';
         } else if (node.role === 'KOL') {
           ctx.fillStyle = '#fe6500';
         } else {
-          ctx.fillStyle = isDark ? '#326bb5' : '#003366';
+          ctx.fillStyle = '#003366';
         }
         ctx.fill();
 
         ctx.lineWidth = isSelected ? 3 : 2;
-        ctx.strokeStyle = isDark ? '#141c2b' : '#ffffff';
+        ctx.strokeStyle = '#ffffff';
         ctx.stroke();
 
         // Node Label
-        ctx.fillStyle = isDark ? '#e3e9f5' : '#1a1c1c';
+        ctx.fillStyle = '#1a1c1c';
         ctx.font = 'bold 11px "Noto Sans", sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(node.label, node.x, node.y + r + 14);
 
         // Subtext (Handle)
-        ctx.fillStyle = isDark ? '#8d9bb5' : '#737780';
+        ctx.fillStyle = '#737780';
         ctx.font = '9px monospace';
         ctx.fillText(node.username, node.x, node.y + r + 25);
       });
@@ -211,36 +210,36 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
   };
 
   return (
-    <div className="bg-surface border border-border-main p-4 flex flex-col gap-4 shadow-sm">
+    <div className="bg-white border border-[#CCCCCC] p-4 flex flex-col gap-4 shadow-sm">
       {/* Top Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border-subtle pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e2e2e2] pb-3">
         <div>
-          <h3 className="font-serif-headline text-lg font-bold text-text-headline flex items-center gap-2">
-            <span className="material-symbols-outlined text-text-navy">hub</span>
-            <span>Link Analysis &amp; Network Topology Map</span>
+          <h3 className="font-serif-headline text-lg font-bold text-[#0C0566] flex items-center gap-2">
+            <span className="material-symbols-outlined text-[#003366]">hub</span>
+            <span>Link Analysis & Network Topology Map</span>
           </h3>
-          <p className="text-xs text-text-muted">
-            Component 3.5 &bull; High-Centrality Influencer Discovery &amp; Coordinated Inauthentic Network Detection
+          <p className="text-xs text-[#737780]">
+            Component 3.5 &bull; High-Centrality Influencer Discovery & Coordinated Inauthentic Network Detection
           </p>
         </div>
 
         {/* Legend */}
         <div className="flex flex-wrap items-center gap-3 text-xs">
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-full bg-brand-navy-dark"></span>
-            <span className="text-text-primary font-medium">Official</span>
+            <span className="w-3 h-3 rounded-full bg-[#001e40]"></span>
+            <span className="text-[#1a1c1c] font-medium">Official</span>
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-full bg-accent-saffron"></span>
-            <span className="text-text-primary font-medium">KOL (High Centrality)</span>
+            <span className="w-3 h-3 rounded-full bg-[#fe6500]"></span>
+            <span className="text-[#1a1c1c] font-medium">KOL (High Centrality)</span>
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-full bg-brand-navy-mid"></span>
-            <span className="text-text-primary font-medium">Amplifier</span>
+            <span className="w-3 h-3 rounded-full bg-[#003366]"></span>
+            <span className="text-[#1a1c1c] font-medium">Amplifier</span>
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-full bg-status-danger"></span>
-            <span className="text-text-primary font-medium">Suspected Bot</span>
+            <span className="w-3 h-3 rounded-full bg-[#E31E2E]"></span>
+            <span className="text-[#1a1c1c] font-medium">Suspected Bot</span>
           </span>
         </div>
       </div>
@@ -248,7 +247,7 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
       {/* Main Interactive Work Area */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Force Directed Canvas (2 Columns) */}
-        <div className="lg:col-span-2 relative bg-surface-muted border border-border-main rounded overflow-hidden">
+        <div className="lg:col-span-2 relative bg-[#fbfbfb] border border-[#CCCCCC] rounded overflow-hidden">
           <canvas
             ref={canvasRef}
             width={750}
@@ -259,40 +258,40 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
           />
 
           {/* Temporal Timeline Controller Overlay */}
-          <div className="absolute bottom-3 left-3 right-3 bg-surface/95 backdrop-blur-xs p-3 border border-border-main rounded shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-xs p-3 border border-[#CCCCCC] rounded shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="p-1.5 bg-brand-navy-mid hover:bg-brand-navy text-white rounded transition-colors flex items-center justify-center cursor-pointer"
+                className="p-1.5 bg-[#003366] hover:bg-[#001e40] text-white rounded transition-colors flex items-center justify-center"
                 title={isPlaying ? 'Pause Timeline' : 'Play Propagation Animation'}
               >
                 <span className="material-symbols-outlined text-[16px]">
                   {isPlaying ? 'pause' : 'play_arrow'}
                 </span>
               </button>
-              <span className="text-xs font-bold text-text-dark-navy">Propagation Step {temporalStep}/5</span>
+              <span className="text-xs font-bold text-[#001e40]">Propagation Step {temporalStep}/5</span>
             </div>
 
             <div className="flex-grow max-w-xs w-full flex items-center gap-2">
-              <span className="text-[10px] text-text-muted font-mono">T-0h</span>
+              <span className="text-[10px] text-[#737780] font-mono">T-0h</span>
               <input
                 type="range"
                 min={1}
                 max={5}
                 value={temporalStep}
                 onChange={(e) => setTemporalStep(parseInt(e.target.value))}
-                className="w-full h-1.5 bg-surface-muted rounded-lg appearance-none cursor-pointer accent-brand-navy-mid"
+                className="w-full h-1.5 bg-[#e2e2e2] rounded-lg appearance-none cursor-pointer accent-[#003366]"
               />
-              <span className="text-[10px] text-text-muted font-mono">T-24h</span>
+              <span className="text-[10px] text-[#737780] font-mono">T-24h</span>
             </div>
 
             <div className="flex items-center gap-2">
-              <label className="flex items-center gap-1.5 text-xs text-text-primary font-medium cursor-pointer">
+              <label className="flex items-center gap-1.5 text-xs text-[#1a1c1c] font-medium cursor-pointer">
                 <input
                   type="checkbox"
                   checked={showBotOnly}
                   onChange={(e) => setShowBotOnly(e.target.checked)}
-                  className="rounded border-border-strong text-status-danger focus:ring-status-danger"
+                  className="rounded border-[#c3c6d1] text-[#E31E2E] focus:ring-[#E31E2E]"
                 />
                 <span>Bot Clusters Only</span>
               </label>
@@ -301,57 +300,57 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
         </div>
 
         {/* Selected Node Inspector (1 Column) */}
-        <div className="bg-canvas border border-border-main p-4 flex flex-col justify-between rounded">
+        <div className="bg-[#f9f9f9] border border-[#CCCCCC] p-4 flex flex-col justify-between rounded">
           {selectedNode ? (
             <div className="space-y-4">
-              <div className="flex items-start justify-between border-b border-border-main pb-3">
+              <div className="flex items-start justify-between border-b border-[#CCCCCC] pb-3">
                 <div>
                   <span className={`inline-block px-2 py-0.5 text-[10px] font-bold uppercase rounded ${
                     selectedNode.role === 'Bot'
-                      ? 'bg-status-danger-light text-status-danger-text'
+                      ? 'bg-[#ffdad6] text-[#ba1a1a]'
                       : selectedNode.role === 'KOL'
-                      ? 'bg-accent-saffron-light text-accent-saffron-text'
+                      ? 'bg-[#ffdbcd] text-[#7c2e00]'
                       : selectedNode.role === 'Official'
-                      ? 'bg-brand-navy-light text-text-dark-navy'
-                      : 'bg-surface-muted text-text-secondary'
+                      ? 'bg-[#d5e3ff] text-[#001b3c]'
+                      : 'bg-[#e2e2e2] text-[#43474f]'
                   }`}>
                     {selectedNode.role}
                   </span>
-                  <h4 className="font-serif-headline text-lg font-bold text-text-dark-navy mt-1">
+                  <h4 className="font-serif-headline text-lg font-bold text-[#001e40] mt-1">
                     {selectedNode.label}
                   </h4>
-                  <p className="text-xs text-text-muted font-mono">{selectedNode.username}</p>
+                  <p className="text-xs text-[#737780] font-mono">{selectedNode.username}</p>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-text-muted">Platform</span>
-                  <p className="text-xs font-bold text-text-navy uppercase">{selectedNode.platform}</p>
+                  <span className="text-xs text-[#737780]">Platform</span>
+                  <p className="text-xs font-bold text-[#003366] uppercase">{selectedNode.platform}</p>
                 </div>
               </div>
 
               {/* Node Metrics */}
               <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-surface p-2.5 border border-border-subtle rounded">
-                  <span className="text-text-muted block text-[10px] uppercase">Betweenness Score</span>
-                  <span className="text-sm font-bold text-text-navy">
+                <div className="bg-white p-2.5 border border-[#e2e2e2] rounded">
+                  <span className="text-[#737780] block text-[10px] uppercase">Betweenness Score</span>
+                  <span className="text-sm font-bold text-[#003366]">
                     {(selectedNode.betweennessCentrality * 100).toFixed(1)}%
                   </span>
                 </div>
-                <div className="bg-surface p-2.5 border border-border-subtle rounded">
-                  <span className="text-text-muted block text-[10px] uppercase">Eigenvector Rank</span>
-                  <span className="text-sm font-bold text-text-navy">
+                <div className="bg-white p-2.5 border border-[#e2e2e2] rounded">
+                  <span className="text-[#737780] block text-[10px] uppercase">Eigenvector Rank</span>
+                  <span className="text-sm font-bold text-[#003366]">
                     {(selectedNode.eigenvectorCentrality * 100).toFixed(1)}%
                   </span>
                 </div>
-                <div className="bg-surface p-2.5 border border-border-subtle rounded">
-                  <span className="text-text-muted block text-[10px] uppercase">Followers Reached</span>
-                  <span className="text-sm font-bold text-text-primary">
+                <div className="bg-white p-2.5 border border-[#e2e2e2] rounded">
+                  <span className="text-[#737780] block text-[10px] uppercase">Followers Reached</span>
+                  <span className="text-sm font-bold text-[#1a1c1c]">
                     {selectedNode.followers.toLocaleString()}
                   </span>
                 </div>
                 <div className={`p-2.5 border rounded ${
                   selectedNode.botProbability > 0.5
-                    ? 'bg-status-danger-light border-status-danger text-status-danger-text'
-                    : 'bg-surface border-border-subtle text-text-primary'
+                    ? 'bg-[#ffdad6] border-[#ba1a1a] text-[#ba1a1a]'
+                    : 'bg-white border-[#e2e2e2] text-[#1a1c1c]'
                 }`}>
                   <span className="block text-[10px] uppercase">Bot Likelihood</span>
                   <span className="text-sm font-bold">
@@ -361,19 +360,19 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
               </div>
 
               {/* Dominant Polarity */}
-              <div className="bg-surface p-3 border border-border-subtle rounded">
+              <div className="bg-white p-3 border border-[#e2e2e2] rounded">
                 <div className="flex justify-between items-center text-xs mb-1">
-                  <span className="font-semibold text-text-secondary">Dominant Emotion Stance</span>
-                  <span className="font-bold uppercase text-text-navy">{selectedNode.dominantSentiment}</span>
+                  <span className="font-semibold text-[#43474f]">Dominant Emotion Stance</span>
+                  <span className="font-bold uppercase text-[#003366]">{selectedNode.dominantSentiment}</span>
                 </div>
-                <div className="w-full bg-surface-muted h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#e2e2e2] h-2 rounded-full overflow-hidden">
                   <div
                     className={`h-full ${
                       selectedNode.dominantSentiment === 'supportive' || selectedNode.dominantSentiment === 'excited'
-                        ? 'bg-brand-navy-mid'
+                        ? 'bg-[#003366]'
                         : selectedNode.dominantSentiment === 'sarcastic'
-                        ? 'bg-accent-saffron'
-                        : 'bg-status-danger'
+                        ? 'bg-[#fe6500]'
+                        : 'bg-[#ba1a1a]'
                     }`}
                     style={{ width: `${selectedNode.betweennessCentrality * 100}%` }}
                   ></div>
@@ -384,7 +383,7 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
               <div className="space-y-2 pt-2">
                 <button
                   onClick={() => alert(`Node ${selectedNode.username} added to high-priority intelligence watchlist.`)}
-                  className="w-full py-2 bg-brand-navy-mid hover:bg-brand-navy text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="w-full py-2 bg-[#003366] hover:bg-[#001e40] text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-1.5"
                 >
                   <span className="material-symbols-outlined text-[14px]">visibility</span>
                   <span>Monitor Narrative Stream</span>
@@ -392,7 +391,7 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
                 {selectedNode.botProbability > 0.5 && (
                   <button
                     onClick={() => alert(`Node ${selectedNode.username} isolated and flagged in coordinated botnet registry.`)}
-                    className="w-full py-2 bg-status-danger hover:bg-status-danger-hover text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                    className="w-full py-2 bg-[#ba1a1a] hover:bg-[#93000a] text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center justify-center gap-1.5"
                   >
                     <span className="material-symbols-outlined text-[14px]">block</span>
                     <span>Flag Coordinated Cluster</span>
@@ -401,7 +400,7 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
               </div>
             </div>
           ) : (
-            <div className="text-center py-12 text-text-muted text-xs">
+            <div className="text-center py-12 text-[#737780] text-xs">
               <span className="material-symbols-outlined text-3xl mb-2">touch_app</span>
               <p>Click on any node in the graph to inspect centrality scores, follower reach, and propagation paths.</p>
             </div>
