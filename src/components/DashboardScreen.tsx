@@ -20,7 +20,8 @@ import {
   MOCK_DEMOGRAPHICS,
   MOCK_TRENDS,
   MOCK_SENTIMENT_TIMELINE,
-  MOCK_INGESTION_JOBS
+  MOCK_INGESTION_JOBS,
+  PLATFORM_DATA_MAP
 } from '../data/mockData';
 import { SocialPost, PlatformType } from '../types';
 import { NetworkGraphView } from './NetworkGraphView';
@@ -45,6 +46,12 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   const [isLiveStreaming, setIsLiveStreaming] = useState<boolean>(true);
   const [postsList, setPostsList] = useState<SocialPost[]>(MOCK_POSTS);
 
+  // Derive platform-specific datasets dynamically
+  const activePlatformData = PLATFORM_DATA_MAP[selectedPlatform] || PLATFORM_DATA_MAP.all;
+  const currentDemographics = activePlatformData.demographics;
+  const currentTrends = activePlatformData.trends;
+  const currentTimeline = activePlatformData.timeline;
+
   // Sync initialTab when changed from parent
   useEffect(() => {
     if (initialTab) {
@@ -52,14 +59,16 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
     }
   }, [initialTab]);
 
-  // Live streaming simulation: inject fresh item periodically
+  // Live streaming simulation: inject fresh item periodically matching selected platform if filtered
   useEffect(() => {
     let timer: any;
     if (isLiveStreaming) {
       timer = setInterval(() => {
-        const sampleKeywords = ['#SemiconductorMission', '#CyberSecurity2026', '#DigitalIndia', '#TechInnovation'];
+        const sampleKeywords = ['#SemiconductorMission', '#CyberSecurity2026', '#DigitalIndia', '#TechInnovation', '#SmartIndiaHackathon2026'];
         const randomKw = sampleKeywords[Math.floor(Math.random() * sampleKeywords.length)];
-        const randomPlatforms: PlatformType[] = ['x', 'telegram', 'reddit', 'youtube'];
+        const randomPlatforms: PlatformType[] = selectedPlatform === 'all' 
+          ? ['x', 'telegram', 'instagram', 'reddit', 'youtube']
+          : [selectedPlatform as PlatformType];
         const randomPlat = randomPlatforms[Math.floor(Math.random() * randomPlatforms.length)];
 
         const newPost: SocialPost = {
@@ -106,7 +115,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
       }, 7000);
     }
     return () => clearInterval(timer);
-  }, [isLiveStreaming]);
+  }, [isLiveStreaming, selectedPlatform]);
 
   // Filter posts based on global toolbar
   const filteredPosts = postsList.filter((post) => {
@@ -122,12 +131,19 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
     return true;
   });
 
+  // Calculate emotion distribution dynamically from current timeline data
+  const avgSupportive = Math.round(currentTimeline.reduce((acc, curr) => acc + curr.supportive, 0) / currentTimeline.length);
+  const avgExcited = Math.round(currentTimeline.reduce((acc, curr) => acc + curr.excited, 0) / currentTimeline.length);
+  const avgAnxious = Math.round(currentTimeline.reduce((acc, curr) => acc + curr.anxious, 0) / currentTimeline.length);
+  const avgSarcastic = Math.round(currentTimeline.reduce((acc, curr) => acc + curr.sarcastic, 0) / currentTimeline.length);
+  const avgAgainst = Math.round(currentTimeline.reduce((acc, curr) => acc + curr.against, 0) / currentTimeline.length);
+
   const emotionPieData = [
-    { name: 'Supportive / Trust', value: 64, color: '#003366' },
-    { name: 'Excitement / Pride', value: 18, color: '#fe6500' },
-    { name: 'Anxiety / Concern', value: 10, color: '#b91c1c' },
-    { name: 'Opposition / Critique', value: 5, color: '#E31E2E' },
-    { name: 'Sarcasm / Satire', value: 3, color: '#7c3aed' }
+    { name: 'Supportive / Trust', value: avgSupportive, color: '#003366' },
+    { name: 'Excitement / Pride', value: avgExcited, color: '#fe6500' },
+    { name: 'Anxiety / Concern', value: avgAnxious, color: '#b91c1c' },
+    { name: 'Opposition / Critique', value: avgAgainst, color: '#E31E2E' },
+    { name: 'Sarcasm / Satire', value: avgSarcastic, color: '#7c3aed' }
   ];
 
   return (
@@ -293,10 +309,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                   <span className="text-xs text-muted font-semibold uppercase">Total Monitored Posts</span>
                   <span className="material-symbols-outlined text-brand text-xl">database</span>
                 </div>
-                <div className="text-2xl font-bold text-primary font-mono mt-1">310,650</div>
+                <div className="text-2xl font-bold text-primary font-mono mt-1">{activePlatformData.totalPosts}</div>
                 <div className="text-[11px] text-green flex items-center gap-1 mt-1 font-semibold">
                   <span className="material-symbols-outlined text-[14px]">trending_up</span>
-                  <span>+18.4% growth / 24h</span>
+                  <span>{activePlatformData.growthRate}</span>
                 </div>
               </div>
 
@@ -305,9 +321,9 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                   <span className="text-xs text-muted font-semibold uppercase">Aggregated Polarity</span>
                   <span className="material-symbols-outlined text-green text-xl">thumb_up</span>
                 </div>
-                <div className="text-2xl font-bold text-green font-mono mt-1">+0.74 <span className="text-xs text-secondary font-normal">/ 1.0</span></div>
+                <div className="text-2xl font-bold text-green font-mono mt-1">{activePlatformData.polarity} <span className="text-xs text-secondary font-normal">/ 1.0</span></div>
                 <div className="text-[11px] text-secondary flex items-center gap-1 mt-1">
-                  <span>Dominant: Supportive & Optimistic</span>
+                  <span>{activePlatformData.polarityDominant}</span>
                 </div>
               </div>
 
@@ -316,9 +332,9 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                   <span className="text-xs text-muted font-semibold uppercase">Active Viral Clusters</span>
                   <span className="material-symbols-outlined text-saffron text-xl">bubble_chart</span>
                 </div>
-                <div className="text-2xl font-bold text-saffron font-mono mt-1">14 Clusters</div>
+                <div className="text-2xl font-bold text-saffron font-mono mt-1">{activePlatformData.activeClustersCount} Clusters</div>
                 <div className="text-[11px] text-brand flex items-center gap-1 mt-1 font-semibold">
-                  <span>#SemiconductorMission (#1 Peak)</span>
+                  <span>{activePlatformData.activeClusterPeak}</span>
                 </div>
               </div>
 
@@ -327,9 +343,9 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                   <span className="text-xs text-muted font-semibold uppercase">Inauthentic Bots Flagged</span>
                   <span className="material-symbols-outlined text-red text-xl">smart_toy</span>
                 </div>
-                <div className="text-2xl font-bold text-red font-mono mt-1">4.2% <span className="text-xs text-muted font-normal">(1,248)</span></div>
+                <div className="text-2xl font-bold text-red font-mono mt-1">{activePlatformData.botPercentage} <span className="text-xs text-muted font-normal">({activePlatformData.botCount})</span></div>
                 <div className="text-[11px] text-red flex items-center gap-1 mt-1 font-semibold">
-                  <span>2 Botnet Rings Isolated</span>
+                  <span>{activePlatformData.botRings}</span>
                 </div>
               </div>
             </div>
@@ -342,14 +358,14 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     <h3 className="font-serif-headline text-base font-bold text-headline">
                       Temporal Emotion Dynamics & Volume
                     </h3>
-                    <p className="text-xs text-muted">Real-time sentiment trajectory over 24-hour window</p>
+                    <p className="text-xs text-muted">Real-time sentiment trajectory for {activePlatformData.name}</p>
                   </div>
                   <div className="text-xs font-mono text-brand font-bold">T-24h to T-0h</div>
                 </div>
 
                 <div className="h-64 w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={MOCK_SENTIMENT_TIMELINE} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <AreaChart data={currentTimeline} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                       <defs>
                         <linearGradient id="colorSupport" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor="#003366" stopOpacity={0.8}/>
@@ -436,7 +452,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 </div>
 
                 <div className="divide-y divide-subtle">
-                  {MOCK_TRENDS.slice(0, 4).map((trend) => (
+                  {currentTrends.slice(0, 4).map((trend) => (
                     <div key={trend.id} className="py-2.5 flex items-center justify-between text-xs">
                       <div>
                         <div className="flex items-center gap-2">
@@ -523,7 +539,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     <span>Multi-Dimensional Sentiment & Nuance Inference</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Contextual Emotion Taxonomy, Sarcasm Detection & Vernacular NLP
+                    Contextual Emotion Taxonomy, Sarcasm Detection & Vernacular NLP for {activePlatformData.name}
                   </p>
                 </div>
                 <div className="text-xs font-mono text-green font-bold bg-green-bg px-2 py-1 rounded">
@@ -534,7 +550,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
               {/* Sentiment Area Chart */}
               <div className="h-72 w-full mb-6">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={MOCK_SENTIMENT_TIMELINE} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <AreaChart data={currentTimeline} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#eeeeee" />
                     <XAxis dataKey="time" tick={{ fontSize: 11, fill: '#737780' }} />
                     <YAxis tick={{ fontSize: 11, fill: '#737780' }} />
@@ -555,7 +571,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     Vernacular & Code-Mixed (Hinglish) Distribution
                   </h4>
                   <div className="space-y-2 text-xs">
-                    {MOCK_DEMOGRAPHICS.languages.map((l) => (
+                    {currentDemographics.languages.map((l) => (
                       <div key={l.language} className="flex items-center justify-between">
                         <span className="text-primary font-medium">{l.name}</span>
                         <div className="flex items-center gap-2">
@@ -605,11 +621,11 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     <span>Automated Demographic Profiling (Anonymized)</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Cohort Aggregation, Age Pyramids, Geographic Dispersion & Affinity Clusters
+                    Cohort Aggregation, Age Pyramids, Geographic Dispersion & Affinity Clusters ({activePlatformData.name})
                   </p>
                 </div>
                 <div className="text-xs font-mono text-navy bg-navy-light px-2 py-1 rounded font-bold">
-                  Sample Size: 224,000 Users
+                  Sample Size: {currentDemographics.sampleSize.toLocaleString()} Users
                 </div>
               </div>
 
@@ -622,7 +638,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                   </h4>
                   <div className="h-56 w-full">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={MOCK_DEMOGRAPHICS.ageBrackets} layout="vertical" margin={{ left: 10, right: 20 }}>
+                      <BarChart data={currentDemographics.ageBrackets} layout="vertical" margin={{ left: 10, right: 20 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#eeeeee" />
                         <XAxis type="number" tick={{ fontSize: 11 }} />
                         <YAxis dataKey="bracket" type="category" tick={{ fontSize: 11 }} />
@@ -639,7 +655,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     Geographic Dispersion (States & UTs)
                   </h4>
                   <div className="divide-y divide-subtle text-xs">
-                    {MOCK_DEMOGRAPHICS.geography.map((geo) => (
+                    {currentDemographics.geography.map((geo) => (
                       <div key={geo.region} className="py-2 flex items-center justify-between">
                         <div>
                           <span className="font-bold text-primary">{geo.region}</span>
@@ -661,7 +677,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                   verified_user
                 </span>
                 <div>
-                  <strong className="text-green">{MOCK_DEMOGRAPHICS.complianceStandard}</strong>
+                  <strong className="text-green">{currentDemographics.complianceStandard}</strong>
                   <p className="text-secondary text-[11px] mt-0.5">
                     Zero Personally Identifiable Information (PII) is recorded. All demographic profiling runs via k-anonymity heuristics with epsilon differential noise.
                   </p>
@@ -682,7 +698,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     <span>Temporal Trend Detection</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Real-Time Narrative Trends, Predictive Trajectories & Anomaly Spikes
+                    Real-Time Narrative Trends, Predictive Trajectories & Anomaly Spikes ({activePlatformData.name})
                   </p>
                 </div>
                 <span className="text-xs text-brand font-bold">Updated every 60 seconds</span>
@@ -690,7 +706,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
               {/* Trends List */}
               <div className="space-y-3">
-                {MOCK_TRENDS.map((trend) => (
+                {currentTrends.map((trend) => (
                   <div key={trend.id} className="p-4 bg-subtle border border-main rounded hover:border-brand transition-colors">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                       <div className="flex items-center gap-3">
