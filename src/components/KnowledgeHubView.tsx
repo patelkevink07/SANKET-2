@@ -88,7 +88,7 @@ export const KnowledgeHubView: React.FC<KnowledgeHubViewProps> = ({ onNavigate }
                 <span className="font-bold text-green">100% Implemented</span>
               </div>
               <div className="p-3 bg-subtle border border-subtle rounded flex justify-between items-center">
-                <span><strong>Temporal Trends:</strong> Chronological velocity and predictive trajectory forecasting</span>
+                <span><strong>Temporal Trends:</strong> Chronological progression and predictive trajectory forecasting</span>
                 <span className="font-bold text-green">100% Implemented</span>
               </div>
               <div className="p-3 bg-subtle border border-subtle rounded flex justify-between items-center">

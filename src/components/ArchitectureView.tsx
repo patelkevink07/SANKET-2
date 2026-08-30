@@ -201,7 +201,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                   <div>2. Text Normalization &amp; De-emojification</div>
                   <div>3. Emotion &amp; Sarcasm Classification (Fine-tuned IndicRoBERTa / MuRIL)</div>
                   <div>4. Anonymized Demographic Cohort Inference</div>
-                  <div>5. Temporal Trend Velocity Calculation &amp; Anomaly Spike Detection</div>
+                  <div>5. Temporal Trend Calculation &amp; Anomaly Spike Detection</div>
                   <div>6. Graph Edge Generation (Author -&gt; Mentioned / Retweeted Author)</div>
                 </div>
               </div>
@@ -261,7 +261,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                     <span className="text-muted">Time-series emotion breakdown</span>
                   </div>
                   <div className="p-2.5 bg-subtle border border-subtle rounded flex items-center justify-between">
-                    <span className="font-mono font-bold text-brand">GET /api/v1/trends/velocity-rankings</span>
+                    <span className="font-mono font-bold text-brand">GET /api/v1/trends/rankings</span>
                     <span className="text-muted">Real-time viral topics</span>
                   </div>
                   <div className="p-2.5 bg-subtle border border-subtle rounded flex items-center justify-between">

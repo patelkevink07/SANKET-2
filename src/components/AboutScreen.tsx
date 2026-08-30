@@ -163,7 +163,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
-                    Time-series analysis to identify narrative velocity, rank trending keywords chronologically, and predict peak engagement periods, facilitating proactive rather than reactive operational planning.
+                    Time-series analysis to identify trending narratives, rank keywords chronologically, and predict peak engagement periods, facilitating proactive rather than reactive operational planning.
                   </p>
                 </div>
 

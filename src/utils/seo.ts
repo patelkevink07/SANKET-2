@@ -20,8 +20,8 @@ export const PAGE_SEO_DATA: Record<string, PageSEO> = {
   },
   dashboards: {
     title: 'Operations Center & Intelligence Dashboards | SANKET',
-    description: 'Live analytics command console featuring multi-dimensional sentiment analysis, Indic Hinglish sarcasm detection, demographic cohorts, trend velocity forecasting, and force-directed network graphing.',
-    keywords: 'SANKET Dashboard, IndicRoBERTa, Sarcasm Detection, Demographic Profiling, Viral Velocity, Force Graph, Betweenness Centrality, Botnet Detection',
+    description: 'Live analytics command console featuring multi-dimensional sentiment analysis, Indic Hinglish sarcasm detection, demographic cohorts, trend forecasting, and force-directed network graphing.',
+    keywords: 'SANKET Dashboard, IndicRoBERTa, Sarcasm Detection, Demographic Profiling, Viral Trends, Force Graph, Betweenness Centrality, Botnet Detection',
     ogImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDadJtV_zVpm8MRWZAIs1UOLFdjQCDAQfXRzhHtDzN8gpHiRkmatv1i7_HXPFM_sH0cZewR4n5bBDqLbC6gNHlMFhdO8XRGQ20Ivexl-YDGaUv5SKVH5i7IO0SKr7kzL90Ri090fsWKedfz9lObDeqTpt4Aap6z0V-Dx9EK9Tqyqiyitg7Z-aITUi0DWU7MIM42pz4QMO-KBXC_REroPSsrIVGDvwjA9vv44q0wIAfXYgqU3ZmISH7z_Q'
   },
   architecture: {

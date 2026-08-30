@@ -255,7 +255,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             }`}
           >
             <span className="material-symbols-outlined text-[16px]">monitoring</span>
-            <span>Trends & Velocity</span>
+            <span>Trends</span>
           </button>
 
           <button
@@ -296,7 +296,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div className="text-2xl font-bold text-primary font-mono mt-1">310,650</div>
                 <div className="text-[11px] text-green flex items-center gap-1 mt-1 font-semibold">
                   <span className="material-symbols-outlined text-[14px]">trending_up</span>
-                  <span>+18.4% velocity / 24h</span>
+                  <span>+18.4% growth / 24h</span>
                 </div>
               </div>
 
@@ -671,7 +671,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
           </div>
         )}
 
-        {/* TAB 4: TRENDS & VELOCITY */}
+        {/* TAB 4: TRENDS */}
         {activeTab === 'trends' && (
           <div className="space-y-4">
             <div className="bg-surface border border-main p-4 rounded shadow-xs">
@@ -679,10 +679,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div>
                   <h3 className="font-serif-headline text-lg font-bold text-headline flex items-center gap-2">
                     <span className="material-symbols-outlined text-brand">monitoring</span>
-                    <span>Temporal Trend & Velocity Detection</span>
+                    <span>Temporal Trend Detection</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Real-Time Narrative Velocity, Predictive Trajectories & Anomaly Spikes
+                    Real-Time Narrative Trends, Predictive Trajectories & Anomaly Spikes
                   </p>
                 </div>
                 <span className="text-xs text-brand font-bold">Updated every 60 seconds</span>
@@ -712,7 +712,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
                       <div className="flex items-center gap-4 text-xs font-mono">
                         <div className="text-right">
-                          <span className="text-muted text-[10px] block">VELOCITY</span>
+                          <span className="text-muted text-[10px] block">GROWTH RATE</span>
                           <span className="text-sm font-bold text-green">+{trend.velocity}% / hr</span>
                         </div>
                         <div className="text-right">

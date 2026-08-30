@@ -96,7 +96,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           {/* Interactive Image Preview with hover enlargement & zoom trigger */}
           <div className="w-full lg:w-2/5 flex justify-center">
             <div
-              onClick={() => handleImageClick(PREVIEW_IMG, 'SANKET Operational Intelligence Dashboard', 'Isometric high-fidelity interface preview showing multi-dimensional sentiment metrics, viral trend velocity charts, and demographic distribution maps.')}
+              onClick={() => handleImageClick(PREVIEW_IMG, 'SANKET Operational Intelligence Dashboard', 'Isometric high-fidelity interface preview showing multi-dimensional sentiment metrics, viral trend charts, and demographic distribution maps.')}
               className="relative group cursor-pointer overflow-hidden rounded border border-main bg-surface p-2 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:scale-[1.03]"
               title="Click to expand high-resolution preview"
             >
@@ -212,7 +212,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 Detects emerging topics and viral vectors before they reach critical mass, utilizing time-series forecasting and anomaly detection algorithms.
               </p>
               <div className="mt-auto pt-3 border-t border-subtle flex items-center justify-between text-xs text-brand font-semibold">
-                <span>Chronological &amp; Velocity Prediction</span>
+                <span>Chronological &amp; Growth Prediction</span>
                 <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </div>
             </div>
