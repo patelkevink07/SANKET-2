@@ -142,24 +142,6 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             <span className="material-symbols-outlined text-[14px]">chevron_right</span>
             <span className="text-primary font-bold">Analyst Operations Center (SANKET)</span>
           </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setIsLiveStreaming(!isLiveStreaming)}
-              className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded border transition-colors cursor-pointer ${
-                isLiveStreaming
-                  ? 'bg-green-bg text-green border-green'
-                  : 'bg-subtle text-muted border-main'
-              }`}
-            >
-              <span className={`w-2 h-2 rounded-full ${isLiveStreaming ? 'bg-green animate-pulse' : 'bg-muted'}`}></span>
-              <span>{isLiveStreaming ? 'Live Stream Active' : 'Stream Paused'}</span>
-            </button>
-            <span className="text-muted hidden md:inline">|</span>
-            <span className="text-[11px] text-secondary font-mono hidden md:inline">
-              Active Model: <strong className="text-navy font-bold">sanket-indic-roberta-v3.2</strong>
-            </span>
-          </div>
         </div>
 
         {/* Global Filter Toolbar */}
@@ -249,7 +231,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             }`}
           >
             <span className="material-symbols-outlined text-[16px]">psychology</span>
-            <span>Sentiment & Emotion (3.2)</span>
+            <span>Sentiment & Emotion</span>
           </button>
 
           <button
@@ -261,7 +243,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             }`}
           >
             <span className="material-symbols-outlined text-[16px]">group</span>
-            <span>Demographics (3.3)</span>
+            <span>Demographics</span>
           </button>
 
           <button
@@ -273,7 +255,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             }`}
           >
             <span className="material-symbols-outlined text-[16px]">monitoring</span>
-            <span>Trends & Velocity (3.4)</span>
+            <span>Trends & Velocity</span>
           </button>
 
           <button
@@ -285,7 +267,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             }`}
           >
             <span className="material-symbols-outlined text-[16px]">hub</span>
-            <span>Network Topology (3.5)</span>
+            <span>Network Topology</span>
           </button>
 
           <button
@@ -297,7 +279,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             }`}
           >
             <span className="material-symbols-outlined text-[16px]">database</span>
-            <span>Data Ingestion & Feed (3.1)</span>
+            <span>Data Ingestion & Feed</span>
           </button>
         </div>
 
@@ -541,7 +523,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     <span>Multi-Dimensional Sentiment & Nuance Inference</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Component 3.2 &bull; Contextual Emotion Taxonomy, Sarcasm Detection & Vernacular NLP
+                    Contextual Emotion Taxonomy, Sarcasm Detection & Vernacular NLP
                   </p>
                 </div>
                 <div className="text-xs font-mono text-green font-bold bg-green-bg px-2 py-1 rounded">
@@ -623,7 +605,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     <span>Automated Demographic Profiling (Anonymized)</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Component 3.3 &bull; Cohort Aggregation, Age Pyramids, Geographic Dispersion & Affinity Clusters
+                    Cohort Aggregation, Age Pyramids, Geographic Dispersion & Affinity Clusters
                   </p>
                 </div>
                 <div className="text-xs font-mono text-navy bg-navy-light px-2 py-1 rounded font-bold">
@@ -700,7 +682,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     <span>Temporal Trend & Velocity Detection</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Component 3.4 &bull; Real-Time Narrative Velocity, Predictive Trajectories & Anomaly Spikes
+                    Real-Time Narrative Velocity, Predictive Trajectories & Anomaly Spikes
                   </p>
                 </div>
                 <span className="text-xs text-brand font-bold">Updated every 60 seconds</span>
@@ -777,7 +759,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                     <span>Continuous Data Collection & Timeline Explorer</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Component 3.1 &bull; Chronological Raw Post Stream, Multi-Platform Ingestion Feed & Ground Truth Metadata
+                    Chronological Raw Post Stream, Multi-Platform Ingestion Feed & Ground Truth Metadata
                   </p>
                 </div>
                 <span className="text-xs font-mono font-bold text-brand">
