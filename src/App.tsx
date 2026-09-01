@@ -12,28 +12,10 @@ import { CURRENT_ANALYST } from './data/mockData';
 import { updatePageSEO } from './utils/seo';
 
 export default function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    const saved = localStorage.getItem('sanket-theme');
-    return saved === 'dark' ? 'dark' : 'light';
-  });
   const [activePage, setActivePage] = useState<string>('dashboards');
   const [dashboardTab, setDashboardTab] = useState<string>('overview');
   const [aboutSubTab, setAboutSubTab] = useState<string>('home');
   const [user, setUser] = useState<AnalystUser | null>(CURRENT_ANALYST);
-
-  // Sync theme with localStorage and root HTML attribute
-  useEffect(() => {
-    localStorage.setItem('sanket-theme', theme);
-    if (theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
 
   // Modal states for interactivity
   const [zoomModal, setZoomModal] = useState<{
@@ -97,8 +79,6 @@ export default function App() {
         onLogout={handleLogout}
         onNavigate={handleNavigate}
         onOpenImageModal={handleOpenImageModal}
-        theme={theme}
-        onToggleTheme={toggleTheme}
       />
 
       {/* Top Navigation Bar with Tricolor Bottom Border */}

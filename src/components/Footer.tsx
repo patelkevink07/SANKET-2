@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           onClick={() => onNavigate('knowledge')}
           className="text-white hover:text-saffron-light underline transition-all opacity-90 hover:opacity-100 text-left cursor-pointer"
         >
-          Knowledge Hub
+          Evaluation Criteria
         </button>
       </div>
 

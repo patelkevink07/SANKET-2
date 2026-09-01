@@ -61,10 +61,9 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
       // Draw subtle grid
-      ctx.strokeStyle = isDark ? '#26282a' : '#e5e7eb';
+      ctx.strokeStyle = '#e5e7eb';
       ctx.lineWidth = 1;
       const step = 40;
       for (let x = 0; x < canvas.width; x += step) {
@@ -103,13 +102,13 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
         ctx.lineTo(tgt.x, tgt.y!);
 
         if (edge.type === 'retweet') {
-          ctx.strokeStyle = isDark ? '#4d88ff' : '#003366';
+          ctx.strokeStyle = '#003366';
           ctx.setLineDash([]);
         } else if (edge.type === 'reply') {
           ctx.strokeStyle = '#fe6500';
           ctx.setLineDash([4, 4]);
         } else {
-          ctx.strokeStyle = isDark ? '#737780' : '#737780';
+          ctx.strokeStyle = '#737780';
           ctx.setLineDash([2, 2]);
         }
 
@@ -132,7 +131,7 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
         if (isSelected || isHovered) {
           ctx.beginPath();
           ctx.arc(node.x, node.y, r + 6, 0, 2 * Math.PI);
-          ctx.fillStyle = isSelected ? 'rgba(254, 101, 0, 0.3)' : (isDark ? 'rgba(77, 136, 255, 0.3)' : 'rgba(0, 51, 102, 0.2)');
+          ctx.fillStyle = isSelected ? 'rgba(254, 101, 0, 0.3)' : 'rgba(0, 51, 102, 0.2)';
           ctx.fill();
         }
 
@@ -143,26 +142,26 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
         if (node.role === 'Bot') {
           ctx.fillStyle = '#E31E2E';
         } else if (node.role === 'Official') {
-          ctx.fillStyle = isDark ? '#1a365d' : '#001e40';
+          ctx.fillStyle = '#001e40';
         } else if (node.role === 'KOL') {
           ctx.fillStyle = '#fe6500';
         } else {
-          ctx.fillStyle = isDark ? '#2b5797' : '#003366';
+          ctx.fillStyle = '#003366';
         }
         ctx.fill();
 
         ctx.lineWidth = isSelected ? 3 : 2;
-        ctx.strokeStyle = isDark ? '#121314' : '#ffffff';
+        ctx.strokeStyle = '#ffffff';
         ctx.stroke();
 
         // Node Label
-        ctx.fillStyle = isDark ? '#e3e3e3' : '#1a1c1c';
+        ctx.fillStyle = '#1a1c1c';
         ctx.font = 'bold 11px "Noto Sans", sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(node.label, node.x, node.y + r + 14);
 
         // Subtext (Handle)
-        ctx.fillStyle = isDark ? '#a8abb3' : '#737780';
+        ctx.fillStyle = '#737780';
         ctx.font = '9px monospace';
         ctx.fillText(node.username, node.x, node.y + r + 25);
       });

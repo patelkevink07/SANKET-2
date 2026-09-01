@@ -6,17 +6,13 @@ interface HeaderProps {
   onLogout: () => void;
   onNavigate: (page: string) => void;
   onOpenImageModal?: (src: string, alt: string, caption?: string) => void;
-  theme?: 'light' | 'dark';
-  onToggleTheme?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   user,
   onLogout,
   onNavigate,
-  onOpenImageModal,
-  theme = 'light',
-  onToggleTheme
+  onOpenImageModal
 }) => {
   const [fontSizeOffset, setFontSizeOffset] = useState<number>(0);
 
@@ -87,21 +83,6 @@ export const Header: React.FC<HeaderProps> = ({
               A+
             </button>
           </div>
-
-          {/* Real Light / Dark Theme Toggle Button */}
-          {onToggleTheme && (
-            <button
-              onClick={onToggleTheme}
-              className="px-1.5 py-0.5 text-[11px] font-bold rounded border transition-colors flex items-center gap-1 bg-surface text-primary border-card hover:bg-subtle cursor-pointer"
-              title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Theme`}
-              aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Theme`}
-            >
-              <span className="material-symbols-outlined text-[13px] text-saffron">
-                {theme === 'dark' ? 'light_mode' : 'dark_mode'}
-              </span>
-              <span className="hidden sm:inline">Theme</span>
-            </button>
-          )}
 
           {user && (
             <>

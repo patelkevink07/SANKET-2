@@ -28,7 +28,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
   };
 
   return (
-    <nav className="bg-[#001e40] dark:bg-[#0b1329] text-white font-semibold text-sm w-full flex flex-col tricolor-border sticky top-0 z-40 shadow-md border-b border-transparent dark:border-slate-800">
+    <nav className="bg-[#001e40] text-white font-semibold text-sm w-full flex flex-col tricolor-border sticky top-0 z-40 shadow-md border-b border-transparent">
       <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between px-3 sm:px-6 lg:px-8 py-1.5 lg:py-0 text-white">
         {/* Mobile / Tablet Header Bar */}
         <div className="flex items-center justify-between w-full lg:w-auto">
@@ -74,8 +74,8 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
                   onClick={() => handleNavClick(item.id)}
                   className={`block py-3 px-3.5 text-xs xl:text-sm tracking-wider uppercase transition-all whitespace-nowrap min-h-[44px] flex items-center cursor-pointer ${
                     isActive
-                      ? 'bg-[#003366] dark:bg-[#1e293b] text-white font-bold border-b-4 border-saffron'
-                      : 'text-slate-200 hover:bg-[#3a5f94]/60 dark:hover:bg-slate-800/80 hover:text-white font-medium'
+                      ? 'bg-[#003366] text-white font-bold border-b-4 border-saffron'
+                      : 'text-slate-200 hover:bg-[#3a5f94]/60 hover:text-white font-medium'
                   }`}
                 >
                   {item.label}
