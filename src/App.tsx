@@ -59,9 +59,7 @@ export default function App() {
       setAboutSubTab(tab || (page === 'about' ? 'about' : page));
     } else if (page === 'dashboards') {
       setActivePage('dashboards');
-      if (tab) {
-        setDashboardTab(tab);
-      }
+      setDashboardTab(tab || 'overview');
     } else {
       setActivePage(page);
       if (tab) {

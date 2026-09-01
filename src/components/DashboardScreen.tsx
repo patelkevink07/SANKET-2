@@ -42,7 +42,6 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   const [selectedPlatform, setSelectedPlatform] = useState<string>('all');
   const [timeRange, setTimeRange] = useState<string>('24h');
   const [filterBotSuspected, setFilterBotSuspected] = useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedPost, setSelectedPost] = useState<SocialPost | null>(MOCK_POSTS[0]);
   const [isLiveStreaming, setIsLiveStreaming] = useState<boolean>(true);
   const [postsList, setPostsList] = useState<SocialPost[]>(MOCK_POSTS);
@@ -122,13 +121,6 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   const filteredPosts = postsList.filter((post) => {
     if (selectedPlatform !== 'all' && post.platform !== selectedPlatform) return false;
     if (filterBotSuspected && !post.account.isBotSuspected) return false;
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      const matchContent = post.content.toLowerCase().includes(q);
-      const matchUser = post.account.username.toLowerCase().includes(q) || post.account.displayName.toLowerCase().includes(q);
-      const matchTopic = post.topics.some((t) => t.toLowerCase().includes(q));
-      if (!matchContent && !matchUser && !matchTopic) return false;
-    }
     return true;
   });
 
@@ -163,21 +155,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
         {/* Global Filter Toolbar */}
         <div className="bg-surface border border-main p-3 shadow-xs">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-center">
-            {/* Search Input */}
-            <div className="relative lg:col-span-2">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-2.5 text-muted pointer-events-none">
-                <span className="material-symbols-outlined text-base">search</span>
-              </span>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search hashtag, topic (#SemiconductorMission), or handle..."
-                className="w-full pl-9 pr-3 py-1.5 bg-subtle border border-card text-xs text-primary focus:bg-surface focus:border-brand focus:outline-none transition-colors"
-              />
-            </div>
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 items-center">
             {/* Platform Filter */}
             <div>
               <select

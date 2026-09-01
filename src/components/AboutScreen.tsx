@@ -108,7 +108,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                       onClick={() => onNavigate('dashboards', 'timeline')}
                       className="text-xs text-brand hover:underline font-bold"
                     >
-                      Open Live Pipeline &rarr;
+                      Open Dashboard &rarr;
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
@@ -119,13 +119,13 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                 <div className="bg-subtle p-4 border border-main rounded">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                     <h4 className="text-base font-bold text-brand mb-1 font-serif-headline">
-                      3.2 Multi-Dimensional Sentiment Inference
+                      3.2 Multi-Dimensional Sentiment
                     </h4>
                     <button
                       onClick={() => onNavigate('dashboards', 'sentiment')}
                       className="text-xs text-brand hover:underline font-bold"
                     >
-                      Open Sentiment Module &rarr;
+                      Open Sentiment &rarr;
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
@@ -142,7 +142,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                       onClick={() => onNavigate('dashboards', 'demographics')}
                       className="text-xs text-brand hover:underline font-bold"
                     >
-                      Open Demographics Module &rarr;
+                      Open Demographics &rarr;
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
@@ -153,13 +153,13 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                 <div className="bg-subtle p-4 border border-main rounded">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                     <h4 className="text-base font-bold text-brand mb-1 font-serif-headline">
-                      3.4 Temporal Trend &amp; Topic Detection
+                      3.4 Trending Topics Over Time
                     </h4>
                     <button
                       onClick={() => onNavigate('dashboards', 'trends')}
                       className="text-xs text-brand hover:underline font-bold"
                     >
-                      Open Trend Forecasting &rarr;
+                      Open Trends &rarr;
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
@@ -176,7 +176,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                       onClick={() => onNavigate('dashboards', 'network')}
                       className="text-xs text-brand hover:underline font-bold"
                     >
-                      Open Force Graph &rarr;
+                      Open Network Topology &rarr;
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">

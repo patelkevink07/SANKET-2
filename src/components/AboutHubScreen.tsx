@@ -32,7 +32,7 @@ export const AboutHubScreen: React.FC<AboutHubScreenProps> = ({
     { id: 'home', label: 'Home', icon: 'home' },
     { id: 'about', label: 'About SANKET', icon: 'info' },
     { id: 'architecture', label: 'Architecture', icon: 'account_tree' },
-    { id: 'knowledge', label: 'Knowledge Hub', icon: 'school' },
+    { id: 'knowledge', label: 'Evaluation Criteria', icon: 'school' },
     { id: 'resources', label: 'Resources & DPDP', icon: 'folder_open' },
     { id: 'contact', label: 'Contact & Help', icon: 'support_agent' }
   ];
