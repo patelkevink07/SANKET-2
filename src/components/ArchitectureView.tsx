@@ -8,7 +8,6 @@ interface ArchitectureViewProps {
 
 export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, onOpenImageModal }) => {
   const [selectedComponent, setSelectedComponent] = useState<string>('platforms');
-  const PREVIEW_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDadJtV_zVpm8MRWZAIs1UOLFdjQCDAQfXRzhHtDzN8gpHiRkmatv1i7_HXPFM_sH0cZewR4n5bBDqLbC6gNHlMFhdO8XRGQ20Ivexl-YDGaUv5SKVH5i7IO0SKr7kzL90Ri090fsWKedfz9lObDeqTpt4Aap6z0V-Dx9EK9Tqyqiyitg7Z-aITUi0DWU7MIM42pz4QMO-KBXC_REroPSsrIVGDvwjA9vv44q0wIAfXYgqU3ZmISH7z_Q";
 
   return (
     <div className="flex-grow w-full py-6 md:py-8 bg-page transition-colors duration-200">
@@ -33,7 +32,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                 End-to-End Analytics Pipeline Architecture
               </h1>
               <p className="text-xs text-secondary mt-1">
-                High-throughput distributed ingestion, transformer NLP inference, and real-time link topology
+                Collects data fast, analyzes it with AI, and maps how people are connected
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -91,7 +90,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                 <span className="material-symbols-outlined text-base">database</span>
                 <h4 className="font-bold text-xs">3. PostgreSQL DB</h4>
               </div>
-              <p className="text-[11px] text-muted">Relational + pgvector + Graph</p>
+              <p className="text-[11px] text-muted">Structured data, search, and graphs</p>
             </div>
 
             {/* Tier 4: FastAPI Gateway */}
@@ -135,10 +134,10 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
               <div className="space-y-4">
                 <h3 className="font-serif-headline text-xl font-bold text-headline flex items-center gap-2">
                   <span className="material-symbols-outlined text-brand">cloud_download</span>
-                  <span>Tier 1: Multi-Platform Ingestion Engine</span>
+                  <span>Tier 1: Collecting Data from Multiple Platforms</span>
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  SANKET orchestrates resilient, asynchronous workers to stream and batch-ingest public data across five major social channels without exceeding platform quotas.
+                  SANKET uses background workers to collect public posts from five platforms, without going over each platform's usage limits.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -148,7 +147,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                       <span className="text-[10px] text-green font-mono">ACTIVE (124/s)</span>
                     </div>
                     <p className="text-xs text-muted mt-1">
-                      Streaming filter API with keyword expansion, hashtag listeners, and user timeline backtracking.
+                      Uses X's live search to catch keywords, hashtags, and older posts.
                     </p>
                   </div>
 
@@ -158,7 +157,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                       <span className="text-[10px] text-green font-mono">ACTIVE (68/s)</span>
                     </div>
                     <p className="text-xs text-muted mt-1">
-                      MTProto Client listening to public broadcast channels, forwarding chains, and discussion hubs.
+                      Reads public Telegram channels, forwarded posts, and group discussions.
                     </p>
                   </div>
 
@@ -168,7 +167,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                       <span className="text-[10px] text-brand font-mono">SCHEDULED BATCH</span>
                     </div>
                     <p className="text-xs text-muted mt-1">
-                      Hashtag discovery and media carousel ingestion with OCR extraction for infographic text.
+                      Finds posts by hashtag and reads text from images.
                     </p>
                   </div>
 
@@ -178,7 +177,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                       <span className="text-[10px] text-green font-mono">ACTIVE (63/s)</span>
                     </div>
                     <p className="text-xs text-muted mt-1">
-                      PRAW subreddit stream monitoring r/india, r/developersIndia and YouTube comment threads.
+                      Watches chosen subreddits and YouTube comment threads.
                     </p>
                   </div>
                 </div>
@@ -189,20 +188,20 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
               <div className="space-y-4">
                 <h3 className="font-serif-headline text-xl font-bold text-headline flex items-center gap-2">
                   <span className="material-symbols-outlined text-brand">memory</span>
-                  <span>Tier 2: Asynchronous AI &amp; Transformer Workers</span>
+                  <span>Tier 2: AI Workers That Process the Data</span>
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  Celery and Redis task queue workers process posts through a multi-stage NLP pipeline tailored for Indic multilingual and code-mixed scripts.
+                  Background workers run each post through several AI steps, built to handle Hindi, English, and mixed-language text.
                 </p>
 
                 <div className="bg-subtle border border-main p-4 rounded font-mono text-xs space-y-2 text-primary">
                   <div className="text-brand font-bold">Pipeline Execution Stages:</div>
-                  <div>1. Language Identification (fastText lid.176.bin with Hinglish detector)</div>
-                  <div>2. Text Normalization &amp; De-emojification</div>
-                  <div>3. Emotion &amp; Sarcasm Classification (Fine-tuned IndicRoBERTa / MuRIL)</div>
-                  <div>4. Anonymized Demographic Cohort Inference</div>
-                  <div>5. Temporal Trend Calculation &amp; Anomaly Spike Detection</div>
-                  <div>6. Graph Edge Generation (Author -&gt; Mentioned / Retweeted Author)</div>
+                  <div>1. Detect the language, including Hinglish</div>
+                  <div>2. Clean up the text and remove emojis</div>
+                  <div>3. Detect emotion and sarcasm using AI models</div>
+                  <div>4. Estimate general audience details, kept anonymous</div>
+                  <div>5. Track trends over time and spot sudden spikes</div>
+                  <div>6. Map who mentions or shares whose posts</div>
                 </div>
               </div>
             )}
@@ -211,10 +210,10 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
               <div className="space-y-4">
                 <h3 className="font-serif-headline text-xl font-bold text-headline flex items-center gap-2">
                   <span className="material-symbols-outlined text-brand">database</span>
-                  <span>Tier 3: Secure PostgreSQL + pgvector Storage</span>
+                  <span>Tier 3: Secure Database Storage</span>
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  Relational data persistence with strict DPDP Act 2023 differential privacy safeguards, time-partitioned tables, and vector indexes for semantic search.
+                  We don't save any information that could identify a person. We only look at group patterns, not individuals.
                 </p>
 
                 <div className="bg-[#1e1e1e] text-[#d4d4d4] p-4 rounded text-xs font-mono overflow-x-auto leading-relaxed">
@@ -249,28 +248,28 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
               <div className="space-y-4">
                 <h3 className="font-serif-headline text-xl font-bold text-headline flex items-center gap-2">
                   <span className="material-symbols-outlined text-brand">api</span>
-                  <span>Tier 4: FastAPI Gateway &amp; REST Intelligence Endpoints</span>
+                  <span>Tier 4: The API That Connects Everything</span>
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  High-performance Python backend serving analytical query results, real-time WebSocket feeds, and secure JWT authentication.
+                  A fast Python backend that sends data to the dashboard and keeps access secure.
                 </p>
 
                 <div className="space-y-2 text-xs">
                   <div className="p-2.5 bg-subtle border border-subtle rounded flex items-center justify-between">
                     <span className="font-mono font-bold text-brand">GET /api/v1/sentiment/temporal-distribution</span>
-                    <span className="text-muted">Time-series emotion breakdown</span>
+                    <span className="text-muted">Emotion over time</span>
                   </div>
                   <div className="p-2.5 bg-subtle border border-subtle rounded flex items-center justify-between">
                     <span className="font-mono font-bold text-brand">GET /api/v1/trends/rankings</span>
-                    <span className="text-muted">Real-time viral topics</span>
+                    <span className="text-muted">Trending topics right now</span>
                   </div>
                   <div className="p-2.5 bg-subtle border border-subtle rounded flex items-center justify-between">
                     <span className="font-mono font-bold text-brand">GET /api/v1/network/topology-graph</span>
-                    <span className="text-muted">Nodes, centrality &amp; edge weights</span>
+                    <span className="text-muted">Who's connected to whom</span>
                   </div>
                   <div className="p-2.5 bg-subtle border border-subtle rounded flex items-center justify-between">
                     <span className="font-mono font-bold text-brand">WS /ws/stream/live-intelligence</span>
-                    <span className="text-green font-bold">WebSocket Real-time Feed</span>
+                    <span className="text-green font-bold">Live updates feed</span>
                   </div>
                 </div>
               </div>
@@ -280,45 +279,18 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
               <div className="space-y-4">
                 <h3 className="font-serif-headline text-xl font-bold text-headline flex items-center gap-2">
                   <span className="material-symbols-outlined text-brand">dashboard</span>
-                  <span>Tier 5: React + Tailwind Analyst Operations Center</span>
+                  <span>Tier 5: The Dashboard Analysts Use</span>
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  Intuitive, mission-critical operations dashboard providing instant situational awareness, deep sentiment inspection, demographic choropleth maps, and force-directed graph exploration.
+                  An easy-to-use dashboard that shows what's happening, checks sentiment closely, maps audience regions, and shows how people are connected.
                 </p>
-
-                {/* Interactive Diagram Preview */}
-                <div
-                  onClick={() => {
-                    if (onOpenImageModal) {
-                      onOpenImageModal(
-                        PREVIEW_IMG,
-                        'SANKET High-Resolution Blueprint',
-                        'Modular architectural layers spanning multi-modal ingestion, transformer workers, and React analytics console.'
-                      );
-                    }
-                  }}
-                  className="cursor-pointer group relative p-2 bg-subtle border border-subtle rounded overflow-hidden hover:shadow-md transition-all"
-                  title="Click to view full architecture diagram"
-                >
-                  <img
-                    src={PREVIEW_IMG}
-                    alt="SANKET System Preview"
-                    className="w-full max-h-48 object-cover rounded transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="bg-navy-dark text-white text-xs font-bold px-3 py-1.5 rounded flex items-center gap-1">
-                      <span className="material-symbols-outlined text-sm">zoom_in</span>
-                      <span>Zoom System Architecture Preview</span>
-                    </span>
-                  </div>
-                </div>
 
                 <div className="pt-2">
                   <button
                     onClick={() => onNavigate('dashboards')}
                     className="py-2.5 px-6 bg-brand hover:bg-navy-dark text-white font-bold text-xs uppercase tracking-wider rounded transition-colors flex items-center gap-2 cursor-pointer"
                   >
-                    <span>Launch Live Operations Center</span>
+                    <span>Open the Dashboard</span>
                     <span className="material-symbols-outlined text-base">arrow_forward</span>
                   </button>
                 </div>
@@ -329,7 +301,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
           {/* Live Ingestion Workers Status (1 Column) */}
           <div className="bg-surface border border-main p-5 shadow-xs rounded">
             <h4 className="font-serif-headline text-base font-bold text-headline mb-3 flex items-center justify-between border-b border-subtle pb-2">
-              <span>Ingestion Worker Fleet</span>
+              <span>Data Collection Status</span>
               <span className="text-xs text-green font-bold">All Healthy</span>
             </h4>
 
@@ -360,7 +332,7 @@ export const ArchitectureView: React.FC<ArchitectureViewProps> = ({ onNavigate, 
                 onClick={() => onNavigate('dashboards', 'timeline')}
                 className="text-xs font-bold text-brand hover:underline cursor-pointer"
               >
-                Inspect Live Stream Feed &rarr;
+                See the Live Data Feed &rarr;
               </button>
             </div>
           </div>

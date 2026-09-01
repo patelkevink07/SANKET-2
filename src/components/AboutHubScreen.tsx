@@ -3,7 +3,6 @@ import { HomeScreen } from './HomeScreen';
 import { AboutScreen } from './AboutScreen';
 import { ArchitectureView } from './ArchitectureView';
 import { KnowledgeHubView } from './KnowledgeHubView';
-import { ResourcesView } from './ResourcesView';
 import { ContactView } from './ContactView';
 
 interface AboutHubScreenProps {
@@ -33,7 +32,6 @@ export const AboutHubScreen: React.FC<AboutHubScreenProps> = ({
     { id: 'about', label: 'About SANKET', icon: 'info' },
     { id: 'architecture', label: 'Architecture', icon: 'account_tree' },
     { id: 'knowledge', label: 'Evaluation Criteria', icon: 'school' },
-    { id: 'resources', label: 'Resources & DPDP', icon: 'folder_open' },
     { id: 'contact', label: 'Contact & Help', icon: 'support_agent' }
   ];
 
@@ -118,12 +116,6 @@ export const AboutHubScreen: React.FC<AboutHubScreenProps> = ({
 
         {activeSubTab === 'knowledge' && (
           <KnowledgeHubView
-            onNavigate={onNavigate}
-          />
-        )}
-
-        {activeSubTab === 'resources' && (
-          <ResourcesView
             onNavigate={onNavigate}
           />
         )}

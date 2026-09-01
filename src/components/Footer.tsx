@@ -33,20 +33,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </button>
         <span className="text-white/40 hidden sm:inline">|</span>
         <button
-          onClick={() => onNavigate('resources')}
-          className="text-white hover:text-saffron-light underline transition-all opacity-90 hover:opacity-100 text-left cursor-pointer"
-        >
-          Privacy Policy &amp; DPDP Act
-        </button>
-        <span className="text-white/40 hidden sm:inline">|</span>
-        <button
-          onClick={() => onNavigate('resources')}
-          className="text-white hover:text-saffron-light underline transition-all opacity-90 hover:opacity-100 text-left cursor-pointer"
-        >
-          API Reference
-        </button>
-        <span className="text-white/40 hidden sm:inline">|</span>
-        <button
           onClick={() => onNavigate('contact')}
           className="text-white hover:text-saffron-light underline transition-all opacity-90 hover:opacity-100 text-left cursor-pointer"
         >

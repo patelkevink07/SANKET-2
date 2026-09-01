@@ -54,7 +54,7 @@ export default function App() {
   }, [activePage, aboutSubTab]);
 
   const handleNavigate = (page: string, tab?: string) => {
-    if (['home', 'about', 'architecture', 'knowledge', 'resources', 'contact'].includes(page)) {
+    if (['home', 'about', 'architecture', 'knowledge', 'contact'].includes(page)) {
       setActivePage('about');
       setAboutSubTab(tab || (page === 'about' ? 'about' : page));
     } else if (page === 'dashboards') {

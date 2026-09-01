@@ -67,7 +67,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                 1. Overview
               </h3>
               <p className="text-justify leading-relaxed text-secondary">
-                The exponential growth of digital interactions necessitates advanced analytical frameworks to interpret public sentiment, identify emerging trends, and model demographic shifts in real-time. The Social Analytics &amp; Network Knowledge Extraction Technology (SANKET) prototype initiative seeks to develop a robust, scalable platform capable of aggregating and synthesizing open multi-modal data. The system operates with high fidelity, ensuring data provenance while adhering to strict privacy mandates.
+                Online activity is growing fast, and understanding it needs better tools — to read public sentiment, spot new trends, and track audience changes in real time. SANKET (Social Analytics &amp; Network Knowledge Extraction Technology) is a prototype that collects and analyzes different types of public data on one platform. It keeps data accurate and traceable, while following strict privacy rules.
               </p>
             </section>
 
@@ -78,13 +78,13 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
               </h3>
               <ol className="list-decimal list-outside ml-6 space-y-3 leading-relaxed text-secondary">
                 <li>
-                  <strong className="text-primary">Automated Extraction &amp; Synthesis:</strong> To architect an automated pipeline capable of ingesting diverse unstructured data formats and synthesizing them into standardized, actionable intelligence.
+                  <strong className="text-primary">Automatic Data Collection:</strong> Build a pipeline that can take in different types of raw data and turn it into clear, useful information.
                 </li>
                 <li>
-                  <strong className="text-primary">Predictive Trend &amp; Anomaly Modeling:</strong> To leverage historical trend analysis to forecast emerging narrative velocities or coordinated botnet campaigns.
+                  <strong className="text-primary">Trend &amp; Anomaly Prediction:</strong> Use past trend data to forecast fast-growing narratives or coordinated bot activity.
                 </li>
                 <li>
-                  <strong className="text-primary">Data Protection &amp; Privacy Infrastructure:</strong> To ensure all computational and storage methodologies strictly comply with national data protection frameworks (DPDP Act 2023).
+                  <strong className="text-primary">Data Protection &amp; Privacy:</strong> Make sure all data processing and storage follows India's DPDP Act 2023.
                 </li>
               </ol>
             </section>
@@ -95,7 +95,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                 3. The Five-Component Framework
               </h3>
               <p className="mb-6 leading-relaxed text-secondary">
-                The proposed solution demonstrably integrates the following five core architectural components to ensure comprehensive situational awareness:
+                This solution brings together five core components to give a complete picture of what's happening online:
               </p>
 
               <div className="space-y-6 pl-3 sm:pl-4 border-l-2 border-card">
@@ -112,7 +112,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
-                    Continuous, high-throughput ingestion of open-source intelligence across text, audio, and visual modalities. Must include robust deduping, verification heuristics, and support for primary (X, Telegram), secondary (Instagram, Facebook), and bonus sources (Reddit, YouTube).
+                    Constantly collects public data — text, audio, and images — from platforms like X and Telegram (primary), Instagram and Facebook (secondary), and Reddit and YouTube (bonus). Removes duplicates and checks data quality along the way.
                   </p>
                 </div>
 
@@ -129,7 +129,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
-                    Deployment of Natural Language Processing (NLP) models specifically tuned for regional dialects, Hinglish, and contextual nuances to accurately gauge public mood and intent (support, oppose, anxiety, excitement, sarcasm), moving beyond basic binary polarity.
+                    Uses AI language models built for regional languages and Hinglish to read public mood and intent — like support, opposition, anxiety, excitement, or sarcasm — not just positive or negative.
                   </p>
                 </div>
 
@@ -146,7 +146,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
-                    Macro-level analysis of population cohorts engaging with specific narratives, strictly utilizing anonymized metadata, public bio text, and behavioral heuristics to maintain full compliance with DPDP Act 2023 privacy statutes.
+                    Looks at broad audience groups behind specific narratives, using anonymous data, public bios, and behavior patterns — fully in line with DPDP Act 2023 privacy rules.
                   </p>
                 </div>
 
@@ -163,7 +163,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
-                    Time-series analysis to identify trending narratives, rank keywords chronologically, and predict peak engagement periods, facilitating proactive rather than reactive operational planning.
+                    Tracks trends over time, ranks keywords by when they appear, and predicts when engagement will peak — so teams can plan ahead instead of reacting late.
                   </p>
                 </div>
 
@@ -180,7 +180,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onNavigate, onOpenImag
                     </button>
                   </div>
                   <p className="text-xs md:text-sm text-secondary leading-relaxed">
-                    Graph theory application to visualize information dissemination pathways, identifying key opinion leaders (KOLs), high-betweenness amplification nodes, and coordinated inauthentic botnet activities across time slices.
+                    Maps how information spreads, showing key opinion leaders, major amplifiers, and signs of coordinated bot activity over time.
                   </p>
                 </div>
               </div>
