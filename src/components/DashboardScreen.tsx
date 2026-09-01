@@ -21,7 +21,8 @@ import {
   MOCK_TRENDS,
   MOCK_SENTIMENT_TIMELINE,
   MOCK_INGESTION_JOBS,
-  PLATFORM_DATA_MAP
+  PLATFORM_DATA_MAP,
+  getPlatformData
 } from '../data/mockData';
 import { SocialPost, PlatformType } from '../types';
 import { NetworkGraphView } from './NetworkGraphView';
@@ -46,8 +47,8 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   const [isLiveStreaming, setIsLiveStreaming] = useState<boolean>(true);
   const [postsList, setPostsList] = useState<SocialPost[]>(MOCK_POSTS);
 
-  // Derive platform-specific datasets dynamically
-  const activePlatformData = PLATFORM_DATA_MAP[selectedPlatform] || PLATFORM_DATA_MAP.all;
+  // Derive platform and time-range specific datasets dynamically
+  const activePlatformData = getPlatformData(selectedPlatform, timeRange);
   const currentDemographics = activePlatformData.demographics;
   const currentTrends = activePlatformData.trends;
   const currentTimeline = activePlatformData.timeline;
@@ -156,7 +157,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
               Home
             </button>
             <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-            <span className="text-primary font-bold">Analyst Operations Center (SANKET)</span>
+            <span className="text-primary font-bold">Dashboard</span>
           </div>
         </div>
 
@@ -235,7 +236,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             }`}
           >
             <span className="material-symbols-outlined text-[16px]">dashboard</span>
-            <span>Command Overview</span>
+            <span>Dashboard</span>
           </button>
 
           <button
@@ -299,7 +300,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
           </button>
         </div>
 
-        {/* TAB 1: COMMAND OVERVIEW */}
+        {/* TAB 1: DASHBOARD */}
         {activeTab === 'overview' && (
           <div className="space-y-4">
             {/* 4 KPI Cards */}
@@ -318,7 +319,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
               <div className="bg-surface border border-main p-4 rounded shadow-xs">
                 <div className="flex justify-between items-start">
-                  <span className="text-xs text-muted font-semibold uppercase">Aggregated Polarity</span>
+                  <span className="text-xs text-muted font-semibold uppercase">Overall Sentiment</span>
                   <span className="material-symbols-outlined text-green text-xl">thumb_up</span>
                 </div>
                 <div className="text-2xl font-bold text-green font-mono mt-1">{activePlatformData.polarity} <span className="text-xs text-secondary font-normal">/ 1.0</span></div>
@@ -329,10 +330,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
               <div className="bg-surface border border-main p-4 rounded shadow-xs">
                 <div className="flex justify-between items-start">
-                  <span className="text-xs text-muted font-semibold uppercase">Active Viral Clusters</span>
+                  <span className="text-xs text-muted font-semibold uppercase">Trending Topics</span>
                   <span className="material-symbols-outlined text-saffron text-xl">bubble_chart</span>
                 </div>
-                <div className="text-2xl font-bold text-saffron font-mono mt-1">{activePlatformData.activeClustersCount} Clusters</div>
+                <div className="text-2xl font-bold text-saffron font-mono mt-1">{activePlatformData.activeClustersCount} Topics</div>
                 <div className="text-[11px] text-brand flex items-center gap-1 mt-1 font-semibold">
                   <span>{activePlatformData.activeClusterPeak}</span>
                 </div>
@@ -340,7 +341,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
               <div className="bg-surface border border-main p-4 rounded shadow-xs">
                 <div className="flex justify-between items-start">
-                  <span className="text-xs text-muted font-semibold uppercase">Inauthentic Bots Flagged</span>
+                  <span className="text-xs text-muted font-semibold uppercase">Suspected Bot Accounts</span>
                   <span className="material-symbols-outlined text-red text-xl">smart_toy</span>
                 </div>
                 <div className="text-2xl font-bold text-red font-mono mt-1">{activePlatformData.botPercentage} <span className="text-xs text-muted font-normal">({activePlatformData.botCount})</span></div>
@@ -356,11 +357,13 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div className="flex justify-between items-center mb-3">
                   <div>
                     <h3 className="font-serif-headline text-base font-bold text-headline">
-                      Temporal Emotion Dynamics & Volume
+                      Sentiment Over Time
                     </h3>
-                    <p className="text-xs text-muted">Real-time sentiment trajectory for {activePlatformData.name}</p>
+                    <p className="text-xs text-muted">Sentiment trend for {activePlatformData.name}</p>
                   </div>
-                  <div className="text-xs font-mono text-brand font-bold">T-24h to T-0h</div>
+                  <div className="text-xs font-mono text-brand font-bold">
+                    {timeRange === '6h' ? 'T-6h to T-0h' : timeRange === '7d' ? 'T-7d to T-0d' : timeRange === '30d' ? 'T-30d to T-0d' : 'T-24h to T-0h'}
+                  </div>
                 </div>
 
                 <div className="h-64 w-full">
@@ -395,9 +398,9 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
               <div className="bg-surface border border-main p-4 rounded shadow-xs flex flex-col justify-between">
                 <div>
                   <h3 className="font-serif-headline text-base font-bold text-headline mb-1">
-                    Multi-Dimensional Emotion Taxonomy
+                    Emotion Breakdown
                   </h3>
-                  <p className="text-xs text-muted mb-2">Fine-grained nuance classification</p>
+                  <p className="text-xs text-muted mb-2">Detailed emotion categories</p>
                 </div>
 
                 <div className="h-44 w-full flex items-center justify-center">
@@ -441,7 +444,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
               <div className="bg-surface border border-main p-4 rounded shadow-xs">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-serif-headline text-base font-bold text-headline">
-                    Top Emerging Narratives
+                    Top Discussion Topics
                   </h3>
                   <button
                     onClick={() => setActiveTab('trends')}
@@ -481,7 +484,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <h3 className="font-serif-headline text-base font-bold text-headline">
-                      Link Topology & Key Opinion Leaders
+                      Network & Influencers
                     </h3>
                     <button
                       onClick={() => setActiveTab('network')}
@@ -536,10 +539,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div>
                   <h3 className="font-serif-headline text-lg font-bold text-headline flex items-center gap-2">
                     <span className="material-symbols-outlined text-brand">psychology</span>
-                    <span>Multi-Dimensional Sentiment & Nuance Inference</span>
+                    <span>Sentiment & Emotion Analysis</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Contextual Emotion Taxonomy, Sarcasm Detection & Vernacular NLP for {activePlatformData.name}
+                    Emotion trends and sarcasm detection across {activePlatformData.name}
                   </p>
                 </div>
                 <div className="text-xs font-mono text-green font-bold bg-green-bg px-2 py-1 rounded">
@@ -568,7 +571,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="bg-subtle border border-subtle p-4 rounded">
                   <h4 className="font-bold text-xs text-brand uppercase mb-2">
-                    Vernacular & Code-Mixed (Hinglish) Distribution
+                    Language Breakdown
                   </h4>
                   <div className="space-y-2 text-xs">
                     {currentDemographics.languages.map((l) => (
@@ -587,7 +590,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
                 <div className="bg-subtle border border-subtle p-4 rounded">
                   <h4 className="font-bold text-xs text-brand uppercase mb-2">
-                    Sarcasm & Inversion Detection Heuristics
+                    Sarcasm Detection
                   </h4>
                   <p className="text-xs text-secondary leading-relaxed mb-3">
                     Standard sentiment analysis classifies "Haan bhai, potholes are just natural speed breakers! 👏👏" as positive due to applause emojis. SANKET’s Indic sarcasm classifier accurately flags irony (-0.68 polarity, 94% sarcasm confidence).
@@ -618,10 +621,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div>
                   <h3 className="font-serif-headline text-lg font-bold text-headline flex items-center gap-2">
                     <span className="material-symbols-outlined text-brand">group</span>
-                    <span>Automated Demographic Profiling (Anonymized)</span>
+                    <span>Audience Demographics</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Cohort Aggregation, Age Pyramids, Geographic Dispersion & Affinity Clusters ({activePlatformData.name})
+                    Age groups, locations, and interests across {activePlatformData.name}
                   </p>
                 </div>
                 <div className="text-xs font-mono text-navy bg-navy-light px-2 py-1 rounded font-bold">
@@ -652,7 +655,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 {/* Geographic Dispersion */}
                 <div className="bg-subtle border border-subtle p-4 rounded lg:col-span-2">
                   <h4 className="font-bold text-xs text-brand uppercase mb-3">
-                    Geographic Dispersion (States & UTs)
+                    Location Breakdown
                   </h4>
                   <div className="divide-y divide-subtle text-xs">
                     {currentDemographics.geography.map((geo) => (
@@ -679,7 +682,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div>
                   <strong className="text-green">{currentDemographics.complianceStandard}</strong>
                   <p className="text-secondary text-[11px] mt-0.5">
-                    Zero Personally Identifiable Information (PII) is recorded. All demographic profiling runs via k-anonymity heuristics with epsilon differential noise.
+                    We don't save any information that could identify a person. We only look at group patterns, not individuals.
                   </p>
                 </div>
               </div>
@@ -695,10 +698,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div>
                   <h3 className="font-serif-headline text-lg font-bold text-headline flex items-center gap-2">
                     <span className="material-symbols-outlined text-brand">monitoring</span>
-                    <span>Temporal Trend Detection</span>
+                    <span>Trending Topics Over Time</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Real-Time Narrative Trends, Predictive Trajectories & Anomaly Spikes ({activePlatformData.name})
+                    Live topic trends and unusual spikes across {activePlatformData.name}
                   </p>
                 </div>
                 <span className="text-xs text-brand font-bold">Updated every 60 seconds</span>
@@ -772,10 +775,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <div>
                   <h3 className="font-serif-headline text-lg font-bold text-headline flex items-center gap-2">
                     <span className="material-symbols-outlined text-brand">database</span>
-                    <span>Continuous Data Collection & Timeline Explorer</span>
+                    <span>Data Feed</span>
                   </h3>
                   <p className="text-xs text-muted">
-                    Chronological Raw Post Stream, Multi-Platform Ingestion Feed & Ground Truth Metadata
+                    Real posts from all connected platforms, in order
                   </p>
                 </div>
                 <span className="text-xs font-mono font-bold text-brand">

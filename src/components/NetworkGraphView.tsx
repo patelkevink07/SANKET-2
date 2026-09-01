@@ -217,10 +217,10 @@ export const NetworkGraphView: React.FC<NetworkGraphViewProps> = ({ onSelectNode
         <div>
           <h3 className="font-serif-headline text-lg font-bold text-headline flex items-center gap-2">
             <span className="material-symbols-outlined text-brand">hub</span>
-            <span>Link Analysis & Network Topology Map</span>
+            <span>Network Map</span>
           </h3>
           <p className="text-xs text-muted">
-            High-Centrality Influencer Discovery & Coordinated Inauthentic Network Detection
+            Find key influencers and spot suspicious coordinated activity
           </p>
         </div>
 

@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { AnalystUser } from '../types';
-import { InteractiveHoverButton } from './InteractiveHoverButton';
 
 interface TopNavBarProps {
   activePage: string;
   onNavigate: (page: string) => void;
   user: AnalystUser | null;
   onLogout: () => void;
-  onOpenSandbox?: () => void;
 }
 
 export const TopNavBar: React.FC<TopNavBarProps> = ({
   activePage,
   onNavigate,
   user,
-  onLogout,
-  onOpenSandbox
+  onLogout
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -48,23 +45,8 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
             </span>
           </div>
 
-          {/* Mobile Right Controls: Demo Button & Hamburger Toggle */}
+          {/* Mobile Right Controls: Hamburger Toggle */}
           <div className="flex items-center gap-2 lg:hidden">
-            <InteractiveHoverButton
-              id="btn-mobile-sandbox-trigger"
-              label="Live Sandbox"
-              icon="smart_toy"
-              variant="saffron"
-              onClick={() => {
-                if (onOpenSandbox) {
-                  onOpenSandbox();
-                } else {
-                  handleNavClick('dashboards');
-                }
-              }}
-              className="py-1.5 px-2.5 text-[11px] min-h-[38px]"
-            />
-
             {/* Hamburger Toggle Button */}
             <button
               id="btn-mobile-menu-toggle"
@@ -105,23 +87,6 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
 
         {/* Desktop Right Action Area */}
         <div className="hidden lg:flex items-center gap-3 py-1.5">
-          {/* Interactive Placeholder Button */}
-          <InteractiveHoverButton
-            id="btn-desktop-sandbox-trigger"
-            label="AI Intelligence Sandbox"
-            sublabel="live"
-            icon="auto_awesome"
-            variant="primary"
-            onClick={() => {
-              if (onOpenSandbox) {
-                onOpenSandbox();
-              } else {
-                handleNavClick('dashboards');
-              }
-            }}
-            className="py-1.5 px-3 text-xs"
-          />
-
           {user ? (
             <div className="flex items-center gap-3">
               <div className="hidden xl:flex flex-col text-right">

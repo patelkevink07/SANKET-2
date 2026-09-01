@@ -77,7 +77,6 @@ export const ImageZoomModal: React.FC<ImageZoomModalProps> = ({
         {caption && (
           <div className="bg-surface border-t border-subtle px-4 py-2.5 text-xs text-secondary flex items-center justify-between">
             <span>{caption}</span>
-            <span className="text-[10px] text-muted font-mono">SANKET High-Resolution Intelligence Asset</span>
           </div>
         )}
       </div>

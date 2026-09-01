@@ -5,7 +5,7 @@ interface HeaderProps {
   user: AnalystUser | null;
   onLogout: () => void;
   onNavigate: (page: string) => void;
-  onOpenImageModal?: (src: string, alt: string, caption: string) => void;
+  onOpenImageModal?: (src: string, alt: string, caption?: string) => void;
   theme?: 'light' | 'dark';
   onToggleTheme?: () => void;
 }
@@ -33,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
     document.documentElement.style.fontSize = '100%';
   };
 
-  const handleImageClick = (e: React.MouseEvent, src: string, alt: string, caption: string) => {
+  const handleImageClick = (e: React.MouseEvent, src: string, alt: string, caption?: string) => {
     e.stopPropagation();
     if (onOpenImageModal) {
       onOpenImageModal(src, alt, caption);
@@ -123,9 +123,9 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-3 sm:gap-4 cursor-pointer" onClick={() => onNavigate('home')}>
             {/* SANKET Logo with interactive hover effect */}
             <div
-              onClick={(e) => handleImageClick(e, SANKET_IMG, 'SANKET Directorate Crest', 'SANKET Social Analytics & Network Knowledge Extraction Technology Emblem')}
+              onClick={(e) => handleImageClick(e, SANKET_IMG, 'SANKET Logo')}
               className="relative overflow-hidden rounded p-1 hover:bg-navy-light/40 transition-all duration-300 transform hover:scale-105"
-              title="Click to zoom SANKET Emblem"
+              title="Click to zoom SANKET logo"
             >
               <img
                 src={SANKET_IMG}

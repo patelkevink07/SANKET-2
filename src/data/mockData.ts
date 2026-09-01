@@ -527,7 +527,7 @@ export const MOCK_DEMOGRAPHICS: DemographicData = {
   ],
   sampleSize: 224000,
   overallConfidence: 0.912,
-  complianceStandard: 'ISO 27701 & DPDP Act 2023 Compliant (Differential Privacy ε=0.5)'
+  complianceStandard: 'Privacy Protection'
 };
 
 export const MOCK_TRENDS: TrendTopic[] = [
@@ -918,7 +918,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
     activeClusterPeak: '#SemiconductorMission (#1 Peak)',
     botPercentage: '4.2%',
     botCount: '1,248',
-    botRings: '2 Botnet Rings Isolated',
+    botRings: '2 Coordinated Groups Found',
     timeline: MOCK_SENTIMENT_TIMELINE,
     demographics: MOCK_DEMOGRAPHICS,
     trends: MOCK_TRENDS
@@ -933,7 +933,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
     activeClusterPeak: '#SemiconductorMission (High KOL Velocity)',
     botPercentage: '6.8%',
     botCount: '890',
-    botRings: '2 Coordinated Bot Clusters',
+    botRings: '2 Coordinated Groups Found',
     timeline: [
       { time: '00:00', supportive: 45, against: 18, anxious: 19, excited: 10, sarcastic: 8, postsCount: 920 },
       { time: '03:00', supportive: 42, against: 20, anxious: 22, excited: 9, sarcastic: 7, postsCount: 650 },
@@ -974,7 +974,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
       ],
       sampleSize: 142850,
       overallConfidence: 0.935,
-      complianceStandard: 'ISO 27701 & DPDP Act 2023 Compliant (X Firehose Pipeline)'
+      complianceStandard: 'Privacy Protection'
     },
     trends: [
       {
@@ -1028,7 +1028,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
     activeClusterPeak: '#NationalHighwayExpansion (Infra Channel Hubs)',
     botPercentage: '1.9%',
     botCount: '170',
-    botRings: '0 Active Botnet Rings',
+    botRings: '0 Coordinated Groups Found',
     timeline: [
       { time: '00:00', supportive: 68, against: 4, anxious: 8, excited: 18, sarcastic: 2, postsCount: 380 },
       { time: '03:00', supportive: 65, against: 5, anxious: 10, excited: 18, sarcastic: 2, postsCount: 220 },
@@ -1068,7 +1068,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
       ],
       sampleSize: 89400,
       overallConfidence: 0.902,
-      complianceStandard: 'ISO 27701 & DPDP Act 2023 Compliant (MTProto Broadcast Parsing)'
+      complianceStandard: 'Privacy Protection'
     },
     trends: [
       {
@@ -1109,7 +1109,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
     activeClusterPeak: '#SmartIndiaHackathon2026 (Student Creators)',
     botPercentage: '2.1%',
     botCount: '68',
-    botRings: '0 Active Botnet Rings',
+    botRings: '0 Coordinated Groups Found',
     timeline: [
       { time: '00:00', supportive: 62, against: 3, anxious: 4, excited: 30, sarcastic: 1, postsCount: 180 },
       { time: '03:00', supportive: 59, against: 4, anxious: 5, excited: 28, sarcastic: 2, postsCount: 110 },
@@ -1150,7 +1150,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
       ],
       sampleSize: 32100,
       overallConfidence: 0.942,
-      complianceStandard: 'ISO 27701 & DPDP Act 2023 Compliant (Public Media API)'
+      complianceStandard: 'Privacy Protection'
     },
     trends: [
       {
@@ -1191,7 +1191,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
     activeClusterPeak: '#DataPrivacy (DPDP Act Technical Architecture)',
     botPercentage: '1.2%',
     botCount: '22',
-    botRings: '0 Active Botnet Rings',
+    botRings: '0 Coordinated Groups Found',
     timeline: [
       { time: '00:00', supportive: 42, against: 12, anxious: 24, excited: 14, sarcastic: 8, postsCount: 120 },
       { time: '03:00', supportive: 40, against: 14, anxious: 26, excited: 12, sarcastic: 8, postsCount: 95 },
@@ -1230,7 +1230,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
       ],
       sampleSize: 18900,
       overallConfidence: 0.958,
-      complianceStandard: 'ISO 27701 & DPDP Act 2023 Compliant (PRAW Reddit API)'
+      complianceStandard: 'Privacy Protection'
     },
     trends: [
       {
@@ -1271,7 +1271,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
     activeClusterPeak: '#IndicAI (Vernacular AI Demos & National Compute)',
     botPercentage: '1.4%',
     botCount: '38',
-    botRings: '0 Active Botnet Rings',
+    botRings: '0 Coordinated Groups Found',
     timeline: [
       { time: '00:00', supportive: 72, against: 2, anxious: 3, excited: 28, sarcastic: 1, postsCount: 220 },
       { time: '03:00', supportive: 69, against: 3, anxious: 4, excited: 26, sarcastic: 1, postsCount: 150 },
@@ -1312,7 +1312,7 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
       ],
       sampleSize: 27400,
       overallConfidence: 0.938,
-      complianceStandard: 'ISO 27701 & DPDP Act 2023 Compliant (YouTube Data API v3)'
+      complianceStandard: 'Privacy Protection'
     },
     trends: [
       {
@@ -1344,3 +1344,147 @@ export const PLATFORM_DATA_MAP: Record<string, PlatformSpecificData> = {
     ]
   }
 };
+
+/**
+ * Derives platform data dynamically scaled for the requested time range window.
+ * Supports: '6h' (Rapid Wave), '24h' (Standard Operational), '7d' (Strategic Trend), '30d' (Monthly Baseline).
+ */
+export function getPlatformData(platform: string = 'all', timeRange: string = '24h'): PlatformSpecificData {
+  const base = PLATFORM_DATA_MAP[platform] || PLATFORM_DATA_MAP.all;
+  if (timeRange === '24h') {
+    return base;
+  }
+
+  // Multipliers and configurations per time range window
+  const config = {
+    '6h': {
+      multiplier: 0.255,
+      timeBadge: '6h',
+      growthMultiplier: 0.35,
+      clusterMultiplier: 0.65,
+      polarityDelta: 0.03,
+      botCountMultiplier: 0.25,
+      timelinePoints: [
+        { time: 'T-5h' },
+        { time: 'T-4h' },
+        { time: 'T-3h' },
+        { time: 'T-2h' },
+        { time: 'T-1h' },
+        { time: 'T-0h' }
+      ]
+    },
+    '7d': {
+      multiplier: 6.2,
+      timeBadge: '7d',
+      growthMultiplier: 2.3,
+      clusterMultiplier: 2.1,
+      polarityDelta: -0.02,
+      botCountMultiplier: 5.8,
+      timelinePoints: [
+        { time: 'Day -6' },
+        { time: 'Day -5' },
+        { time: 'Day -4' },
+        { time: 'Day -3' },
+        { time: 'Day -2' },
+        { time: 'Yesterday' },
+        { time: 'Today' }
+      ]
+    },
+    '30d': {
+      multiplier: 24.5,
+      timeBadge: '30d',
+      growthMultiplier: 4.8,
+      clusterMultiplier: 3.7,
+      polarityDelta: -0.01,
+      botCountMultiplier: 21.0,
+      timelinePoints: [
+        { time: 'Week 1' },
+        { time: 'Week 2' },
+        { time: 'Week 3' },
+        { time: 'Week 4' },
+        { time: 'Week 5' }
+      ]
+    }
+  }[timeRange] || {
+    multiplier: 1,
+    timeBadge: '24h',
+    growthMultiplier: 1,
+    clusterMultiplier: 1,
+    polarityDelta: 0,
+    botCountMultiplier: 1,
+    timelinePoints: base.timeline.map((t) => ({ time: t.time }))
+  };
+
+  // Parse totalPosts number from string
+  const basePostsNum = parseInt(base.totalPosts.replace(/,/g, ''), 10) || 310650;
+  const scaledPostsNum = Math.round(basePostsNum * config.multiplier);
+
+  // Extract growth rate number
+  const growthMatch = base.growthRate.match(/([+-]?\d+(?:\.\d+)?)/);
+  const baseGrowthVal = growthMatch ? parseFloat(growthMatch[1]) : 18.4;
+  const scaledGrowthVal = (baseGrowthVal * config.growthMultiplier).toFixed(1);
+  const scaledGrowthRate = `+${scaledGrowthVal}% growth / ${config.timeBadge}`;
+
+  // Bot count
+  const baseBotNum = parseInt(base.botCount.replace(/,/g, ''), 10) || 1248;
+  const scaledBotNum = Math.max(1, Math.round(baseBotNum * config.botCountMultiplier));
+
+  // Polarity
+  const basePolarityNum = parseFloat(base.polarity) || 0.74;
+  const scaledPolarityVal = Math.min(0.99, Math.max(-0.99, basePolarityNum + config.polarityDelta));
+  const formattedPolarity = `${scaledPolarityVal >= 0 ? '+' : ''}${scaledPolarityVal.toFixed(2)}`;
+
+  // Scaled timeline with matching time keys
+  const scaledTimeline = config.timelinePoints.map((pt, index) => {
+    const basePt = base.timeline[index % base.timeline.length];
+    return {
+      time: pt.time,
+      supportive: Math.min(100, Math.max(0, basePt.supportive + (timeRange === '6h' ? 2 : timeRange === '7d' ? -1 : 0))),
+      against: Math.min(100, Math.max(0, basePt.against + (timeRange === '7d' ? 1 : 0))),
+      anxious: basePt.anxious,
+      excited: basePt.excited,
+      sarcastic: basePt.sarcastic,
+      postsCount: Math.round((basePt.postsCount * config.multiplier) / (config.timelinePoints.length / base.timeline.length))
+    };
+  });
+
+  // Scaled demographics (sampleSize and region counts)
+  const scaledDemographics: DemographicData = {
+    ...base.demographics,
+    sampleSize: Math.round(base.demographics.sampleSize * config.multiplier),
+    geography: base.demographics.geography.map((geo) => ({
+      ...geo,
+      count: Math.round(geo.count * config.multiplier)
+    }))
+  };
+
+  // Scaled trends
+  const scaledTrends: TrendTopic[] = base.trends.map((trend) => ({
+    ...trend,
+    mentionCount: Math.round(trend.mentionCount * config.multiplier),
+    velocity: parseFloat((trend.velocity * (timeRange === '6h' ? 1.3 : timeRange === '7d' ? 0.7 : timeRange === '30d' ? 0.4 : 1)).toFixed(1))
+  }));
+
+  // Scaled clusters & bot rings
+  const scaledClustersCount = Math.max(2, Math.round(base.activeClustersCount * config.clusterMultiplier));
+  const scaledBotRings = timeRange === '6h' 
+    ? (base.botRings.includes('0') ? '0 Coordinated Groups Found' : '1 Coordinated Group Found')
+    : timeRange === '7d'
+    ? (base.botRings.includes('0') ? '0 Coordinated Groups Found' : '4 Coordinated Groups Found')
+    : timeRange === '30d'
+    ? (base.botRings.includes('0') ? '0 Coordinated Groups Found' : '9 Coordinated Groups Found')
+    : base.botRings;
+
+  return {
+    ...base,
+    totalPosts: scaledPostsNum.toLocaleString(),
+    growthRate: scaledGrowthRate,
+    polarity: formattedPolarity,
+    activeClustersCount: scaledClustersCount,
+    botCount: scaledBotNum.toLocaleString(),
+    botRings: scaledBotRings,
+    timeline: scaledTimeline,
+    demographics: scaledDemographics,
+    trends: scaledTrends
+  };
+}

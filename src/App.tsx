@@ -7,7 +7,6 @@ import { DashboardScreen } from './components/DashboardScreen';
 import { ReportsView } from './components/ReportsView';
 import { AboutHubScreen } from './components/AboutHubScreen';
 import { ImageZoomModal } from './components/ImageZoomModal';
-import { InteractiveSandboxModal } from './components/InteractiveSandboxModal';
 import { AnalystUser } from './types';
 import { CURRENT_ANALYST } from './data/mockData';
 import { updatePageSEO } from './utils/seo';
@@ -41,15 +40,13 @@ export default function App() {
     isOpen: boolean;
     src: string;
     alt: string;
-    caption: string;
+    caption?: string;
   }>({
     isOpen: false,
     src: '',
     alt: '',
     caption: ''
   });
-
-  const [isSandboxOpen, setIsSandboxOpen] = useState<boolean>(false);
 
   // Dynamic SEO meta tags and page titles on route changes
   useEffect(() => {
@@ -85,12 +82,12 @@ export default function App() {
     setAboutSubTab('home');
   };
 
-  const handleOpenImageModal = (src: string, alt: string, caption: string) => {
+  const handleOpenImageModal = (src: string, alt: string, caption?: string) => {
     setZoomModal({
       isOpen: true,
       src,
       alt,
-      caption
+      caption: caption || ''
     });
   };
 
@@ -112,7 +109,6 @@ export default function App() {
         onNavigate={handleNavigate}
         user={user}
         onLogout={handleLogout}
-        onOpenSandbox={() => setIsSandboxOpen(true)}
       />
 
       {/* Main Content Router */}
@@ -137,7 +133,6 @@ export default function App() {
             initialSubTab={aboutSubTab}
             onNavigate={handleNavigate}
             onOpenImageModal={handleOpenImageModal}
-            onOpenSandbox={() => setIsSandboxOpen(true)}
           />
         )}
 
@@ -156,16 +151,6 @@ export default function App() {
         imageSrc={zoomModal.src}
         imageAlt={zoomModal.alt}
         caption={zoomModal.caption}
-      />
-
-      {/* Global Interactive AI Sandbox Simulator Modal */}
-      <InteractiveSandboxModal
-        isOpen={isSandboxOpen}
-        onClose={() => setIsSandboxOpen(false)}
-        onNavigateToDashboard={(tab) => {
-          setIsSandboxOpen(false);
-          handleNavigate('dashboards', tab);
-        }}
       />
 
       {/* Official Institutional Footer */}

@@ -30,25 +30,15 @@ export const ContactView: React.FC<ContactViewProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-secondary">
+          <div className="grid grid-cols-1 gap-6 text-xs text-secondary max-w-2xl">
             <div className="p-4 bg-subtle border border-main rounded space-y-2">
               <h3 className="font-serif-headline text-base font-bold text-brand">
                 Team SANKET (Student Developers)
               </h3>
               <p>Smart India Hackathon 2026 Prototype Submission</p>
-              <p><strong>Problem Statement:</strong> #26152 (Sponsored by NTRO)</p>
+              <p><strong>Problem Statement:</strong> #26152</p>
               <p><strong>Team Repository:</strong> patelkevink07/SANKET-2</p>
               <p><strong>Project Support:</strong> patelkevink07@gmail.com</p>
-            </div>
-
-            <div className="p-4 bg-subtle border border-main rounded space-y-2">
-              <h3 className="font-serif-headline text-base font-bold text-brand">
-                Smart India Hackathon 2026 Nodal Cell
-              </h3>
-              <p>AICTE Head Office, Nelson Mandela Marg, Vasant Kunj, New Delhi - 110070</p>
-              <p><strong>Problem Statement ID:</strong> #26152</p>
-              <p><strong>Organized by:</strong> MoE's Innovation Cell &amp; AICTE</p>
-              <p><strong>Official Portal:</strong> sih.gov.in</p>
             </div>
           </div>
         </div>
