@@ -10,7 +10,7 @@ import {
 
 export const CURRENT_ANALYST: AnalystUser = {
   id: 'DEMO-ANA-8492',
-  name: 'Commander S. K. Verma',
+  name: 'Demo Analyst',
   badgeId: 'DEMO-ANALYST-001',
   role: 'Demo Analyst',
   clearanceLevel: 'DEMO ACCESS',

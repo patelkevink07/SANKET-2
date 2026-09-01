@@ -41,7 +41,6 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   const [activeTab, setActiveTab] = useState<string>(initialTab);
   const [selectedPlatform, setSelectedPlatform] = useState<string>('all');
   const [timeRange, setTimeRange] = useState<string>('24h');
-  const [filterBotSuspected, setFilterBotSuspected] = useState<boolean>(false);
   const [selectedPost, setSelectedPost] = useState<SocialPost | null>(MOCK_POSTS[0]);
   const [isLiveStreaming, setIsLiveStreaming] = useState<boolean>(true);
   const [postsList, setPostsList] = useState<SocialPost[]>(MOCK_POSTS);
@@ -120,7 +119,6 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   // Filter posts based on global toolbar
   const filteredPosts = postsList.filter((post) => {
     if (selectedPlatform !== 'all' && post.platform !== selectedPlatform) return false;
-    if (filterBotSuspected && !post.account.isBotSuspected) return false;
     return true;
   });
 
@@ -155,7 +153,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
 
         {/* Global Filter Toolbar */}
         <div className="bg-surface border border-main p-3 shadow-xs">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
             {/* Platform Filter */}
             <div>
               <select
@@ -184,21 +182,6 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                 <option value="7d">Last 7 Days (Strategic Trend)</option>
                 <option value="30d">Last 30 Days (Monthly Baseline)</option>
               </select>
-            </div>
-
-            {/* Inauthentic / Bot Filter Toggle */}
-            <div className="flex items-center gap-2 justify-end">
-              <label className="flex items-center gap-1.5 text-xs text-primary font-medium cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={filterBotSuspected}
-                  onChange={(e) => setFilterBotSuspected(e.target.checked)}
-                  className="rounded text-red focus:ring-red"
-                />
-                <span className={filterBotSuspected ? 'text-red font-bold' : ''}>
-                  Bot Clusters Only
-                </span>
-              </label>
             </div>
           </div>
         </div>

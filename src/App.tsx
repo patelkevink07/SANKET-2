@@ -8,14 +8,13 @@ import { ReportsView } from './components/ReportsView';
 import { AboutHubScreen } from './components/AboutHubScreen';
 import { ImageZoomModal } from './components/ImageZoomModal';
 import { AnalystUser } from './types';
-import { CURRENT_ANALYST } from './data/mockData';
 import { updatePageSEO } from './utils/seo';
 
 export default function App() {
-  const [activePage, setActivePage] = useState<string>('dashboards');
+  const [activePage, setActivePage] = useState<string>('login');
   const [dashboardTab, setDashboardTab] = useState<string>('overview');
   const [aboutSubTab, setAboutSubTab] = useState<string>('home');
-  const [user, setUser] = useState<AnalystUser | null>(CURRENT_ANALYST);
+  const [user, setUser] = useState<AnalystUser | null>(null);
 
   // Modal states for interactivity
   const [zoomModal, setZoomModal] = useState<{
@@ -36,6 +35,12 @@ export default function App() {
   }, [activePage, aboutSubTab]);
 
   const handleNavigate = (page: string, tab?: string) => {
+    if ((page === 'dashboards' || page === 'reports') && !user) {
+      setActivePage('login');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (['home', 'about', 'architecture', 'knowledge', 'contact'].includes(page)) {
       setActivePage('about');
       setAboutSubTab(tab || (page === 'about' ? 'about' : page));
@@ -54,6 +59,8 @@ export default function App() {
   const handleLoginSuccess = (loggedInUser: AnalystUser) => {
     setUser(loggedInUser);
     setActivePage('dashboards');
+    setDashboardTab('overview');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleLogout = () => {
@@ -92,18 +99,32 @@ export default function App() {
       {/* Main Content Router */}
       <main className="flex-grow flex flex-col w-full" id="main-content">
         {activePage === 'dashboards' && (
-          <DashboardScreen
-            initialTab={dashboardTab}
-            onNavigate={handleNavigate}
-            onOpenImageModal={handleOpenImageModal}
-          />
+          user ? (
+            <DashboardScreen
+              initialTab={dashboardTab}
+              onNavigate={handleNavigate}
+              onOpenImageModal={handleOpenImageModal}
+            />
+          ) : (
+            <LoginScreen
+              onLoginSuccess={handleLoginSuccess}
+              onNavigate={handleNavigate}
+            />
+          )
         )}
 
         {activePage === 'reports' && (
-          <ReportsView
-            user={user}
-            onNavigate={handleNavigate}
-          />
+          user ? (
+            <ReportsView
+              user={user}
+              onNavigate={handleNavigate}
+            />
+          ) : (
+            <LoginScreen
+              onLoginSuccess={handleLoginSuccess}
+              onNavigate={handleNavigate}
+            />
+          )
         )}
 
         {activePage === 'about' && (

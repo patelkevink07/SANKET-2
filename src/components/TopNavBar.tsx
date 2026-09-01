@@ -16,11 +16,15 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navItems = [
-    { id: 'dashboards', label: 'DASHBOARD', icon: 'dashboard' },
-    { id: 'reports', label: 'REPORTS', icon: 'assessment' },
-    { id: 'about', label: 'ABOUT', icon: 'info' }
-  ];
+  const navItems = user
+    ? [
+        { id: 'dashboards', label: 'DASHBOARD', icon: 'dashboard' },
+        { id: 'reports', label: 'REPORTS', icon: 'assessment' },
+        { id: 'about', label: 'ABOUT', icon: 'info' }
+      ]
+    : [
+        { id: 'about', label: 'ABOUT', icon: 'info' }
+      ];
 
   const handleNavClick = (pageId: string) => {
     onNavigate(pageId);
