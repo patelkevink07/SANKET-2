@@ -19,8 +19,6 @@ class Settings(BaseSettings):
     reddit_client_id: str = ""
     reddit_client_secret: str = ""
     reddit_user_agent: str = "sanket-ingestion/0.1"
-    telegram_api_id: str = ""
-    telegram_api_hash: str = ""
 
     @property
     def cors_origin_list(self) -> list[str]:
